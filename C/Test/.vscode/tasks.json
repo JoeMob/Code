@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "clang.exe build active file",
+      "command": "clang",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "C:\\Program Files\\LLVM\\bin"
+      }
+    }
+  ],
+  "version": "2.0.0"
+}

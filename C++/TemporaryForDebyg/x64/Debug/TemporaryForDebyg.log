@@ -1,0 +1,3 @@
+﻿  TemporaryForDebyg.cpp
+C:\Users\JoeWyx\OneDrive\Code\C++\TemporaryForDebyg\Stack.c(78): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  TemporaryForDebyg.vcxproj -> C:\Users\JoeWyx\OneDrive\Code\C++\TemporaryForDebyg\x64\Debug\TemporaryForDebyg.exe
