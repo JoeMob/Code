@@ -373,14 +373,14 @@ export default {
         courseidentifier: '1',
         coursename: 'Math',
         teacher: 'JoJo',
-        lesson: '48hr',
+        lesson: '48',
         createdtime: '2019-5-25',
         editedtime: '2019-5-25'
       }, {
         courseidentifier: '2',
         coursename: 'Compiler',
         teacher: 'Dio',
-        lesson: '48hr',
+        lesson: '48',
         createdtime: '2019-5-25',
         editedtime: '2019-5-25'
       }],
