@@ -1,7 +1,9 @@
 <template>
   <el-dialog
+    @open="init"
     title="新增成绩"
     :visible.sync="NewScoreFormVisible"
+    :before-close="cancelNewScore"
   >
     <el-form
       :model="form"
@@ -19,7 +21,7 @@
         <el-input
           v-model="form.StudentID"
           autocomplete="off"
-          maxlength="6"
+          maxlength="10"
           show-word-limit
         ></el-input>
       </el-form-item>
@@ -73,10 +75,30 @@ export default {
     }
   },
   methods: {
+    init () {
+      this.form = {
+        CourseID: '',
+        StudentID: '',
+        CourseName: '',
+        Score: ''
+      }
+    },
     cancelNewScore: function () {
+      this.form = {
+        CourseID: '',
+        StudentID: '',
+        CourseName: '',
+        Score: ''
+      }
       this.$emit('CloseNewScore')
     },
     confirmNewScore: function () {
+      this.form = {
+        CourseID: '',
+        StudentID: '',
+        CourseName: '',
+        Score: ''
+      }
       this.$emit('CloseNewScore')
     }
   }

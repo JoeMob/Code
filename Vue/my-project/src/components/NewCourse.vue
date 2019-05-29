@@ -1,7 +1,9 @@
 <template>
   <el-dialog
+    @open=init
     title="新增课程"
     :visible.sync="NewCourseFormVisible"
+    :before-close="cancelNewCourse"
   >
     <el-form
       :model="form"
@@ -39,7 +41,7 @@
       <el-form-item label="Lesson:">
         <el-input-number
           v-model="form.Lesson"
-          :min="0"
+          :min="1"
           :max="100"
         >
         </el-input-number>
@@ -72,10 +74,30 @@ export default {
     }
   },
   methods: {
+    init () {
+      this.form = {
+        CourseID: '',
+        CourseName: '',
+        Teacher: '',
+        Lesson: ''
+      }
+    },
     cancelNewCourse: function () {
+      this.form = {
+        CourseID: '',
+        CourseName: '',
+        Teacher: '',
+        Lesson: ''
+      }
       this.$emit('CloseNewCourse')
     },
     confirmNewCourse: function () {
+      this.form = {
+        CourseID: '',
+        CourseName: '',
+        Teacher: '',
+        Lesson: ''
+      }
       this.$emit('CloseNewCourse')
     }
   }

@@ -54,16 +54,15 @@
               <el-table-column
                 label="CreatedTime"
                 prop="createdtime"
-                width="100"
+                width="150"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
                 prop="editedtime"
-                width="100"
+                width="150"
               >
               </el-table-column>
-
               <el-table-column
                 align="center"
                 width="40"
@@ -77,17 +76,17 @@
                     type="success"
                     icon="el-icon-plus"
                     circle
-                    @click="handleNewStudent()"
+                    @click="handleNewStudent(scope.$index)"
                   ></el-button>
                 </template>
               </el-table-column>
               <el-table-column align="center">
                 <template
                   slot="header"
-                  slot-scope="scope"
+                  slot-scope="Student"
                 >
                   <el-input
-                    v-model="search"
+                    v-model="searchStudent"
                     size="mini"
                     placeholder="Search"
                     clearable
@@ -157,13 +156,13 @@
               <el-table-column
                 label="CreatedTime"
                 prop="createdtime"
-                width="100"
+                width="150"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
                 prop="editedtime"
-                width="100"
+                width="150"
               >
               </el-table-column>
               <el-table-column
@@ -179,17 +178,17 @@
                     type="success"
                     icon="el-icon-plus"
                     circle
-                    @click="handleNewScore()"
+                    @click="handleNewScore(scope.$index)"
                   ></el-button>
                 </template>
               </el-table-column>
               <el-table-column align="center">
                 <template
                   slot="header"
-                  slot-scope="scope"
+                  slot-scope="Score"
                 >
                   <el-input
-                    v-model="search"
+                    v-model="searchScore"
                     size="mini"
                     placeholder="Search"
                     clearable
@@ -258,13 +257,13 @@
               <el-table-column
                 label="CreatedTime"
                 prop="createdtime"
-                width="100"
+                width="150"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
                 prop="editedtime"
-                width="100"
+                width="150"
               >
               </el-table-column>
               <el-table-column
@@ -287,10 +286,10 @@
               <el-table-column align="center">
                 <template
                   slot="header"
-                  slot-scope="scope"
+                  slot-scope="Course"
                 >
                   <el-input
-                    v-model="search"
+                    v-model="searchCourse"
                     size="mini"
                     placeholder="Search"
                     clearable
@@ -344,47 +343,50 @@ export default {
         name: 'A',
         age: '18',
         gender: 'Male',
-        createdtime: '2019-5-25',
-        editedtime: '2019-5-25'
+        createdtime: '2019-5-26 13:06:02',
+        editedtime: '2019-5-26 13:06:07'
       }, {
         studentidentifier: '2',
         name: 'B',
         age: '20',
         gender: 'Female',
-        createdtime: '2019-5-25',
-        editedtime: '2019-5-25'
+        createdtime: '2019-5-26 13:07:51',
+        editedtime: '2019-5-26 13:07:55'
       }],
       ScoreData: [{
         courseidentifier: '1',
         studentidentifier: '1',
         coursename: 'Math',
         score: '100',
-        createdtime: '2019-5-25',
-        editedtime: '2019-5-25'
+        createdtime: '2019-5-26 13:07:59',
+        editedtime: '2019-5-26 13:08:02'
       }, {
         courseidentifier: '2',
         studentidentifier: '1',
         coursename: 'Compilier',
         score: '100',
-        createdtime: '2019-5-25',
-        editedtime: '2019-5-25'
+        createdtime: '2019-5-26 13:08:06',
+        editedtime: '2019-5-26 13:08:08'
       }],
       CourseData: [{
         courseidentifier: '1',
         coursename: 'Math',
         teacher: 'JoJo',
         lesson: '48',
-        createdtime: '2019-5-25',
-        editedtime: '2019-5-25'
+        createdtime: '2019-5-26 13:08:13',
+        editedtime: '2019-5-26 13:08:16'
       }, {
         courseidentifier: '2',
         coursename: 'Compiler',
         teacher: 'Dio',
         lesson: '48',
-        createdtime: '2019-5-25',
-        editedtime: '2019-5-25'
+        createdtime: '2019-5-26 13:08:21',
+        editedtime: '2019-5-26 13:08:24'
       }],
-      search: '',
+
+      searchStudent: '',
+      searchScore: '',
+      searchCourse: '',
       NewStuVisible: false,
       EditStuVisible: false,
       NewScoreVisible: false,
@@ -398,8 +400,8 @@ export default {
       this.NewStuVisible = true
     },
     handleEditStudent (index, row) {
-      this.EditStuVisible = true
       this.$store.commit('changeStudent', this.StudentData[index])
+      this.EditStuVisible = true
     },
     handleDeleteStudent (index, row) {
     },
@@ -407,8 +409,8 @@ export default {
       this.NewScoreVisible = true
     },
     handleEditScore (index, row) {
-      this.EditScoreVisible = true
       this.$store.commit('changeScore', this.ScoreData[index])
+      this.EditScoreVisible = true
     },
     handleDeleteScore (index, row) {
     },
@@ -416,8 +418,8 @@ export default {
       this.NewCourseVisible = true
     },
     handleEditCourse (index, row) {
-      this.EditCourseVisible = true
       this.$store.commit('changeCourse', this.CourseData[index])
+      this.EditCourseVisible = true
     },
     handleDeleteCourse (index, row) {
     },

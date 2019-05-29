@@ -1,7 +1,9 @@
 <template>
   <el-dialog
+    @open="init"
     title="新增学生"
     :visible.sync="NewStudentFormVisible"
+    :before-close="cancelNewStu"
   >
     <el-form
       :model="form"
@@ -31,7 +33,6 @@
       <el-form-item label="Age:">
         <el-input-number
           v-model="form.Age"
-          @change="handleChange"
           :min="1"
           :max="1000"
         ></el-input-number>
@@ -79,10 +80,30 @@ export default {
     }
   },
   methods: {
+    init () {
+      this.form = {
+        StudentID: '',
+        Name: '',
+        Age: '1',
+        Gender: ''
+      }
+    },
     cancelNewStu: function () {
+      this.form = {
+        StudentID: '',
+        Name: '',
+        Age: '1',
+        Gender: ''
+      }
       this.$emit('CloseNewStu')
     },
     confirmNewStu: function () {
+      this.form = {
+        StudentID: '',
+        Name: '',
+        Age: '1',
+        Gender: ''
+      }
       this.$emit('CloseNewStu')
     }
   }

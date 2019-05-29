@@ -6,8 +6,7 @@ export default new Vuex.Store({
   state: {
     StudentData: '',
     ScoreData: '',
-    CourseData: '',
-    NewStudentFormVisible: 0
+    CourseData: ''
   },
   mutations: {
     changeStudent (state, Data) {
@@ -18,9 +17,6 @@ export default new Vuex.Store({
     },
     changeCourse (state, Data) {
       state.CourseData = Data
-    },
-    changeStuForm (state, bool) {
-      state.NewStudentFormVisible = bool
     }
   }
 })
