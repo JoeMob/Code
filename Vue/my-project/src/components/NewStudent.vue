@@ -85,7 +85,12 @@ export default {
         StudentID: '',
         Name: '',
         Age: '1',
-        Gender: ''
+        Gender: '',
+        Option: [{
+          value: 'Male'
+        }, {
+          value: 'Female'
+        }]
       }
     },
     cancelNewStu: function () {
@@ -93,16 +98,44 @@ export default {
         StudentID: '',
         Name: '',
         Age: '1',
-        Gender: ''
+        Gender: '',
+        Option: [{
+          value: 'Male'
+        }, {
+          value: 'Female'
+        }]
       }
       this.$emit('CloseNewStu')
     },
     confirmNewStu: function () {
+      this.$axios('http://localhost:8080/student', {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        data: {
+          'studentId': this.form.StudentID,
+          'studentName': this.form.Name,
+          'age': this.form.Age,
+          'gender': this.form.Gender
+        }
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
       this.form = {
         StudentID: '',
         Name: '',
         Age: '1',
-        Gender: ''
+        Gender: '',
+        Option: [{
+          value: 'Male'
+        }, {
+          value: 'Female'
+        }]
       }
       this.$emit('CloseNewStu')
     }

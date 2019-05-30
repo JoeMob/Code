@@ -5,6 +5,9 @@ import './plugins/element.js'
 import VueMeta from 'vue-meta'
 import Vuex from 'vuex'
 import store from './store'
+import axios from 'axios'
+
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 Vue.use(VueMeta)

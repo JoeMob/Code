@@ -21,20 +21,20 @@
           ></edit-student>
           <el-col>
             <el-table
-              :data="StudentData"
+              :data="studentData"
               style="width: 100%"
-              :default-sort="{prop: 'studentidentifier', order:'ascending'}"
+              :default-sort="{prop: 'studentId', order:'ascending'}"
             >
               <el-table-column
                 label="StudentID"
-                prop="studentidentifier"
+                prop="studentId"
                 width="120"
                 sortable
               >
               </el-table-column>
               <el-table-column
                 label="Name"
-                prop="name"
+                prop="studentName"
                 width="120"
                 sortable
               >
@@ -53,13 +53,13 @@
               </el-table-column>
               <el-table-column
                 label="CreatedTime"
-                prop="createdtime"
+                prop="createdTime"
                 width="150"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
-                prop="editedtime"
+                prop="updatedTime"
                 width="150"
               >
               </el-table-column>
@@ -89,6 +89,7 @@
                     v-model="searchStudent"
                     size="mini"
                     placeholder="Search"
+                    @keyup.enter.native="search"
                     clearable
                   />
                 </template>
@@ -155,13 +156,13 @@
               </el-table-column>
               <el-table-column
                 label="CreatedTime"
-                prop="createdtime"
+                prop="createdTime"
                 width="150"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
-                prop="editedtime"
+                prop="updateTime"
                 width="150"
               >
               </el-table-column>
@@ -338,21 +339,7 @@ export default {
   },
   data () {
     return {
-      StudentData: [{
-        studentidentifier: '1',
-        name: 'A',
-        age: '18',
-        gender: 'Male',
-        createdtime: '2019-5-26 13:06:02',
-        editedtime: '2019-5-26 13:06:07'
-      }, {
-        studentidentifier: '2',
-        name: 'B',
-        age: '20',
-        gender: 'Female',
-        createdtime: '2019-5-26 13:07:51',
-        editedtime: '2019-5-26 13:07:55'
-      }],
+      studentData: [],
       ScoreData: [{
         courseidentifier: '1',
         studentidentifier: '1',
@@ -395,15 +382,68 @@ export default {
       EditCourseVisible: false
     }
   },
+  created: function () {
+    var home = this
+    this.$axios.get('http://localhost:8080/student')
+      .then(function (response) {
+        console.log(response.data)
+        home.$set(home.studentData, response.data)
+        home.studentData = response.data
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  },
   methods: {
+    search () {
+      var home = this
+      this.$axios('http://localhost:8080/student/id/', {
+        method: 'get',
+        params: {
+          'id': home.searchStudent
+        }
+      })
+        .then(function (response) {
+          home.studentData = []
+          home.studentData[0] = response.data
+        })
+        .catch(function (error) {
+          console.log(home.searchStudent)
+          console.log(error)
+        })
+    },
     handleNewStudent () {
       this.NewStuVisible = true
     },
     handleEditStudent (index, row) {
-      this.$store.commit('changeStudent', this.StudentData[index])
+      this.$store.commit('changeStudent', this.studentData[index])
       this.EditStuVisible = true
     },
     handleDeleteStudent (index, row) {
+      var home = this
+      this.$axios('http://localhost:8080/student/id', {
+        method: 'delete',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        data: {
+          'id': row.id
+        }
+      })
+        .then(function (response) {
+          console.log(response)
+          home.$axios.get('http://localhost:8080/student')
+            .then(function (response) {
+              console.log(response.data)
+              home.studentData = response.data
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        })
     },
     handleNewScore () {
       this.NewScoreVisible = true
@@ -424,9 +464,27 @@ export default {
     handleDeleteCourse (index, row) {
     },
     closeNewStu () {
+      var home = this
+      this.$axios.get('http://localhost:8080/student')
+        .then(function (response) {
+          console.log(response.data)
+          home.studentData = response.data
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
       this.NewStuVisible = false
     },
     closeEditStu () {
+      var home = this
+      this.$axios.get('http://localhost:8080/student')
+        .then(function (response) {
+          console.log(response.data)
+          home.studentData = response.data
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
       this.EditStuVisible = false
     },
     closeNewScore () {
@@ -441,6 +499,17 @@ export default {
     closeEditCourse () {
       this.EditCourseVisible = false
     }
+  },
+  mounted () {
+    var home = this
+    this.$axios.get('http://localhost:8080/student')
+      .then(function (response) {
+        console.log(response.data)
+        home.studentData = response.data
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }
 </script>

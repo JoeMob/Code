@@ -85,13 +85,15 @@ export default {
   },
   methods: {
     init () {
-      this.$set(this.form, 'StudentID', this.$store.state.StudentData.studentidentifier)
-      this.$set(this.form, 'Name', this.$store.state.StudentData.name)
+      this.$set(this.form, 'id', this.$store.state.StudentData.id)
+      this.$set(this.form, 'StudentID', this.$store.state.StudentData.studentId)
+      this.$set(this.form, 'Name', this.$store.state.StudentData.studentName)
       this.$set(this.form, 'Age', this.$store.state.StudentData.age)
       this.$set(this.form, 'Gender', this.$store.state.StudentData.gender)
     },
     cancelEditStu: function () {
       this.form = {
+        id: '',
         StudentID: '',
         Name: '',
         Age: '',
@@ -100,6 +102,25 @@ export default {
       this.$emit('CloseEditStu')
     },
     confirmEditStu: function () {
+      this.$axios('http://localhost:8080/student/id', {
+        method: 'put',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        data: {
+          'id': this.form.id,
+          'studentId': this.form.StudentID,
+          'studentName': this.form.Name,
+          'age': this.form.Age,
+          'gender': this.form.Gender
+        }
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
       this.form = {
         StudentID: '',
         Name: '',
