@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+class Point2D
+{
+private:
+    double x, y;
+
+public:
+    Point2D() : x(0), y(0) {}
+    Point2D(double a, double b) : x(a), y(b) {}
+    double getX()
+    {
+        return x;
+    }
+    double getY()
+    {
+        return y;
+    }
+    friend ostream &operator<<(ostream &out, Point2D p)
+    {
+        out << p.getX() << " " << p.getY();
+        return out;
+    }
+};
+
+class Circle : public Point2D
+{
+private:
+    double radius;
+    Point2D center;
+
+public:
+    Circle(double a, double b, double c) : Point2D(a, b), radius(c) {}
+    Circle(Point2D a, double b) : Point2D(a), radius(b) {}
+    friend ostream &operator<<(ostream &out, Circle c)
+    {
+        out << "Center:" << c.getCenter() << "\n";
+        out << "Radius:" << c.radius << "\n";
+        return out;
+    }
+    //friend const ostream &operator<<(const ostream &, const Circle &);
+    Point2D getCenter()
+    {
+        return Point2D(getX(), getY());
+    }
+    double getRadius()
+    {
+        return radius;
+    }
+    void show()
+    {
+        cout << getX() << "," << getY() << "," << radius << "\n";
+    }
+};
+
+int main()
+{
+    Circle c1(1, 2, 3);
+    c1.show();
+    cout << c1;
+    Circle c2(Point2D(1, 2), 3);
+    cout << c2;
+}
