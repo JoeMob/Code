@@ -13,13 +13,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-//    @PostMapping("/test")
-//    public void test(@RequestBody StudentEntity studentEntity){
-//        System.out.println(studentEntity);
-//
-//    }
-
-
     @GetMapping(value = "/student")
     public List<StudentBean> StudentQry() {
         return studentService.findAll();

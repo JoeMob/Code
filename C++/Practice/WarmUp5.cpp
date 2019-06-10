@@ -36,7 +36,7 @@ void insertSort(T *ptr, int size)
             {
                 T temp = ptr[j];
                 ptr[j] = ptr[j - 1];
-                ptr[j-1] = temp;
+                ptr[j - 1] = temp;
             }
             else
                 break;

@@ -54,13 +54,13 @@
               <el-table-column
                 label="CreatedTime"
                 prop="createdTime"
-                width="150"
+                width="160"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
                 prop="updatedTime"
-                width="150"
+                width="160"
               >
               </el-table-column>
               <el-table-column
@@ -339,7 +339,7 @@ export default {
   },
   data () {
     return {
-      studentData: [],
+      studentData: [{}],
       ScoreData: [{
         courseidentifier: '1',
         studentidentifier: '1',
@@ -387,7 +387,6 @@ export default {
     this.$axios.get('http://localhost:8080/student')
       .then(function (response) {
         console.log(response.data)
-        home.$set(home.studentData, response.data)
         home.studentData = response.data
       })
       .catch(function (error) {
@@ -465,6 +464,7 @@ export default {
     },
     closeNewStu () {
       var home = this
+      this.NewStuVisible = false
       this.$axios.get('http://localhost:8080/student')
         .then(function (response) {
           console.log(response.data)
@@ -473,7 +473,6 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
-      this.NewStuVisible = false
     },
     closeEditStu () {
       var home = this
