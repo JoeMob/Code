@@ -7,7 +7,6 @@ private:
     double x, y;
 
 public:
-    Point2D() : x(0), y(0) {}
     Point2D(double a, double b) : x(a), y(b) {}
     double getX()
     {
