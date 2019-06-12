@@ -28,7 +28,6 @@ class Circle : public Point2D
 {
 private:
     double radius;
-    Point2D center;
 
 public:
     Circle(double a, double b, double c) : Point2D(a, b), radius(c) {}
@@ -39,7 +38,6 @@ public:
         out << "Radius:" << c.radius << "\n";
         return out;
     }
-    //friend const ostream &operator<<(const ostream &, const Circle &);
     Point2D getCenter()
     {
         return Point2D(getX(), getY());
