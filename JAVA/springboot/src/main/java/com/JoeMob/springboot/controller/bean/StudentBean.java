@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class StudentBean {
     private Long id;
-    private Integer studentId;
+    private Long studentId;
     private String studentName;
     private Integer age;
     private String gender;

@@ -33,8 +33,8 @@ public class StudentController {
         studentService.delete(student.getId());
     }
 
-    @GetMapping(value = "/student/id/")
-    public StudentBean StudentSearch(@RequestParam("id") Long id) {
-        return studentService.findById(id);
+    @GetMapping(value = "/student/studentId/")
+    public List<StudentBean> StudentSearch(@RequestParam("studentId") Long studentId) {
+        return studentService.findByStudentId(studentId);
     }
 }
