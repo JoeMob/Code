@@ -58,4 +58,5 @@ int main()
     cout << c1;
     Circle c2(Point2D(1, 2), 3);
     cout << c2;
+    return 0;
 }

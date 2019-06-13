@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestCaseTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JUnit_Test_Case$TestCaseTest_ConditionalCoverage.exec</a> &gt; <a href="index.source.html" class="el_package">JoeMob</a> &gt; <span class="el_source">TestCaseTest.java</span></div><h1>TestCaseTest.java</h1><pre class="source lang-java linenums">package JoeMob;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+<span class="nc" id="L7">public class TestCaseTest {</span>
+<span class="nc" id="L8">    TestCase testCase = new TestCase();</span>
+
+    @Test
+    public void DecisionCoverage() {
+<span class="nc" id="L12">        testCase.Func(4, 4, 9);</span>
+<span class="nc" id="L13">        testCase.Func(3, 3, 11);</span>
+<span class="nc" id="L14">    }</span>
+
+    @Test
+    public void ConditionalCoverage() {
+<span class="nc" id="L18">        testCase.Func(4, 3, 9);</span>
+<span class="nc" id="L19">        testCase.Func(3, 4, 7);</span>
+<span class="nc" id="L20">        testCase.Func(4, 4, 7);</span>
+<span class="nc" id="L21">    }</span>
+
+    @Test
+    public void ConditionalDecisionCoverage() {
+<span class="nc" id="L25">        testCase.Func(4, 3, 7);</span>
+<span class="nc" id="L26">        testCase.Func(3, 4, 11);</span>
+<span class="nc" id="L27">        testCase.Func(4, 3, 11);</span>
+<span class="nc" id="L28">    }</span>
+
+    @Test
+    public void ConditionalCombaine() {
+
+<span class="nc" id="L33">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
