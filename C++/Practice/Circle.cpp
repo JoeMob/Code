@@ -33,8 +33,8 @@ public:
     Circle(Point2D a, double b) : Point2D(a), radius(b) {}
     friend ostream &operator<<(ostream &out, Circle c)
     {
-        out << "Center:" << c.getCenter() << "\n";
-        out << "Radius:" << c.radius << "\n";
+        out << "Center:" << c.getCenter() << endl;
+        out << "Radius:" << c.radius << endl;
         return out;
     }
     Point2D getCenter()
@@ -47,7 +47,7 @@ public:
     }
     void show()
     {
-        cout << getX() << "," << getY() << "," << radius << "\n";
+        cout << getX() << "," << getY() << "," << radius << endl;
     }
 };
 
@@ -57,6 +57,7 @@ int main()
     c1.show();
     cout << c1;
     Circle c2(Point2D(1, 2), 3);
+    c2.show();
     cout << c2;
     return 0;
 }

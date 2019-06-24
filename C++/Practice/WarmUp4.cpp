@@ -45,7 +45,7 @@ Complex operator*(const Complex &me, const Complex &other)
 
 std::ostream &operator<<(std::ostream &out, Complex c)
 {
-    out << c.getReal() << "+" << c.getUnreal() << "i\n";
+    out << c.getReal() << "+" << c.getUnreal() << "i" << std::endl;
     return out;
 }
 

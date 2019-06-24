@@ -90,9 +90,9 @@ void LexicalAnalysis(char *FileName)
     // Initialize Const
     Constant Const = {.SC = 2, .SV = {'\0'}};
     // Initialize RW
-    ReservedWord RW = {.SC = 3, .SV = {"int", "char", "if", "else", "while", "for", "main", "include", "printf", "return", "float"}};
+    ReservedWord RW = {.SC = 3, .SV = {"int", "char", "if", "else", "while", "for", "main", "include", "printf", "return", "float", "scanf"}};
     //Initialize Cal
-    Calculator Cal = {.SC = 4, .SV = {"+", "-", "*", "/", "=", ">", "<", ">=", "<=", "!=", "==", "+=", "-=", "++", "--"}};
+    Calculator Cal = {.SC = 4, .SV = {"+", "-", "*", "/", "=", ">", "<", ">=", "<=", "!=", "==", "+=", "-=", "++", "--", "&"}};
     //Initialize Del
     Delimiter Del = {.SC = 5, .SV = {";", "|", "{", "}", "[", "]", "(", ")", "\\", "\"", "\'", "#"}};
     //Initialize Str
@@ -127,7 +127,7 @@ void LexicalAnalysis(char *FileName)
     int ColumnCount = 0;
     for (int i = 0; Buffer[i] != '\0'; i++)
     {
-		CouldVerify = 0;
+        CouldVerify = 0;
         PushChar(CS, Buffer[i]);
         int CountId = 0;
         for (int j = 0; Id.SV[j][0] != '\0'; j++)
