@@ -69,22 +69,22 @@ void Single(char (*array)[10][10])
     }
 }
 
-void DigingFirst(CharStack *firststack[10], Grammar grammar, int i, int j)
+void DigingFirst(CharStack *firststack[10], Grammar grammar, int i, int j, int root)
 {
     int l = Search(grammar, grammar.vt[i][j][0]);
     for (j = 0; grammar.vt[l][j][0] != 0; j++)
     {
         if (grammar.vt[l][j][0] >= 'a' && grammar.vt[l][j][0] <= 'z')
         {
-            PushChar(firststack[i], grammar.vt[l][j][0]);
+            PushChar(firststack[root], grammar.vt[l][j][0]);
         }
         if (grammar.vt[l][j][0] >= 'A' && grammar.vt[l][j][0] <= 'Z')
         {
-            DigingFirst(firststack, grammar, i, j);
+            DigingFirst(firststack, grammar, l, j, root);
         }
         if (grammar.vt[l][j][0] == '@')
         {
-            PushChar(firststack[i], grammar.vt[l][j][0]);
+            PushChar(firststack[root], grammar.vt[l][j][0]);
         }
     }
 }
@@ -98,18 +98,16 @@ void DigFirst(CharStack *firststack[10], Grammar grammar)
             if (grammar.vt[i][j][0] >= 'a' && grammar.vt[i][j][0] <= 'z')
             {
                 PushChar(firststack[i], grammar.vt[i][j][0]);
-                printf("Push %d,%d:", i, j);
-                printf("%c\n", grammar.vt[i][j][0]);
+                printf("PushChar %c in to firststack[%d].\n", grammar.vt[i][j][0], i);
             }
             if (grammar.vt[i][j][0] >= 'A' && grammar.vt[i][j][0] <= 'Z')
             {
-                DigingFirst(firststack, grammar, i, j);
+                DigingFirst(firststack, grammar, i, j, i);
             }
             if (grammar.vt[i][j][0] == '@')
             {
                 PushChar(firststack[i], grammar.vt[i][j][0]);
-                printf("Push %d,%d:", i, j);
-                printf("%c\n", grammar.vt[i][j][0]);
+                printf("PushChar %c in to firststack[%d].\n", grammar.vt[i][j][0], i);
             }
         }
     }
@@ -117,7 +115,7 @@ void DigFirst(CharStack *firststack[10], Grammar grammar)
 
 FirstSet ConvertGrammarToFirstSet(Grammar grammar)
 {
-    FirstSet firstset;
+    FirstSet firstset = {.vn = 0, .first = 0};
     CharStack *firststack[10];
     for (int i = 0; i < 10; i++)
     {
@@ -140,11 +138,48 @@ FirstSet ConvertGrammarToFirstSet(Grammar grammar)
     return firstset;
 }
 
-void DigFollow(CharStack *followstack[10], Grammar grammar) {}
-
-FollowSet ConvertGrammarToFollowSet(Grammar grammar)
+void DigFollow(CharStack *followstack[10], Grammar grammar, FirstSet firstset)
 {
-    FollowSet followset;
+    for (int i = 0; grammar.vt[i][0][0] != 0; i++)
+    {
+        for (int j = 0; grammar.vt[i][j][0] != 0; j++)
+        {
+            for (int k = 0; grammar.vt[i][j][k] != 0; k++)
+            {
+                if (grammar.vt[i][j][k] >= 'A' && grammar.vt[i][j][k] <= 'Z')
+                {
+                    if (grammar.vt[i][j][k + 1] != 0)
+                    {
+                        if (grammar.vt[i][j][k + 1] >= 'a' && grammar.vt[i][j][k + 1] <= 'z')
+                        {
+                            int vn = Search(grammar, grammar.vt[i][j][k]);
+                            PushChar(followstack[vn], grammar.vt[i][j][k + 1]);
+                            printf("PushChar %c in to followstack[%d].\n", grammar.vt[i][j][k + 1], vn);
+                        }
+                        if (grammar.vt[i][j][k + 1] == '@')
+                        {
+                            int vn = Search(grammar, grammar.vt[i][j][k]);
+                            PushChar(followstack[vn], '#');
+                        }
+                        if (grammar.vt[i][j][k + 1] >= 'A' && grammar.vt[i][j][k + 1] <= 'Z')
+                        {
+                            int vn = Search(grammar, grammar.vt[i][j][k]);
+                            int vnR = Search(grammar, grammar.vt[i][j][k + 1]);
+                            for (int l = 0; firstset.first[vn][l] != 0; l++)
+                            {
+                                PushChar(followstack[vn], firstset.first[vnR][l]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+FollowSet ConvertGrammarFirstSetToFollowSet(Grammar grammar, FirstSet firstset)
+{
+    FollowSet followset = {.vn = 0, .follow = 0};
     CharStack *followstack[10];
     for (int i = 0; i < 10; i++)
     {
@@ -155,14 +190,16 @@ FollowSet ConvertGrammarToFollowSet(Grammar grammar)
     {
         followset.vn[i] = grammar.vn[i];
     }
-    DigFollow(followstack, grammar);
+    DigFollow(followstack, grammar, firstset);
     for (int i = 0; i < 10; i++)
     {
         for (int j = 0; followstack[i]->size > 0; j++)
         {
             followset.follow[i][j] = PopChar(followstack[i]);
+            printf("Popedchar %c\n", followset.follow[i][j]);
         }
     }
+    Single(&followset.follow);
     return followset;
 }
 
@@ -236,9 +273,13 @@ int main()
             printf("error input\n");
         }
     };
-    FirstSet firstset;
+    FirstSet firstset = {.vn = 0, .first = 0};
     firstset = ConvertGrammarToFirstSet(grammar);
-    for (int i = 0; i < 10; i++)
+    FollowSet followset = {.vn = 0, .follow = 0};
+    followset = ConvertGrammarFirstSetToFollowSet(grammar, firstset);
+    ConvertGrammarFirstSetFollowSetToSelectSet(grammar, firstset, followset);
+    printf("Print firstset:\n");
+    for (int i = 0; firstset.first[i][0] != 0; i++)
     {
         printf("%c: ", firstset.vn[i]);
         for (int j = 0; j < 10; j++)
@@ -247,6 +288,18 @@ int main()
         }
         printf("\n");
     }
-    //ConvertGrammarFirstSetFollowSetToSelectSet(grammar, ConvertGrammarToFirstSet(grammar), ConvertGrammarToFollowSet(grammar));
+    printf("Print followtset:\n");
+    for (int i = 0; i < 10; i++)
+    {
+        if (followset.follow[i][0] != 0)
+        {
+            printf("%c: ", followset.vn[i]);
+            for (int j = 0; j < 10; j++)
+            {
+                printf("%c ", followset.follow[i][j]);
+            }
+            printf("\n");
+        }
+    }
     return 0;
 }
