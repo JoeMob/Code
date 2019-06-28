@@ -5,7 +5,7 @@ import java.sql.*;
 import static java.lang.System.out;
 
 public class Userdao {
-    String ur = "jdbc:mysql://localhost:3306/JAVA_WEB_TEST";
+    String ur = "jdbc:mysql://localhost:3306/javaweb";
     Connection con = null;
     Statement stmt = null;
     PreparedStatement pstmt = null;

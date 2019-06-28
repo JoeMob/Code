@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 @Table(name = "Student")
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 @Data
 public class StudentEntity extends BaseEntity implements java.io.Serializable {
     @Column(name = "student_id")
-    private Integer studentId;
+    private Long studentId;
     @Column(name = "student_name")
     private String studentName;
     @Column(name = "age")

@@ -13,5 +13,5 @@ public interface StudentService {
 
     public StudentBean edit(StudentBean studentBean);
 
-    public StudentBean findById(Long id);
+    public List<StudentBean> findByStudentId(Long id);
 }

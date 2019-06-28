@@ -54,13 +54,13 @@
               <el-table-column
                 label="CreatedTime"
                 prop="createdTime"
-                width="150"
+                width="160"
               >
               </el-table-column>
               <el-table-column
                 label="EditedTime"
                 prop="updatedTime"
-                width="150"
+                width="160"
               >
               </el-table-column>
               <el-table-column
@@ -387,7 +387,6 @@ export default {
     this.$axios.get('http://localhost:8080/student')
       .then(function (response) {
         console.log(response.data)
-        home.$set(home.studentData, response.data)
         home.studentData = response.data
       })
       .catch(function (error) {
@@ -397,15 +396,14 @@ export default {
   methods: {
     search () {
       var home = this
-      this.$axios('http://localhost:8080/student/id/', {
+      this.$axios('http://localhost:8080/student/studentId/', {
         method: 'get',
         params: {
-          'id': home.searchStudent
+          'studentId': home.searchStudent
         }
       })
         .then(function (response) {
-          home.studentData = []
-          home.studentData[0] = response.data
+          home.studentData = response.data
         })
         .catch(function (error) {
           console.log(home.searchStudent)
@@ -465,6 +463,7 @@ export default {
     },
     closeNewStu () {
       var home = this
+      this.NewStuVisible = false
       this.$axios.get('http://localhost:8080/student')
         .then(function (response) {
           console.log(response.data)
@@ -473,7 +472,14 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
-      this.NewStuVisible = false
+      this.$axios.get('http://localhost:8080/student')
+        .then(function (response) {
+          console.log(response.data)
+          home.studentData = response.data
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     },
     closeEditStu () {
       var home = this

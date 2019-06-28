@@ -55,9 +55,9 @@ public class StudentServiceIMPL implements StudentService {
     }
 
     @Override
-    public StudentBean findById(Long id) {
-        StudentEntity entity = this.entityRepo.findById(id).get();
-        StudentBean bean = StudentBean.of(entity);
-        return bean;
+    public List<StudentBean> findByStudentId(Long id) {
+        List<StudentEntity> entities = this.entityRepo.findByStudentId(id);
+        List<StudentBean> students = entities.stream().map(entity -> StudentBean.of(entity)).collect(Collectors.toList());
+        return students;
     }
 }
