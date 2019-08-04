@@ -3,10 +3,11 @@ using namespace std;
 
 int main()
 {
-    string s1 = string("string1");
-    string s2 = string("string2");
-    const char *p1 = &s1[1];
-    const char *p2 = &s2[1];
-    cout << "Have cout." << p1 << p2 << s1 << s2 << endl;
+    long long j = 1;
+    for (int i = 1; i < 100000000; i++)
+    {
+        j = j + i;
+    }
+    cout << j;
     return 0;
 }

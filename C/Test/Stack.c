@@ -1,6 +1,5 @@
 #include "stdio.h"
 #include "stdlib.h"
-#include "malloc.h"
 
 typedef struct
 {
@@ -11,7 +10,7 @@ typedef struct
 int InitCharStack(CharStack *T)
 {
     T->size = 0;
-    T->top = (char *)calloc(sizeof(char), 10000);
+    T->top = (char *)calloc(1000, sizeof(char));
     return 0;
 }
 
@@ -49,7 +48,7 @@ typedef struct
 int InitFloatStack(FloatStack *T)
 {
     T->size = 0;
-    T->top = (float *)calloc(sizeof(float), 10000);
+    T->top = (float *)calloc(10000, sizeof(float));
     return 0;
 }
 
