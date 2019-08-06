@@ -301,6 +301,6 @@ int main()
             printf("\n");
         }
     }
-    printf("非LL1文法。");
+    printf("Not LL1.");
     return 0;
 }
