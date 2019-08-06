@@ -1,3 +1,5 @@
 # -*- coding: utf-8 -*-
-g = (x for x in range(10))
-print(g)
+if None == False:
+    print("None = False")
+else:
+    print("!")
