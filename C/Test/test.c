@@ -35,9 +35,12 @@ bool isPalindrome(int x)
 
 int main()
 {
-	if (isPalindrome(10))
-		printf("y");
+	int x;
+	printf("Input X:");
+	scanf("%d", &x);
+	if (isPalindrome(x))
+		printf("Is palindrome\n");
 	else
-		printf("n");
-	return 0;
+		printf("Not palindrome\n");
+return 0;
 }
