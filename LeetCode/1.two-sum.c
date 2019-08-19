@@ -1,6 +1,12 @@
-#include "stdio.h"
-#include "stdlib.h"
+/*
+ * @lc app=leetcode id=1 lang=c
+ *
+ * [1] Two Sum
+ */
 
+/**
+ * Note: The returned array must be calloced, assume caller calls free().
+ */
 int *twoSum(int *nums, int numsSize, int target, int *returnSize)
 {
     *returnSize = 2;
@@ -44,8 +50,6 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize)
     }
     for (int i = 0; i < numsSize; i++)
     {
-        map[0][nums[i]] = i;
-        map[1][nums[i]] = 1;
         if (map[1][target - nums[i]] == 1 && map[0][target - nums[i]] != i)
         {
             result[0] = map[0][target - nums[i]];
@@ -53,16 +57,9 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize)
             free(map);
             return result;
         }
+        map[0][nums[i]] = i;
+        map[1][nums[i]] = 1;
     }
     free(map);
     return result;
-}
-
-int main()
-{
-    int num[] = {3, 2, 4};
-    int returnsize;
-    int *result = twoSum(num, 3, 6, &returnsize);
-    printf("%d,%d", result[0], result[1]);
-    return 0;
 }

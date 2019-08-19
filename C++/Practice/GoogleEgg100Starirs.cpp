@@ -13,6 +13,7 @@ int main()
     {
         for (int j = 1; j <= stairs - i; j++)
         {
+            
         }
     }
 }

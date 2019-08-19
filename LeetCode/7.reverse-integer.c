@@ -1,0 +1,18 @@
+/*
+ * @lc app=leetcode id=7 lang=c
+ *
+ * [7] Reverse Integer
+ */
+
+int reverse(int x)
+{
+    int reverse = 0;
+    while (x != 0)
+    {
+        if (reverse > INT_MAX / 10 || reverse < (INT_MIN) / 10)
+            return 0;
+        reverse = reverse * 10 + x % 10;
+        x /= 10;
+    }
+    return reverse;
+}
