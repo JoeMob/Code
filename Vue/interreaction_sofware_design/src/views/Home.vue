@@ -19,4 +19,7 @@ export default Vue.extend({});
 </script>
 
 <style scoped>
+div {
+  font-family: "Sarasa Slab SC";
+}
 </style>
