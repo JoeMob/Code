@@ -1,10 +1,12 @@
 #include "stdio.h"
 #include "stdlib.h"
+
 typedef struct Node
 {
     int data;
     struct Node *next;
 } Node, *LinkedList;
+
 LinkedList CreatLinkedList()
 {
     int i, number;
@@ -35,6 +37,7 @@ LinkedList CreatLinkedList()
     P->next = NULL;
     return L;
 }
+
 void DeleteByOrder(LinkedList L, int i)
 {
     int a = 1;
@@ -47,14 +50,15 @@ void DeleteByOrder(LinkedList L, int i)
     L->next = L->next->next;
     free(P);
 }
+
 void DeleteByData(LinkedList L, int i)
 {
     LinkedList P;
-    while (L->next!=NULL)
+    while (L->next != NULL)
     {
         P = L;
         L = L->next;
-        if(L->data==i)
+        if (L->data == i)
         {
             P->next = L->next;
             free(L);
@@ -62,6 +66,7 @@ void DeleteByData(LinkedList L, int i)
         }
     }
 }
+
 int GetElem(LinkedList L, int i)
 {
     int a = 0, e = 0;
@@ -73,6 +78,7 @@ int GetElem(LinkedList L, int i)
     e = L->data;
     return e;
 }
+
 void InsertElem(LinkedList L, int elem, int number)
 {
     int a = 1;
@@ -86,6 +92,7 @@ void InsertElem(LinkedList L, int elem, int number)
     P->data = elem;
     L->next = P;
 }
+
 void PrintLinkedList(LinkedList L)
 {
     while (L->next != NULL)
@@ -95,6 +102,7 @@ void PrintLinkedList(LinkedList L)
     }
     printf("\n");
 }
+
 int main()
 {
     int a = 0, b = 0;
@@ -111,6 +119,6 @@ int main()
     DeleteByOrder(L, a);
     PrintLinkedList(L);
     scanf_s("%d", &a);
-    printf("%d\n",GetElem(L,a));
+    printf("%d\n", GetElem(L, a));
     return 0;
 }

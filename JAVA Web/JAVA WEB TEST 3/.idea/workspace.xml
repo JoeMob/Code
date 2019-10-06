@@ -7,41 +7,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38122dac-7b36-478b-a601-19acfd6539d3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/JAVA_WEB_TEST_3_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../C/Test/test.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Python/Palindrome.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Python/SortedByName.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Python/SortedByScore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/Test/BinaryTree.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../C/Test/BinaryTree.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/Test/List.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../C++/Test/List.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/Test/List.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../C++/Test/List.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/Test/Map.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../C++/Test/Map.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/Test/Map.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../C++/Test/Map.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/Test/test.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../C/Test/test.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JAVA WEB TEST 3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JAVA WEB TEST 3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/Admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/Admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Delete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Delete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Register.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Seek.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Seek.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/SendSentences.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/SendSentences.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/controller/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/dao/Sentencesdao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/dao/Sentencesdao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/dao/Userdao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/dao/Userdao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/domain/Sentences.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/domain/Sentences.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JAVA_WEB_TEST_3_war_exploded/WEB-INF/classes/domain/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Delete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Delete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Register.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Seek.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Seek.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/SendSentences.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/SendSentences.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/dao/Sentencesdao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/dao/Sentencesdao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/dao/Userdao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/dao/Userdao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/domain/Sentences.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/domain/Sentences.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/domain/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Sentencesdao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Sentencesdao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Userdao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Userdao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/JUnit Test Case/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/JUnit Test Case/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/controller/bean/StudentBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/controller/bean/StudentBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/dao/entity/StudentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/dao/entity/StudentEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/dao/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/dao/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/service/impl/StudentServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JAVA/springboot/src/main/java/com/JoeMob/springboot/service/impl/StudentServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Vue/my-project/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../Vue/my-project/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Delete.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Seek.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/SendSentences.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/controller/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/dao/Sentencesdao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/dao/Userdao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/domain/Sentences.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JAVA WEB TEST 3/domain/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../a.exe" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/Admin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+            <state relative-caret-position="192">
+              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -118,6 +105,7 @@
         <option value="$PROJECT_DIR$/src/dao/Sentencesdao.java" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/src/dao/Userdao.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions" />
       </list>
     </option>
   </component>
@@ -134,8 +122,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="448" />
-    <option name="y" value="363" />
+    <option name="x" value="260" />
+    <option name="y" value="25" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -145,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,13 +190,17 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql-connector-java-8.0.16.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JAVA" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -416,17 +407,26 @@
       <workItem from="1543211163972" duration="104000" />
       <workItem from="1560408137409" duration="659000" />
       <workItem from="1560422907178" duration="4619000" />
+      <workItem from="1561613922176" duration="548000" />
+      <workItem from="1561616011640" duration="636000" />
+      <workItem from="1561617884328" duration="178000" />
+      <workItem from="1565935294937" duration="234000" />
+      <workItem from="1565935848224" duration="260000" />
+      <workItem from="1565936161695" duration="28000" />
+      <workItem from="1565936570588" duration="546000" />
+      <workItem from="1565937163505" duration="173000" />
+      <workItem from="1565937379647" duration="11000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54641000" />
+    <option name="totallyTimeSpent" value="57255000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2630458" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28700745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -632,10 +632,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/Admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        <state relative-caret-position="192">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
         </state>
       </provider>
     </entry>

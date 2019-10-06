@@ -301,5 +301,6 @@ int main()
             printf("\n");
         }
     }
+    printf("Not LL1.");
     return 0;
 }

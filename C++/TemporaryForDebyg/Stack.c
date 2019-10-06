@@ -4,76 +4,76 @@
 
 typedef struct
 {
-    char *top;
-    int size;
+	char* top;
+	int size;
 } CharStack;
 
-int InitCharStack(CharStack *T)
+int InitCharStack(CharStack* T)
 {
-    T->size = 0;
-    T->top = (char *)calloc(sizeof(char), 10000);
-    return 0;
+	T->size = 0;
+	T->top = (char*)calloc(sizeof(char), 10000);
+	return 0;
 }
 
-void PushChar(CharStack *T, char c)
+void PushChar(CharStack* T, char c)
 {
-    T->size++;
-    T->top[T->size] = c;
+	T->size++;
+	T->top[T->size] = c;
 }
 
-char PopChar(CharStack *T)
+char PopChar(CharStack* T)
 {
-    if (T->size == 0)
-    {
-        return -1;
-    }
-    else
-    {
-        char c = T->top[T->size];
-        T->size--;
-        return c;
-    }
+	if (T->size == 0)
+	{
+		return -1;
+	}
+	else
+	{
+		char c = T->top[T->size];
+		T->size--;
+		return c;
+	}
 }
 
-char CharTop(CharStack *T)
+char CharTop(CharStack* T)
 {
-    return (T->top[T->size]);
+	return (T->top[T->size]);
 }
 
 typedef struct
 {
-    float *top;
-    int size;
+	float* top;
+	int size;
 } FloatStack;
 
-int InitFloatStack(FloatStack *T)
+int InitFloatStack(FloatStack* T)
 {
-    T->size = 0;
-    T->top = (float *)calloc(sizeof(float), 10000);
-    return 0;
+	T->size = 0;
+	T->top = (float*)calloc(sizeof(float), 10000);
+	return 0;
 }
 
-void PushFloat(FloatStack *T, float i)
+void PushFloat(FloatStack* T, float i)
 {
-    T->size++;
-    T->top[T->size] = i;
+	T->size++;
+	T->top[T->size] = i;
 }
 
-float PopFloat(FloatStack *T)
+float PopFloat(FloatStack* T)
 {
-    if (T->size == 0)
-    {
-        return -1;
-    }
-    else
-    {
-        float i = T->top[T->size];
-        T->size--;
-        return i;
-    }
+	if (T->size == 0)
+	{
+		return -1;
+	}
+	else
+	{
+		float i = T->top[T->size];
+		T->size--;
+		return i;
+	}
 }
 
-int FlotTop(FloatStack *T)
+int FlotTop(FloatStack* T)
 {
-    return (T->top[T->size]);
+	return (T->top[T->size]);
 }
