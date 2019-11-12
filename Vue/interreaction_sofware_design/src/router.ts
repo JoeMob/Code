@@ -30,6 +30,10 @@ export default new Router({
       path:'/user-register',
       name:'user-register',
       component:userRegister
+    },
+    {
+      path:'/*/',
+      redirect:'/user-login'
     }
   ]
 })

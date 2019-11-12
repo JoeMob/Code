@@ -7,7 +7,10 @@
         <el-button type="primary"> Login </el-button>
       </el-row>
       <el-row style="padding-top:20px">
-        <el-button type="success"> Register </el-button>
+        <el-button
+          type="success"
+          @click="goToRegister"
+        > Register </el-button>
       </el-row>
     </el-col>
   </div>
@@ -15,7 +18,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({});
+import router from "vue-router";
+export default Vue.extend({
+  methods: {
+    goToRegister() {
+      this.$router.push("user-register");
+    }
+  }
+});
 </script>
 
 <style scoped>
