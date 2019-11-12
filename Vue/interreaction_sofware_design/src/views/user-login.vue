@@ -6,13 +6,24 @@
       span="6"
       offset="9"
     >
-      <el-form ref="loginform">
+      <el-form
+        v-ref="loginform"
+        :label-position="top"
+      >
         <el-form-item label="Username">
-          <el-input v-model="loginform.username" clearable="true">
+          <el-input
+            v-model="loginform.username"
+            clearable="true"
+          >
           </el-input>
         </el-form-item>
         <el-form-item label="Password">
-          <el-input v-model="loginform.password" type="password" clearable="true">
+          <el-input
+            v-model="loginform.password"
+            type="password"
+            clearable="true"
+            show-password="true"
+          >
           </el-input>
         </el-form-item>
         <el-form-item>
@@ -42,8 +53,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    userLogin() {
-    },
+    userLogin() {},
     goToRegister() {
       this.$router.push("user-register");
     }
@@ -59,7 +69,7 @@ button {
   width: 150px;
 }
 form {
-  box-shadow: 0px 0px 10px 2px #AAAAAA;
+  box-shadow: 0px 0px 10px 2px #aaaaaa;
   padding: 20px 20px 20px 20px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
