@@ -24,7 +24,7 @@ export default new Router({
       name: 'task_arrangement',
       component: taskArrangement,
       meta: {
-        title: "JoeMob's Task Arrangement"
+        title: "Task Arrangement"
       }
     },
     {

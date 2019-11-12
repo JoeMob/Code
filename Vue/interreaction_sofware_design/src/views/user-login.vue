@@ -2,6 +2,7 @@
   <div>
     <img src='./../assets/E.jpeg'>
     <h1>This is JoeMob's task manager</h1>
+    <h2>Login</h2>
     <el-col
       span="6"
       offset="9"
@@ -17,7 +18,6 @@
             clearable="true"
             icon="el-icon-user"
           >
-            Username
           </el-input>
         </el-form-item>
         <el-form-item label="Password">

@@ -1,7 +1,11 @@
+<head>
+<title>Register</title>
+</head>
 <template>
   <div>
     <img src='./../assets/E.jpeg'>
     <h1>This is JoeMob's task manager</h1>
+    <h2>Register</h2>
     <el-col
       span="6"
       offset="9"
