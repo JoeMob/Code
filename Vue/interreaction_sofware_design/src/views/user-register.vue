@@ -1,5 +1,5 @@
 <template>
-  <div Home>
+  <div>
     <img src='./../assets/E.jpeg'>
     <h1>This is JoeMob's task manager</h1>
     <el-col
@@ -13,6 +13,7 @@
         <el-form-item label="Username">
           <el-input
             v-model="registerform.username"
+            prefix-icon="el-icon-user"
             clearable="true"
           >
           </el-input>
@@ -20,6 +21,7 @@
         <el-form-item label="Password">
           <el-input
             v-model="registerform.password"
+            prefix-icon="el-icon-lock"
             type="password"
             clearable="true"
             show-password="true"
@@ -29,6 +31,7 @@
         <el-form-item label="Confirm passord">
           <el-input
             v-model="registerform.confirmpassword"
+            prefix-icon="el-icon-lock"
             type="password"
             clearable="true"
             show-password="true"
@@ -39,7 +42,7 @@
           <el-row>
             <el-button
               type="success"
-              @click="Register"
+              v-on:click="Register"
             > Register </el-button>
           </el-row>
         </el-form-item>
@@ -47,7 +50,7 @@
           <el-row>
             <el-button
               type="primary"
-              @click="goToLogin"
+              v-on:click="goToLogin"
             > Go to Login </el-button>
           </el-row>
         </el-form-item>

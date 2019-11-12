@@ -20,7 +20,7 @@ export default new Router({
       }
     },
     {
-      path: '/task-arranegment',
+      path: '/task-arrangement',
       name: 'task_arrangement',
       component: taskArrangement,
       meta: {

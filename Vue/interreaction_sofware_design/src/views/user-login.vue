@@ -1,5 +1,5 @@
 <template>
-  <div Home>
+  <div>
     <img src='./../assets/E.jpeg'>
     <h1>This is JoeMob's task manager</h1>
     <el-col
@@ -13,13 +13,17 @@
         <el-form-item label="Username">
           <el-input
             v-model="loginform.username"
+            prefix-icon="el-icon-user"
             clearable="true"
+            icon="el-icon-user"
           >
+            Username
           </el-input>
         </el-form-item>
         <el-form-item label="Password">
           <el-input
             v-model="loginform.password"
+            prefix-icon="el-icon-lock"
             type="password"
             clearable="true"
             show-password="true"
