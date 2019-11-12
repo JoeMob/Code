@@ -2,16 +2,29 @@
   <div Home>
     <img src='./../assets/E.jpeg'>
     <h1>This is JoeMob's task manager</h1>
-    <el-col>
-      <el-row>
-        <el-button type="primary"> Login </el-button>
-      </el-row>
-      <el-row style="padding-top:20px">
-        <el-button
-          type="success"
-          @click="goToRegister"
-        > Register </el-button>
-      </el-row>
+    <el-col
+      span="6"
+      offset="9"
+    >
+      <el-form ref="loginform">
+        <el-form-item label="Username">
+          <el-input v-model="loginform.username" clearable="true">
+          </el-input>
+        </el-form-item>
+        <el-form-item label="Password">
+          <el-input v-model="loginform.password" type="password" clearable="true">
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary"> Login </el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="success"
+            @click="goToRegister"
+          > Go to Register </el-button>
+        </el-form-item>
+      </el-form>
     </el-col>
   </div>
 </template>
@@ -20,7 +33,17 @@
 import Vue from "vue";
 import router from "vue-router";
 export default Vue.extend({
+  data() {
+    return {
+      loginform: {
+        username: "",
+        password: ""
+      }
+    };
+  },
   methods: {
+    userLogin() {
+    },
     goToRegister() {
       this.$router.push("user-register");
     }
@@ -29,7 +52,18 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-div {
+* {
   font-family: "Sarasa Slab SC";
+}
+button {
+  width: 150px;
+}
+form {
+  box-shadow: 0px 0px 10px 2px #AAAAAA;
+  padding: 20px 20px 20px 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 </style>
