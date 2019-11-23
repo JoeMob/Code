@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Hi, {{user.username}}. Welcome to JoeMob's task arrangement system.</h1>
+    <CreateTask :createTaskVisible="createTaskVisible"></CreateTask>
     <el-col
       :span=16
       :offset=4
@@ -83,23 +84,28 @@
             </el-table>
           </el-tab-pane>
         </el-tabs>
-        <div>This is a test div</div>
       </el-row>
-      <i
-        class="el-icon-circle-plus"
-        v-on:click="createTask"
-      />
+      <el-button
+        icon="el-icon-circle-plus"
+        class="createTaskButton"
+        @click="createTask"
+        type="primary"
+        circle
+      ></el-button>
     </el-col>
-    <modal></modal>
   </div>
 </template>
 
 <script lang="ts">
-import modal from "@/components/modal.vue";
 import Vue from "vue";
+import CreateTask from "@/components/create-task.vue";
 export default Vue.extend({
+  components: {
+    CreateTask
+  },
   data() {
     return {
+      createTaskVisible: false,
       tabCondition: "tabWorking",
       user: {
         username: "Guest"
@@ -124,85 +130,18 @@ export default Vue.extend({
         {
           num: 5,
           name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
-        },
-        {
-          num: 5,
-          name: "b"
         }
       ],
       task: [{}]
     };
   },
   methods: {
-    createTask() {}
+    createTask() {
+      this.createTaskVisible = true;
+    },
+    closeCreateTask() {
+      this.createTaskVisible = false;
+    }
   }
 });
 </script>
@@ -230,14 +169,12 @@ export default Vue.extend({
 .el-card__body {
   font-size: 16px;
 }
-.el-icon-circle-plus {
-  font-size: 128px;
+.el-button.createTaskButton {
+  font-size: 64px;
+  height: 128px;
+  width: 128px;
   position: relative;
   top: -64px;
-  background-color: #ffffff;
-  color: aqua;
-  border-radius: 50%;
-  border: 5px solid aqua;
 }
 .search {
   position: relative;
