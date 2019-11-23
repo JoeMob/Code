@@ -3,6 +3,7 @@
     <img src='./../assets/E.jpeg'>
     <h1>This is JoeMob's task manager</h1>
     <h2>Login</h2>
+    <router-view></router-view>
     <el-col
       span="6"
       offset="9"
@@ -79,5 +80,11 @@ form {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+</style>
+
+<style>
+.el-form-item__label {
+  font-size: 20px;
 }
 </style>

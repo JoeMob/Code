@@ -81,10 +81,7 @@
                 </template>
               </el-table-column>
               <el-table-column align="center">
-                <template
-                  slot="header"
-                  slot-scope="Student"
-                >
+                <template slot="header">
                   <el-input
                     v-model="searchStudent"
                     size="mini"
@@ -184,10 +181,7 @@
                 </template>
               </el-table-column>
               <el-table-column align="center">
-                <template
-                  slot="header"
-                  slot-scope="Score"
-                >
+                <template slot="header">
                   <el-input
                     v-model="searchScore"
                     size="mini"
@@ -285,10 +279,7 @@
                 </template>
               </el-table-column>
               <el-table-column align="center">
-                <template
-                  slot="header"
-                  slot-scope="Course"
-                >
+                <template slot="header">
                   <el-input
                     v-model="searchCourse"
                     size="mini"

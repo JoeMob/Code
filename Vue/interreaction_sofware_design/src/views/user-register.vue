@@ -101,3 +101,9 @@ form {
   border-bottom-left-radius: 10px;
 }
 </style>
+
+<style>
+.el-form-item__label {
+  font-size: 20px;
+}
+</style>
