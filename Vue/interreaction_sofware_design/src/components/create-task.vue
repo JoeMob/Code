@@ -1,16 +1,21 @@
 <template>
   <div>
     <el-dialog
+      title="Create your new task."
       :visible.sync="createTaskVisible"
       :before-close="closeCreateTask"
+      center=""
     >
       <span slot="footer">
-        <el-button @click="closeCreateTask">Close</el-button>
+        <el-button
+          @click="createTask"
+          type="success"
+        >Confirm</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
-
+     
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
@@ -24,7 +29,8 @@ export default Vue.extend({
   methods: {
     closeCreateTask() {
       this.$emit("closeCreateTask");
-    }
+    },
+    createTask() {}
   }
 });
 </script>

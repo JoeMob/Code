@@ -1,7 +1,22 @@
 <template>
   <div>
     <h1>Hi, {{user.username}}. Welcome to JoeMob's task arrangement system.</h1>
-    <CreateTask :createTaskVisible="createTaskVisible"></CreateTask>
+    <CreateTask
+      :createTaskVisible="createTaskVisible"
+      @closeCreateTask="closeCreateTask"
+    ></CreateTask>
+    <TaskDetail
+      :taskDetailVisible="taskDetailVisible"
+      @closeTaskDetail="closeTaskDetail"
+    >
+    </TaskDetail>
+    <el-button
+      icon="el-icon-close"
+      type="danger"
+      circle
+      @click="logOut"
+      class="LogOutButton"
+    ></el-button>
     <el-col
       :span=16
       :offset=4
@@ -11,35 +26,40 @@
           v-model="tabCondition"
           type="border-card"
           class="wholeTab"
+          @tab-click="clearSearch"
         >
+          <el-input
+            :span="8"
+            v-model="searchContent"
+            prefix-icon="el-icon-search"
+            clearable=""
+          ></el-input>
           <el-tab-pane
             name="tabWorking"
             class="panelContainer"
           >
-            <span slot="label"><i class="el-icon-date"></i> Working</span>
+            <span slot="label">
+              <div class="el-icon-date"></div> Working
+            </span>
             <el-row :gutter=30>
               <div
-                v-for="
-          (Data,index)
-          in
-          mockData"
+                v-for=" (Data,index) in mockData"
                 :key="index"
               >
                 <el-col
                   :span=8
                   class="card"
                 >
-                  <el-card class="box-card">
+                  <el-card
+                    class="box-card"
+                    @click.native="openTaskDetail"
+                  >
                     <div slot="header">
-                      <span>{{Data.name}} Tasks</span>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <span>Working</span>
+                      <div>{{Data.name}}</div>
+                      <div>Working</div>
                     </div>
                     <div
-                      v-for="(data ,name,index) in Data"
+                      v-for="(data,name,index) in Data"
                       :key="index"
                     >
                       {{name+":"+data}}
@@ -53,7 +73,9 @@
             name="tabFinished"
             class="panelContainer"
           >
-            <span slot="label"><i class="el-icon-check"></i> Finished</span>
+            <span slot="label">
+              <div class="el-icon-check"></div> Finished
+            </span>
             <el-table :data="mockData">
               <el-table-column
                 prop="num"
@@ -70,7 +92,9 @@
             name="tabFailed"
             class="panelContainer"
           >
-            <span slot="label"><i class="el-icon-close"></i> Failed</span>
+            <span slot="label">
+              <div class="el-icon-s-release"></div> Failed
+            </span>
             <el-table :data="mockData">
               <el-table-column
                 prop="num"
@@ -86,12 +110,13 @@
         </el-tabs>
       </el-row>
       <el-button
-        icon="el-icon-circle-plus"
+        icon="el-icon-plus"
         class="createTaskButton"
-        @click="createTask"
+        @click="openCreateTask"
         type="primary"
         circle
       ></el-button>
+      <br />
     </el-col>
   </div>
 </template>
@@ -99,14 +124,18 @@
 <script lang="ts">
 import Vue from "vue";
 import CreateTask from "@/components/create-task.vue";
+import TaskDetail from "@/components/task-detail.vue";
 export default Vue.extend({
   components: {
-    CreateTask
+    CreateTask,
+    TaskDetail
   },
   data() {
     return {
       createTaskVisible: false,
+      taskDetailVisible: false,
       tabCondition: "tabWorking",
+      searchContent: "",
       user: {
         username: "Guest"
       },
@@ -136,11 +165,21 @@ export default Vue.extend({
     };
   },
   methods: {
-    createTask() {
+    openCreateTask() {
       this.createTaskVisible = true;
     },
     closeCreateTask() {
       this.createTaskVisible = false;
+    },
+    openTaskDetail() {
+      this.taskDetailVisible = true;
+    },
+    closeTaskDetail() {
+      this.taskDetailVisible = false;
+    },
+    logOut() {},
+    clearSearch() {
+      this.searchContent = "";
     }
   }
 });
@@ -170,13 +209,19 @@ export default Vue.extend({
   font-size: 16px;
 }
 .el-button.createTaskButton {
-  font-size: 64px;
-  height: 128px;
-  width: 128px;
+  font-size: 50px;
+  height: 100px;
+  width: 100px;
   position: relative;
-  top: -64px;
+  top: -50px;
 }
 .search {
   position: relative;
+}
+.el-button.LogOutButton.el-button--danger.is-circle {
+  position: relative;
+  left: -160px;
+  top: -20px;
+  z-index: 10;
 }
 </style>
