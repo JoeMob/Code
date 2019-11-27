@@ -9,6 +9,18 @@
       <el-form label-position="top">
         <el-row>
           <el-col :span=8>
+            <el-select
+              v-model="task.state"
+              style="width:90px;margin-right:20px"
+            >
+              <el-option
+                v-for="item in states"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
             <el-form-item label="任务名">
               <el-input v-model="task.taskName">
               </el-input>
@@ -91,6 +103,24 @@ export default Vue.extend({
           value: 2,
           label: "普通"
         }
+      ],
+      states: [
+        {
+          value: 0,
+          label: "未开始",
+        },
+        {
+          value: 1,
+          label: "进行中",
+        },
+        {
+          value: 2,
+          label: "已完成",
+        },
+        {
+          value: 3,
+          label: "已超时",
+        }
       ]
     };
   },
@@ -101,10 +131,9 @@ export default Vue.extend({
   methods: {
     closeTaskDetail() {
       this.$emit("closeTaskDetail");
-      Object.keys(this.task).forEach(key => (this.task[key] = ""));
     },
     confirmEdit() {
-      Object.keys(this.task).forEach(key => (this.task[key] = ""));
+      this.$emit("closeTaskDetail");
     }
   }
 });
