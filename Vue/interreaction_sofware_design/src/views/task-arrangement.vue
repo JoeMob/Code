@@ -1,124 +1,153 @@
 <template>
-  <div>
-    <h1>Hi, {{user.username}}. Welcome to JoeMob's task arrangement system.</h1>
-    <CreateTask
-      :createTaskVisible="createTaskVisible"
-      @closeCreateTask="closeCreateTask"
-    ></CreateTask>
-    <TaskDetail
-      :taskDetailVisible="taskDetailVisible"
-      @closeTaskDetail="closeTaskDetail"
-    >
-    </TaskDetail>
-    <el-button
-      icon="el-icon-close"
-      type="danger"
-      circle
-      @click="logOut"
-      class="LogOutButton"
-    ></el-button>
-    <el-col
-      :span=16
-      :offset=4
-    >
-      <el-row>
-        <el-tabs
-          v-model="tabCondition"
-          type="border-card"
-          class="wholeTab"
-          @tab-click="clearSearch"
-        >
-          <el-input
-            :span="8"
-            v-model="searchContent"
-            prefix-icon="el-icon-search"
-            clearable=""
-          ></el-input>
-          <el-tab-pane
-            name="tabWorking"
-            class="panelContainer"
-          >
-            <span slot="label">
-              <div class="el-icon-date"></div> Working
-            </span>
-            <el-row :gutter=30>
-              <div
-                v-for=" (Data,index) in mockData"
-                :key="index"
-              >
-                <el-col
-                  :span=8
-                  class="card"
-                >
-                  <el-card
-                    class="box-card"
-                    @click.native="openTaskDetail"
-                  >
-                    <div slot="header">
-                      <div>{{Data.name}}</div>
-                      <div>Working</div>
-                    </div>
-                    <div
-                      v-for="(data,name,index) in Data"
-                      :key="index"
-                    >
-                      {{name+":"+data}}
-                    </div>
-                  </el-card>
-                </el-col>
-              </div>
-            </el-row>
-          </el-tab-pane>
-          <el-tab-pane
-            name="tabFinished"
-            class="panelContainer"
-          >
-            <span slot="label">
-              <div class="el-icon-check"></div> Finished
-            </span>
-            <el-table :data="mockData">
-              <el-table-column
-                prop="num"
-                label="编号"
-              ></el-table-column>
-              <el-table-column
-                prop="name"
-                label="姓名"
-              >
-              </el-table-column>
-            </el-table>
-          </el-tab-pane>
-          <el-tab-pane
-            name="tabFailed"
-            class="panelContainer"
-          >
-            <span slot="label">
-              <div class="el-icon-s-release"></div> Failed
-            </span>
-            <el-table :data="mockData">
-              <el-table-column
-                prop="num"
-                label="编号"
-              ></el-table-column>
-              <el-table-column
-                prop="name"
-                label="姓名"
-              >
-              </el-table-column>
-            </el-table>
-          </el-tab-pane>
-        </el-tabs>
-      </el-row>
+  <el-container>
+    <el-header>
+      <h1>Hi, {{user.username}}. Welcome to JoeMob's task arrangement system.</h1>
+    </el-header>
+    <el-main>
+      <CreateTask
+        :createTaskVisible="createTaskVisible"
+        @closeCreateTask="closeCreateTask"
+      ></CreateTask>
+      <TaskDetail
+        :taskDetailVisible="taskDetailVisible"
+        :task="task"
+        @closeTaskDetail="closeTaskDetail"
+      >
+      </TaskDetail>
       <el-button
-        icon="el-icon-plus"
-        class="createTaskButton"
-        @click="openCreateTask"
-        type="primary"
-        circle
-      ></el-button>
-      <br />
-    </el-col>
-  </div>
+        @click="logOut"
+        type="text"
+        class="LogOutButton"
+      >Sign out <i class="el-icon-close" /></el-button>
+      <el-col
+        :span=16
+        :offset=4
+      >
+        <el-row>
+          <el-tabs
+            v-model="tabCondition"
+            type="border-card"
+            class="wholeTab"
+            @tab-click="clearSearch"
+          >
+            <el-input
+              :span="8"
+              v-model="searchContent"
+              prefix-icon="el-icon-search"
+              clearable=""
+            ></el-input>
+            <el-tab-pane
+              name="tabWorking"
+              class="panelContainer"
+            >
+              <span slot="label">
+                <div class="el-icon-date"></div> Working
+              </span>
+              <el-row :gutter=30>
+                <div
+                  v-for=" (Data,index) in mockData"
+                  :key="index"
+                >
+                  <el-col
+                    :span=8
+                    class="card"
+                  >
+                    <el-card class="box-card">
+                      <div slot="header">
+                        <el-button
+                          circle=""
+                          icon="el-icon-edit"
+                          style="float:right"
+                          @click.native="openTaskDetail"
+                        ></el-button>
+                        <el-select
+                          v-model="Data.state"
+                          style="float:left;width:100px;margin-right:40px"
+                          :class="{}"
+                        >
+                          <el-option
+                            v-for="item in states"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
+                          >
+                          </el-option>
+                        </el-select>
+                        <span>{{Data.name}}</span>
+                        <br />
+                        <span>Working</span>
+                      </div>
+                      <el-button
+                        style="float:right"
+                        @click="deleteTask"
+                        circle
+                        icon="el-icon-delete"
+                        type="danger"
+                      ></el-button>
+                      <div
+                        :span=22
+                        v-for="(data,name,index) in Data"
+                        :key="index"
+                      >
+                        {{name+":"+data}}
+                      </div>
+                      <br />
+                    </el-card>
+                  </el-col>
+                </div>
+              </el-row>
+            </el-tab-pane>
+            <el-tab-pane
+              name="tabFinished"
+              class="panelContainer"
+            >
+              <span slot="label">
+                <div class="el-icon-check"></div> Finished
+              </span>
+              <el-table :data="mockData">
+                <el-table-column
+                  prop="num"
+                  label="编号"
+                ></el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="姓名"
+                >
+                </el-table-column>
+              </el-table>
+            </el-tab-pane>
+            <el-tab-pane
+              name="tabFailed"
+              class="panelContainer"
+            >
+              <span slot="label">
+                <div class="el-icon-s-release"></div> Failed
+              </span>
+              <el-table :data="mockData">
+                <el-table-column
+                  prop="num"
+                  label="编号"
+                ></el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="姓名"
+                >
+                </el-table-column>
+              </el-table>
+            </el-tab-pane>
+          </el-tabs>
+        </el-row>
+        <el-button
+          icon="el-icon-plus"
+          class="createTaskButton"
+          @click="openCreateTask"
+          type="primary"
+          circle
+        ></el-button>
+        <br />
+      </el-col>
+    </el-main>
+  </el-container>
 </template>
 
 <script lang="ts">
@@ -142,26 +171,61 @@ export default Vue.extend({
       mockData: [
         {
           num: 1,
-          name: "JoJo"
+          name: "JoJo",
+          age: 1,
+          state: 0
         },
         {
           num: 2,
-          name: "Dio"
+          name: "Dio",
+          age: 1,
+          state: 0
         },
         {
           num: 3,
-          name: "Zepplin"
+          name: "Zepplin",
+          age: 1,
+          state: 0
         },
         {
           num: 4,
-          name: "a"
+          name: "a",
+          age: 1,
+          state: 0
         },
         {
           num: 5,
-          name: "b"
+          name: "b",
+          age: 1,
+          state: 0
         }
       ],
-      task: [{}]
+      task: {
+        taskName: "",
+        priority: "",
+        startTime: "",
+        endTime: "",
+        discribe: ""
+      },
+      states: [
+        {
+          value: 0,
+          label: "未开始",
+          icon: "el-icon-close"
+        },
+        {
+          value: 1,
+          label: "进行中"
+        },
+        {
+          value: 2,
+          label: "已完成"
+        },
+        {
+          value: 3,
+          label: "已超时"
+        }
+      ]
     };
   },
   methods: {
@@ -178,6 +242,7 @@ export default Vue.extend({
       this.taskDetailVisible = false;
     },
     logOut() {},
+    deleteTask() {},
     clearSearch() {
       this.searchContent = "";
     }
@@ -218,10 +283,9 @@ export default Vue.extend({
 .search {
   position: relative;
 }
-.el-button.LogOutButton.el-button--danger.is-circle {
+.el-button.LogOutButton.el-button--text {
   position: relative;
-  left: -160px;
-  top: -20px;
+  left: -210px;
   z-index: 10;
 }
 </style>
