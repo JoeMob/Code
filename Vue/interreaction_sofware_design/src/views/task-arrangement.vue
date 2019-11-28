@@ -48,112 +48,110 @@
                   v-for="(Data,index) in mockData"
                   :key="index"
                 >
-                  <div v-if="Data.state==0||Data.state==1">
-                    <el-col
-                      :span=8
-                      class="card"
+                  <el-col
+                    :span=8
+                    class="card"
+                  >
+                    <el-card
+                      v-if="Data.priority==2"
+                      class="normal"
                     >
-                      <el-card
-                        v-if="Data.priority==2"
-                        class="normal"
+                      <div
+                        slot="header"
+                        class="unstarted"
                       >
-                        <div
-                          slot="header"
-                          class="unstarted"
-                        >
-                          <span
-                            :class="states[Data.state].icon"
-                            style="margin-right:15px"
-                          ></span>
-                          <el-button
-                            circle
-                            icon="el-icon-edit"
-                            style="float:right;"
-                            @click="editTask(Data)"
-                          ></el-button>
-                          <span>{{Data.taskName}}</span>
-                        </div>
                         <span
-                          :span=22
-                          v-for="(data,name,index) in Data"
-                          :key="index"
-                        >
-                          {{name+":"+data}}
-                        </span>
+                          :class="states[Data.state].icon"
+                          style="margin-right:15px"
+                        ></span>
                         <el-button
-                          style="float:right;margin-bottom:16px"
-                          @click="deleteTask"
                           circle
-                          icon="el-icon-delete"
-                          type="danger"
+                          icon="el-icon-edit"
+                          style="float:right;"
+                          @click="editTask(Data)"
                         ></el-button>
-                      </el-card>
-                      <el-card
-                        v-if="Data.priority==1"
-                        class="highPriority"
+                        <span>{{Data.taskName}}</span>
+                      </div>
+                      <span
+                        :span=22
+                        v-for="(data,name,index) in Data"
+                        :key="index"
                       >
-                        <div slot="header">
-                          <span
-                            :class="states[Data.state].icon"
-                            style="margin-right:15px"
-                          ></span>
-                          <el-button
-                            circle=""
-                            icon="el-icon-edit"
-                            style="float:right"
-                            @click.native="editTask(Data)"
-                          ></el-button>
-                          <span>{{Data.taskName}}</span>
-                        </div>
+                        {{name+":"+data}}
+                      </span>
+                      <el-button
+                        style="float:right;margin-bottom:16px"
+                        @click="deleteTask"
+                        circle
+                        icon="el-icon-delete"
+                        type="danger"
+                      ></el-button>
+                    </el-card>
+                    <el-card
+                      v-if="Data.priority==1"
+                      class="highPriority"
+                    >
+                      <div slot="header">
                         <span
-                          :span=22
-                          v-for="(data,name,index) in Data"
-                          :key="index"
-                        >
-                          {{name+":"+data}}
-                        </span>
+                          :class="states[Data.state].icon"
+                          style="margin-right:15px"
+                        ></span>
                         <el-button
-                          style="float:right;margin-bottom:16px"
-                          @click="deleteTask"
-                          circle
-                          icon="el-icon-delete"
-                          type="danger"
+                          circle=""
+                          icon="el-icon-edit"
+                          style="float:right"
+                          @click.native="editTask(Data)"
                         ></el-button>
-                      </el-card>
-                      <el-card
-                        v-if="Data.priority==0"
-                        class="emergency"
+                        <span>{{Data.taskName}}</span>
+                      </div>
+                      <span
+                        :span=22
+                        v-for="(data,name,index) in Data"
+                        :key="index"
                       >
-                        <div slot="header">
-                          <span
-                            :class="states[Data.state].icon"
-                            style="margin-right:15px"
-                          ></span>
-                          <el-button
-                            circle=""
-                            icon="el-icon-edit"
-                            style="float:right"
-                            @click.native="editTask(Data)"
-                          ></el-button>
-                          <span>{{Data.taskName}}</span>
-                        </div>
+                        {{name+":"+data}}
+                      </span>
+                      <el-button
+                        style="float:right;margin-bottom:16px"
+                        @click="deleteTask"
+                        circle
+                        icon="el-icon-delete"
+                        type="danger"
+                      ></el-button>
+                    </el-card>
+                    <el-card
+                      v-if="Data.priority==0"
+                      class="emergency"
+                    >
+                      <div slot="header">
                         <span
-                          :span=22
-                          v-for="(data,name,index) in Data"
-                          :key="index"
-                        >
-                          {{name+":"+data}}
-                        </span>
+                          :class="states[Data.state].icon"
+                          style="margin-right:15px"
+                        ></span>
                         <el-button
-                          style="float:right;margin-bottom:16px"
-                          @click="deleteTask"
-                          circle
-                          icon="el-icon-delete"
-                          type="danger"
+                          circle=""
+                          icon="el-icon-edit"
+                          style="float:right"
+                          @click.native="editTask(Data)"
                         ></el-button>
-                      </el-card>
-                    </el-col>
-                  </div>
+                        <span>{{Data.taskName}}</span>
+                      </div>
+                      <span
+                        :span=22
+                        v-for="(data,name,index) in Data"
+                        :key="index"
+                      >
+                        {{name+":"+data}}
+                      </span>
+                      <el-button
+                        style="float:right;margin-bottom:16px"
+                        @click="deleteTask"
+                        circle
+                        icon="el-icon-delete"
+                        type="danger"
+                      ></el-button>
+                    </el-card>
+                  </el-col>
                 </div>
               </el-row>
             </el-tab-pane>
@@ -225,15 +223,57 @@
               <span slot="label">
                 <div class="el-icon-s-release"></div> Failed
               </span>
-              <el-table :data="mockData">
+              <el-table
+                :data="mockData"
+                :default-sort="{prop: 'uid', order:'ascending'}"
+              >
                 <el-table-column
-                  prop="num"
+                  prop="uid"
                   label="编号"
+                  sortable
                 ></el-table-column>
                 <el-table-column
-                  prop="name"
-                  label="姓名"
+                  prop="taskName"
+                  label="任务名"
+                  sortable
                 >
+                </el-table-column>
+                <el-table-column
+                  prop="priority"
+                  label="优先级"
+                  sortable
+                ></el-table-column>
+                <el-table-column
+                  prop="startTime"
+                  label="开始时间"
+                  sortable
+                >
+                </el-table-column>
+                <el-table-column
+                  prop="endTime"
+                  label="结束时间"
+                  sortable
+                >
+                </el-table-column>
+                <el-table-column>
+                  <template slot-scope="scope">
+                    <el-button
+                      icon="el-icon-edit"
+                      circle
+                      type="success"
+                      @click="editTask(scope.row)"
+                    ></el-button>
+                  </template>
+                </el-table-column>
+                <el-table-column>
+                  <template slot-scope="scope">
+                    <el-button
+                      icon="el-icon-delete"
+                      circle
+                      type="danger"
+                      @click="deleteTask(scope.row)"
+                    ></el-button>
+                  </template>
                 </el-table-column>
               </el-table>
             </el-tab-pane>
@@ -343,7 +383,7 @@ export default Vue.extend({
         },
         {
           value: 3,
-          label: "已超时",
+          label: "已失败",
           icon: "el-icon-circle-close"
         }
       ]
@@ -370,6 +410,10 @@ export default Vue.extend({
     deleteTask() {},
     clearSearch() {
       this.searchContent = "";
+    },
+    completed(value,row,col){
+      console.log(row);
+      return row.state === 2;
     }
   }
 });
@@ -418,7 +462,7 @@ export default Vue.extend({
   box-shadow: insert, 0px, 0px, 5px, 5px, black;
 }
 .el-icon-time {
-  color: blue;
+  color: aqua;
 }
 .el-icon-circle-check {
   color: greenyellow;

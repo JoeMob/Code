@@ -88,7 +88,7 @@ export default Vue.extend({
         priority: "",
         startTime:"",
         endTime:"",
-        discribe:""
+        describe:""
       },
       priorities: [
         {

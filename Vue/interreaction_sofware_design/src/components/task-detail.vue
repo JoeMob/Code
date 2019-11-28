@@ -119,7 +119,7 @@ export default Vue.extend({
         },
         {
           value: 3,
-          label: "已超时",
+          label: "已失败",
         }
       ]
     };
