@@ -1,6 +1,3 @@
-<head>
-<title>Register</title>
-</head>
 <template>
   <div>
     <img src='./../assets/E.jpeg'>
