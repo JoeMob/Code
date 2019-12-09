@@ -48,6 +48,7 @@
             <el-col :span=12>
               <el-form-item label="开始日期">
                 <el-date-picker
+                  value-format="yyyy-MM-dd"
                   v-model="task.startTime"
                   style="width:140px"
                 ></el-date-picker>
@@ -56,6 +57,7 @@
             <el-col :span=12>
               <el-form-item label="结束日期">
                 <el-date-picker
+                  value-format="yyyy-MM-dd"
                   v-model="task.endTime"
                   style="width:140px"
                 >
@@ -126,13 +128,15 @@ export default Vue.extend({
   },
   props: {
     taskDetailVisible: Boolean,
-    task: {}
+    task: {},
+    originTask:{}
   },
   methods: {
     closeTaskDetail() {
       this.$emit("closeTaskDetail");
     },
     confirmEdit() {
+      Object.keys(this.originTask).forEach(key => this.originTask[key] = this.task[key]);
       this.$emit("closeTaskDetail");
     }
   }

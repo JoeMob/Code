@@ -10,6 +10,7 @@
       ></CreateTask>
       <TaskDetail
         :task="task"
+        :originTask="originTask"
         :taskDetailVisible="taskDetailVisible"
         @closeTaskDetail="closeTaskDetail"
       >
@@ -81,7 +82,7 @@
                       </span>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask"
+                        @click="deleteTask(Data,index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
@@ -113,7 +114,7 @@
                       </span>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask"
+                        @click="deleteTask(Data,index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
@@ -145,7 +146,7 @@
                       </span>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask"
+                        @click="deleteTask(Data,index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
@@ -210,7 +211,7 @@
                       icon="el-icon-delete"
                       circle
                       type="danger"
-                      @click="deleteTask(scope.row)"
+                      @click="deleteTask(scope.row,scope.$index)"
                     ></el-button>
                   </template>
                 </el-table-column>
@@ -224,6 +225,7 @@
                 <div class="el-icon-s-release"></div> Failed
               </span>
               <el-table
+                v-model="mockData"
                 :data="mockData"
                 :default-sort="{prop: 'uid', order:'ascending'}"
               >
@@ -271,7 +273,7 @@
                       icon="el-icon-delete"
                       circle
                       type="danger"
-                      @click="deleteTask(scope.row)"
+                      @click="deleteTask(scope.row,scope.$index)"
                     ></el-button>
                   </template>
                 </el-table-column>
@@ -351,13 +353,14 @@ export default Vue.extend({
           uid:5,
           taskName:"JoeMob",
           startTime:"1998-6-26",
-          endTime:"unknown",
+          endTime:"null",
           describe:"Long may the sun shine.",
           state:1,
           priority:2
         }
       ],
       task: {
+        uid:"",
         taskName: "",
         priority: "",
         startTime: "",
@@ -386,7 +389,8 @@ export default Vue.extend({
           label: "已失败",
           icon: "el-icon-circle-close"
         }
-      ]
+      ],
+      originTask:{}
     };
   },
   methods: {
@@ -403,11 +407,16 @@ export default Vue.extend({
       this.taskDetailVisible = false;
     },
     editTask(task) {
-      Object.keys(this.task).forEach(key => this.task[key] = task[key])
+      this.originTask = task;
+      Object.keys(this.task).forEach(key => this.task[key] = task[key]);
       this.openTaskDetail();
     },
-    logOut() {},
-    deleteTask() {},
+    logOut() {
+      this.mockData=[]
+    },
+    deleteTask(task,index) {
+      this.mockData.splice(index,1)
+    },
     clearSearch() {
       this.searchContent = "";
     },
