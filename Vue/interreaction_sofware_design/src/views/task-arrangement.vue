@@ -7,12 +7,13 @@
       <CreateTask
         :createTaskVisible="createTaskVisible"
         @closeCreateTask="closeCreateTask"
+        @createTask="(taskCreated)=>{createTask(taskCreated)}"
       ></CreateTask>
       <TaskDetail
         :task="task"
-        :originTask="originTask"
         :taskDetailVisible="taskDetailVisible"
         @closeTaskDetail="closeTaskDetail"
+        @confirmEdit="(task)=>{confirmEdit(task)}"
       >
       </TaskDetail>
       <el-button
@@ -49,110 +50,124 @@
                   v-for="(Data,index) in mockData"
                   :key="index"
                 >
-                  <el-col
-                    :span=8
-                    class="card"
-                  >
-                    <el-card
-                      v-if="Data.priority==2"
-                      class="normal"
+                  <div v-if="Data.taskname.indexOf(searchContent)!=-1">
+                    <el-col
+                      :span=8
+                      class="card"
                     >
-                      <div
-                        slot="header"
-                        class="unstarted"
+                      <el-card
+                        v-if="Data.priority==2"
+                        class="normal"
                       >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
+                        <div
+                          slot="header"
+                          class="unstarted"
+                        >
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle
+                            icon="el-icon-edit"
+                            style="float:right;"
+                            @click="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.uid}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
                         <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
                           circle
-                          icon="el-icon-edit"
-                          style="float:right;"
-                          @click="editTask(Data)"
+                          icon="el-icon-delete"
+                          type="danger"
                         ></el-button>
-                        <span>{{Data.taskName}}</span>
-                      </div>
-                      <span
-                        :span=22
-                        v-for="(data,name,index) in Data"
-                        :key="index"
+                      </el-card>
+                      <el-card
+                        v-if="Data.priority==1"
+                        class="highPriority"
                       >
-                        {{name+":"+data}}
-                      </span>
-                      <el-button
-                        style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
-                        circle
-                        icon="el-icon-delete"
-                        type="danger"
-                      ></el-button>
-                    </el-card>
-                    <el-card
-                      v-if="Data.priority==1"
-                      class="highPriority"
-                    >
-                      <div slot="header">
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
+                        <div slot="header">
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle=""
+                            icon="el-icon-edit"
+                            style="float:right"
+                            @click.native="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.uid}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
                         <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          style="float:right"
-                          @click.native="editTask(Data)"
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
                         ></el-button>
-                        <span>{{Data.taskName}}</span>
-                      </div>
-                      <span
-                        :span=22
-                        v-for="(data,name,index) in Data"
-                        :key="index"
+                      </el-card>
+                      <el-card
+                        v-if="Data.priority==0"
+                        class="emergency"
                       >
-                        {{name+":"+data}}
-                      </span>
-                      <el-button
-                        style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
-                        circle
-                        icon="el-icon-delete"
-                        type="danger"
-                      ></el-button>
-                    </el-card>
-                    <el-card
-                      v-if="Data.priority==0"
-                      class="emergency"
-                    >
-                      <div slot="header">
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
+                        <div slot="header">
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle=""
+                            icon="el-icon-edit"
+                            style="float:right"
+                            @click.native="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.uid}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
                         <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          style="float:right"
-                          @click.native="editTask(Data)"
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
                         ></el-button>
-                        <span>{{Data.taskName}}</span>
-                      </div>
-                      <span
-                        :span=22
-                        v-for="(data,name,index) in Data"
-                        :key="index"
-                      >
-                        {{name+":"+data}}
-                      </span>
-                      <el-button
-                        style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
-                        circle
-                        icon="el-icon-delete"
-                        type="danger"
-                      ></el-button>
-                    </el-card>
-                  </el-col>
+                      </el-card>
+                    </el-col>
+                  </div>
                 </div>
               </el-row>
             </el-tab-pane>
@@ -173,7 +188,7 @@
                   sortable
                 ></el-table-column>
                 <el-table-column
-                  prop="taskName"
+                  prop="taskname"
                   label="任务名"
                   sortable
                 >
@@ -235,7 +250,7 @@
                   sortable
                 ></el-table-column>
                 <el-table-column
-                  prop="taskName"
+                  prop="taskname"
                   label="任务名"
                   sortable
                 >
@@ -315,7 +330,7 @@ export default Vue.extend({
       mockData: [
         {
           uid: 1,
-          taskName: "JoJo",
+          taskname: "JoJo",
           startTime: "2019-11-11",
           endTime: "2020-1-1",
           describe: "OlaOlaOlaOla",
@@ -324,7 +339,7 @@ export default Vue.extend({
         },
         {
           uid: 2,
-          taskName: "Dio",
+          taskname: "Dio",
           startTime: "2019-11-11",
           endTime: "2020-1-1",
           describe: "MudaMudaMudaMuda",
@@ -333,7 +348,7 @@ export default Vue.extend({
         },
         {
           uid: 3,
-          taskName: "Zepplin",
+          taskname: "Zepplin",
           startTime: "2019-11-11",
           endTime: "2020-1-1",
           describe: "满门忠烈",
@@ -342,7 +357,7 @@ export default Vue.extend({
         },
         {
           uid: 4,
-          taskName: "Evangelion",
+          taskname: "Evangelion",
           startTime: "2019-11-11",
           endTime: "2020-1-1",
           describe: "The beast.",
@@ -351,9 +366,9 @@ export default Vue.extend({
         },
         {
           uid:5,
-          taskName:"JoeMob",
+          taskname:"JoeMob",
           startTime:"1998-6-26",
-          endTime:"null",
+          endTime:"",
           describe:"Long may the sun shine.",
           state:1,
           priority:2
@@ -361,7 +376,7 @@ export default Vue.extend({
       ],
       task: {
         uid:"",
-        taskName: "",
+        taskname: "",
         priority: "",
         startTime: "",
         endTime: "",
@@ -390,7 +405,8 @@ export default Vue.extend({
           icon: "el-icon-circle-close"
         }
       ],
-      originTask:{}
+      originTask:{},
+      max:5
     };
   },
   methods: {
@@ -408,7 +424,7 @@ export default Vue.extend({
     },
     editTask(task) {
       this.originTask = task;
-      Object.keys(this.task).forEach(key => this.task[key] = task[key]);
+      this.task = Object.assign({},task);
       this.openTaskDetail();
     },
     logOut() {
@@ -423,6 +439,15 @@ export default Vue.extend({
     completed(value,row,col){
       console.log(row);
       return row.state === 2;
+    },
+    createTask(taskCreated){
+      taskCreated.uid=this.max+1;
+      this.max+=1;
+      taskCreated.state=1;
+      this.mockData.push(taskCreated);
+    },
+    confirmEdit(task){
+      Object.keys(this.originTask).forEach(key => this.originTask[key] = task[key]);
     }
   }
 });

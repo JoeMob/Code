@@ -11,7 +11,7 @@
         <el-row>
           <el-col :span=8>
             <el-form-item label="任务名">
-              <el-input v-model="task.taskName">
+              <el-input v-model="task.taskname">
               </el-input>
             </el-form-item>
           </el-col>
@@ -37,6 +37,7 @@
             <el-col :span=12>
               <el-form-item label="开始日期">
                 <el-date-picker
+                  value-format="yyyy-MM-dd"
                   v-model="task.startTime"
                   style="width:140px"
                 ></el-date-picker>
@@ -45,6 +46,7 @@
             <el-col :span=12>
               <el-form-item label="结束日期">
                 <el-date-picker
+                  value-format="yyyy-MM-dd"
                   v-model="task.endTime"
                   style="width:140px"
                 >
@@ -84,11 +86,13 @@ export default Vue.extend({
   data() {
     return {
       task: {
-        taskName: "",
-        priority: "",
+        uid:"",
+        taskname: "",
+        priority: 2,
         startTime:"",
         endTime:"",
-        describe:""
+        describe:"",
+        state:1
       },
       priorities: [
         {
@@ -108,12 +112,15 @@ export default Vue.extend({
   },
   methods: {
     closeCreateTask() {
+      Object.keys(this.task).forEach(key => this.task[key] = "");
+      this.task.priority=2;
+      this.task.state=1;
       this.$emit("closeCreateTask");
-      Object.keys(this.task).forEach(key => this.task[key] = "")
     },
     createTask() {
-      this.$emit("closeCreateTask");
-      Object.keys(this.task).forEach(key => this.task[key] = "")
+      let task = Object.assign({},this.task);
+      this.$emit('createTask',task);
+      this.closeCreateTask();
     }
   }
 });

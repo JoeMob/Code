@@ -4,6 +4,7 @@
       title="Task detail."
       :visible.sync="taskDetailVisible"
       :before-close="closeTaskDetail"
+      :close-on-click-modal=false
       center
     >
       <el-form label-position="top">
@@ -22,7 +23,7 @@
               </el-option>
             </el-select>
             <el-form-item label="任务名">
-              <el-input v-model="task.taskName">
+              <el-input v-model="task.taskname">
               </el-input>
             </el-form-item>
           </el-col>
@@ -128,16 +129,15 @@ export default Vue.extend({
   },
   props: {
     taskDetailVisible: Boolean,
-    task: {},
-    originTask:{}
+    task: {}
   },
   methods: {
     closeTaskDetail() {
       this.$emit("closeTaskDetail");
     },
     confirmEdit() {
-      Object.keys(this.originTask).forEach(key => this.originTask[key] = this.task[key]);
-      this.$emit("closeTaskDetail");
+      this.$emit("confirmEdit",this.task);
+      this.closeTaskDetail();
     }
   }
 });

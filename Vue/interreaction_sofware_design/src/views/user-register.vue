@@ -4,18 +4,15 @@
     <h1>This is JoeMob's task manager</h1>
     <h2>Register</h2>
     <el-col
-      span="6"
-      offset="9"
+      :span="6"
+      :offset="9"
     >
-      <el-form
-        v-ref="registerform"
-        :label-position="top"
-      >
+      <el-form :label-position="top">
         <el-form-item label="Username">
           <el-input
             v-model="registerform.username"
             prefix-icon="el-icon-user"
-            clearable="true"
+            :clearable="true"
           >
           </el-input>
         </el-form-item>
@@ -24,8 +21,8 @@
             v-model="registerform.password"
             prefix-icon="el-icon-lock"
             type="password"
-            clearable="true"
-            show-password="true"
+            :clearable="true"
+            :show-password="true"
           >
           </el-input>
         </el-form-item>
@@ -34,8 +31,8 @@
             v-model="registerform.confirmpassword"
             prefix-icon="el-icon-lock"
             type="password"
-            clearable="true"
-            show-password="true"
+            :clearable="true"
+            :show-password="true"
           >
           </el-input>
         </el-form-item>
@@ -62,8 +59,11 @@
 
 <style>
 </style>
-<script lang="ts">
+<script lang="js">
 import Vue from "vue";
+import qs from "qs";
+import axios from "axios";
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 export default Vue.extend({
   data() {
     return {
@@ -77,6 +77,26 @@ export default Vue.extend({
   methods: {
     goToLogin() {
       this.$router.push("user-login");
+    },
+    Register() {
+      var config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      };
+      var requestBody = {
+        "username": this.registerform.username,
+        "password": this.registerform.password
+      };
+      console.log(qs.stringify(requestBody))
+      console.log(requestBody)
+      axios.post("http://127.0.0.1:8081/user", qs.stringify(requestBody), config)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 });
