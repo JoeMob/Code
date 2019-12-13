@@ -27,17 +27,18 @@ type Task struct{
 	UseridRef int       `gorm:"size:11;not null" json:"useridRef"`
 }
 
-func userRegister(user User,w http.ResponseWriter)  {
+func userRegister(user User)(string)  {
 	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
     if err != nil {
 		fmt.Println("failed to connect database:", err)
-		return
+		return "Connet to DB failed."
 	}else{
 	    MysqlDB.SingularTable(true)
 		if MysqlDB.Where("username = ?", user.Username).Find(&User{}).RecordNotFound(){
-	        MysqlDB.Create(&user)
+			MysqlDB.Create(&user)
+			return "User created." 
 		}else{
-			w.Write([]byte("User already registerd."))
+			return "User already registerd."
 	    }
     }
 }

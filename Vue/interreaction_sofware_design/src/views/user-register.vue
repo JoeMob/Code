@@ -7,7 +7,7 @@
       :span="6"
       :offset="9"
     >
-      <el-form :label-position="top">
+      <el-form>
         <el-form-item label="Username">
           <el-input
             v-model="registerform.username"
@@ -61,7 +61,6 @@
 </style>
 <script lang="js">
 import Vue from "vue";
-import qs from "qs";
 import axios from "axios";
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 export default Vue.extend({
@@ -79,24 +78,36 @@ export default Vue.extend({
       this.$router.push("user-login");
     },
     Register() {
+      if (this.registerform.password.length >= 8 && this.registerform.password.length <= 22 && this.registerform.password == this.registerform.confirmpassword){
       var config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
       };
       var requestBody = {
         "username": this.registerform.username,
         "password": this.registerform.password
       };
-      console.log(qs.stringify(requestBody))
-      console.log(requestBody)
-      axios.post("http://127.0.0.1:8081/user", qs.stringify(requestBody), config)
-        .then(function(response) {
+      axios.post("http://127.0.0.1:8081/user", requestBody, config)
+        .then((response) => {                                       //=>的this作用域为词法作用域，匿名函数function()为undifined。
           console.log(response);
+          if(response.status == 201){
+            alert(response.data)
+            this.$router.push("user-login")
+          }else{
+            alert(response.data)
+          }
         })
         .catch(function(error) {
           console.log(error);
         });
+      } else if(this.registerform.password.length < 8) {
+        alert("Password should be longer than (or equal to) 8 characters.")
+      } else if(this.registerform.password.length > 22){
+        alert("Password should be shorter than (or equal to) 22 characters.")
+      } else if(this.registerform.password != this.registerform.confirmpassword){
+        alert("Passwrod and confirmpassword are different.")
+      }
     }
   }
 });

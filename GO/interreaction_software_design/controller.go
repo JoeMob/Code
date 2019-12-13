@@ -62,7 +62,13 @@ func register(w http.ResponseWriter, r *http.Request) {
     md5Ctx := md5.New()
     md5Ctx.Write([]byte(user.Password))
     user.Password = hex.EncodeToString(md5Ctx.Sum(nil))
-    registerService(user,w)
+    var createResult = registerService(user)
+    if(createResult == "User created."){
+        w.WriteHeader(201)
+        w.Write([]byte(createResult))
+    }else{
+        w.Write([]byte(createResult))
+    }
 }
 
 func login(w http.ResponseWriter, r *http.Request){
@@ -76,12 +82,6 @@ func login(w http.ResponseWriter, r *http.Request){
     md5Ctx.Write([]byte(user.Password))
     user.Password = hex.EncodeToString(md5Ctx.Sum(nil))
     loginService(user,w)
-}
-
-func userOptions(w http.ResponseWriter, r *http.Request){
-    w.Header().Set("Access-Control-Allow-Origin", "*")
-    w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-    w.Header().Set("Access-Control-Allow-Credentials", "true")
 }
 
 func main() {
