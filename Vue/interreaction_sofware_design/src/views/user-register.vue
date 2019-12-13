@@ -62,6 +62,7 @@
 <script lang="js">
 import Vue from "vue";
 import axios from "axios";
+import md5 from 'js-md5';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 export default Vue.extend({
   data() {
@@ -78,7 +79,7 @@ export default Vue.extend({
       this.$router.push("user-login");
     },
     Register() {
-      if (this.registerform.password.length >= 8 && this.registerform.password.length <= 22 && this.registerform.password == this.registerform.confirmpassword){
+      if (this.registerform.password.length >= 8 && this.registerform.password.length <= 22 && this.registerform.password == this.registerform.confirmpassword && this.registerform.username != ""){
       var config = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -86,28 +87,31 @@ export default Vue.extend({
       };
       var requestBody = {
         "username": this.registerform.username,
-        "password": this.registerform.password
+        "password": md5(this.registerform.password)
       };
       axios.post("http://127.0.0.1:8081/user", requestBody, config)
         .then((response) => {                                       //=>的this作用域为词法作用域，匿名函数function()为undifined。
           console.log(response);
           if(response.status == 201){
-            alert(response.data)
+            this.$message({showClose:true,message:response.data,type:'success'})
             this.$router.push("user-login")
           }else{
-            alert(response.data)
+            this.$message({showClose:true,message:response.data})
           }
         })
         .catch(function(error) {
           console.log(error);
         });
+      } else if(this.registerform.username == ""){
+        this.$message({showClose:true,message:"Username couldn't be empty.",type:'error'})
       } else if(this.registerform.password.length < 8) {
-        alert("Password should be longer than (or equal to) 8 characters.")
+        this.$message({showClose:true,message:"Password should be longer than (or equal to) 8 characters.",type:'error'})
+        alert()
       } else if(this.registerform.password.length > 22){
-        alert("Password should be shorter than (or equal to) 22 characters.")
+        this.$message({showClose:true,message:"Password should be shorter than (or equal to) 22 characters.",type:'error'})
       } else if(this.registerform.password != this.registerform.confirmpassword){
-        alert("Passwrod and confirmpassword are different.")
-      }
+        this.$message({showClose:true,message:"Passwrod and confirmpassword are different.",type:'error'})
+      } 
     }
   }
 });

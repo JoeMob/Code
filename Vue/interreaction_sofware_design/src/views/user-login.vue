@@ -5,19 +5,15 @@
     <h2>Login</h2>
     <router-view></router-view>
     <el-col
-      span="6"
-      offset="9"
+      :span="6"
+      :offset="9"
     >
-      <el-form
-        v-ref="loginform"
-        :label-position="top"
-      >
+      <el-form>
         <el-form-item label="Username">
           <el-input
             v-model="loginform.username"
             prefix-icon="el-icon-user"
-            clearable="true"
-            icon="el-icon-user"
+            :clearable="true"
           >
           </el-input>
         </el-form-item>
@@ -26,8 +22,8 @@
             v-model="loginform.password"
             prefix-icon="el-icon-lock"
             type="password"
-            clearable="true"
-            show-password="true"
+            :clearable="true"
+            :show-password="true"
           >
           </el-input>
         </el-form-item>

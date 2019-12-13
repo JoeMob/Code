@@ -7,8 +7,6 @@ import (
     "net/http"
 	"github.com/jinzhu/gorm"
     _ "github.com/jinzhu/gorm/dialects/mysql"
-    "crypto/md5"
-    "encoding/hex"
 )
 
 func connectMySQL(){ 
@@ -27,41 +25,24 @@ func connectMySQL(){
 }
 
 func getWorkingItems(w http.ResponseWriter, r *http.Request) {
-    w.Header().Add("Access-Control-Allow-Origin", "*")
-    type Profile struct {
-    Name    string
-    Hobbies []string
-    }
-    profile := Profile{"Alex", []string{"snowboarding", "programming"}}
-    js, err := json.Marshal(profile)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    } 
-    w.Header().Set("Content-Type", "application/json")
-    w.Write(js)
 }
 
 func getFinishedItems(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w,"fuck")
 }
 
 func getFailedItems(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w,"fuck")
 }
 
 func register(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
     w.Header().Set("Access-Control-Allow-Credentials", "true")
+    w.Header().Set("Content-Type", "application/json")
     var user User
     body, _ := ioutil.ReadAll(r.Body)
     json.Unmarshal(body, &user)
     fmt.Println(user.Username)
     fmt.Println(user.Password)
-    md5Ctx := md5.New()
-    md5Ctx.Write([]byte(user.Password))
-    user.Password = hex.EncodeToString(md5Ctx.Sum(nil))
     var createResult = registerService(user)
     if(createResult == "User created."){
         w.WriteHeader(201)
@@ -75,13 +56,11 @@ func login(w http.ResponseWriter, r *http.Request){
     w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
     w.Header().Set("Access-Control-Allow-Credentials", "true")
+    w.Header().Set("Content-Type", "application/json")
     var user User
     body, _ := ioutil.ReadAll(r.Body)
     json.Unmarshal(body, &user)
-    md5Ctx := md5.New()
-    md5Ctx.Write([]byte(user.Password))
-    user.Password = hex.EncodeToString(md5Ctx.Sum(nil))
-    loginService(user,w)
+    loginService(user)
 }
 
 func main() {
