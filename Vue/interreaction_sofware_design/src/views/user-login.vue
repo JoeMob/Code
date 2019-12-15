@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src='./../assets/E.jpeg'>
+    <img src="./../assets/E.jpeg" />
     <h1>This is JoeMob's task manager</h1>
     <h2>Login</h2>
     <router-view></router-view>
@@ -28,22 +28,29 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"> Login </el-button>
+          <el-button
+            type="primary"
+            @click="userLogin"
+          > Login </el-button>
         </el-form-item>
         <el-form-item>
           <el-button
             type="success"
             @click="goToRegister"
-          > Go to Register </el-button>
+          >
+            Go to Register
+          </el-button>
         </el-form-item>
       </el-form>
     </el-col>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import Vue from "vue";
 import router from "vue-router";
+import Axios from "axios";
+import md5 from "md5";
 export default Vue.extend({
   data() {
     return {
@@ -54,7 +61,24 @@ export default Vue.extend({
     };
   },
   methods: {
-    userLogin() {},
+    userLogin() {
+      var requestBody = {
+        "username": this.loginform.username,
+        "password": md5(this.loginform.password)
+      };
+      var config = {
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+      Axios.post("http://127.0.0.1:8081/userLogin",requestBody,config)
+        .then((response)=>{
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+    },
     goToRegister() {
       this.$router.push("user-register");
     }

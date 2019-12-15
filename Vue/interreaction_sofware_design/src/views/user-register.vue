@@ -89,7 +89,7 @@ export default Vue.extend({
         "username": this.registerform.username,
         "password": md5(this.registerform.password)
       };
-      axios.post("http://127.0.0.1:8081/user", requestBody, config)
+      axios.post("http://127.0.0.1:8081/userRegister", requestBody, config)
         .then((response) => {                                       //=>的this作用域为词法作用域，匿名函数function()为undifined。
           console.log(response);
           if(response.status == 201){
@@ -106,7 +106,6 @@ export default Vue.extend({
         this.$message({showClose:true,message:"Username couldn't be empty.",type:'error'})
       } else if(this.registerform.password.length < 8) {
         this.$message({showClose:true,message:"Password should be longer than (or equal to) 8 characters.",type:'error'})
-        alert()
       } else if(this.registerform.password.length > 22){
         this.$message({showClose:true,message:"Password should be shorter than (or equal to) 22 characters.",type:'error'})
       } else if(this.registerform.password != this.registerform.confirmpassword){

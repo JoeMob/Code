@@ -17,11 +17,14 @@ func connectMySQL() {
 	} else {
 		fmt.Println("connect database success")
 		MysqlDB.SingularTable(true)
-		MysqlDB.AutoMigrate(&User{}) //自动建表
-		MysqlDB.AutoMigrate(&Task{}) //自动建表
-		MysqlDB.Model(&Task{}).AddForeignKey("userid_ref", "user(uid)", "CASCADE", "CASCADE")
+		MysqlDB.AutoMigrate(&User{})                                                         //自动建表
+		MysqlDB.AutoMigrate(&Task{})                                                         //自动建表
+		MysqlDB.Model(&Task{}).AddForeignKey("userid_ref", "user(id)", "CASCADE", "CASCADE") //设置外键
 		fmt.Println("create table success")
 	}
+}
+
+func getAllItems(w http.ResponseWriter, r *http.Request) {
 }
 
 func getWorkingItems(w http.ResponseWriter, r *http.Request) {
@@ -41,8 +44,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	var user User
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &user)
-	fmt.Println(user.Username)
-	fmt.Println(user.Password)
+	fmt.Print(user)
 	var createResult = registerService(user)
 	if createResult == "User created." {
 		w.WriteHeader(201)
@@ -60,7 +62,13 @@ func login(w http.ResponseWriter, r *http.Request) {
 	var user User
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &user)
-	loginService(user)
+	fmt.Print(user)
+	var loginState = loginService(user)
+	if loginState == "Login success." {
+		createToken()
+	} else {
+		w.Write([]byte(loginState))
+	}
 }
 
 func main() {

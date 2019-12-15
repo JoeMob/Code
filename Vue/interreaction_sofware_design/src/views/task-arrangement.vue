@@ -39,11 +39,11 @@
               clearable=""
             ></el-input>
             <el-tab-pane
-              name="tabWorking"
+              name="tabAll"
               class="panelContainer"
             >
               <span slot="label">
-                <div class="el-icon-date"></div> Working
+                <div class="el-icon-date"></div> All tasks
               </span>
               <el-row :gutter=30>
                 <div
@@ -76,7 +76,7 @@
                           <span>{{Data.taskname}}</span>
                         </div>
                         <div>
-                          编号:{{Data.uid}}
+                          编号:{{Data.id}}
                         </div>
                         <div>
                           <span>
@@ -112,7 +112,7 @@
                           <span>{{Data.taskname}}</span>
                         </div>
                         <div>
-                          编号:{{Data.uid}}
+                          编号:{{Data.id}}
                         </div>
                         <div>
                           <span>
@@ -148,7 +148,279 @@
                           <span>{{Data.taskname}}</span>
                         </div>
                         <div>
-                          编号:{{Data.uid}}
+                          编号:{{Data.id}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
+                        <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
+                        ></el-button>
+                      </el-card>
+                    </el-col>
+                  </div>
+                </div>
+              </el-row>
+            </el-tab-pane>
+            <el-tab-pane
+              name="tabUnstarted"
+              class="panelContainer"
+            >
+              <span slot="label">
+                <div
+                  class="el-icon-switch-button"
+                  style="color:black"
+                ></div> Unstarted
+              </span>
+              <el-row :gutter=30>
+                <div
+                  v-for="(Data,index) in mockData"
+                  :key="index"
+                >
+                  <div v-if="Data.taskname.indexOf(searchContent)!=-1&&Data.state==0">
+                    <el-col
+                      :span=8
+                      class="card"
+                    >
+                      <el-card
+                        v-if="Data.priority==2"
+                        class="normal"
+                      >
+                        <div
+                          slot="header"
+                          class="unstarted"
+                        >
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle
+                            icon="el-icon-edit"
+                            style="float:right;"
+                            @click="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.id}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
+                        <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
+                        ></el-button>
+                      </el-card>
+                      <el-card
+                        v-if="Data.priority==1"
+                        class="highPriority"
+                      >
+                        <div slot="header">
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle=""
+                            icon="el-icon-edit"
+                            style="float:right"
+                            @click.native="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.id}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
+                        <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
+                        ></el-button>
+                      </el-card>
+                      <el-card
+                        v-if="Data.priority==0"
+                        class="emergency"
+                      >
+                        <div slot="header">
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle=""
+                            icon="el-icon-edit"
+                            style="float:right"
+                            @click.native="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.id}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
+                        <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
+                        ></el-button>
+                      </el-card>
+                    </el-col>
+                  </div>
+                </div>
+              </el-row>
+            </el-tab-pane>
+            <el-tab-pane
+              name="tabWorking"
+              class="panelContainer"
+            >
+              <span slot="label">
+                <div
+                  class="el-icon-time"
+                  style="color:black"
+                ></div> Working
+              </span>
+              <el-row :gutter=30>
+                <div
+                  v-for="(Data,index) in mockData"
+                  :key="index"
+                >
+                  <div v-if="Data.taskname.indexOf(searchContent)!=-1&&Data.state==1">
+                    <el-col
+                      :span=8
+                      class="card"
+                    >
+                      <el-card
+                        v-if="Data.priority==2"
+                        class="normal"
+                      >
+                        <div
+                          slot="header"
+                          class="unstarted"
+                        >
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle
+                            icon="el-icon-edit"
+                            style="float:right;"
+                            @click="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.id}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
+                        <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
+                        ></el-button>
+                      </el-card>
+                      <el-card
+                        v-if="Data.priority==1"
+                        class="highPriority"
+                      >
+                        <div slot="header">
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle=""
+                            icon="el-icon-edit"
+                            style="float:right"
+                            @click.native="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.id}}
+                        </div>
+                        <div>
+                          <span>
+                            开始时间:{{Data.startTime}}
+                          </span>
+                          <span>
+                            结束时间:{{Data.endTime}}
+                          </span>
+                        </div>
+                        <el-button
+                          style="float:right;margin-bottom:16px"
+                          @click="deleteTask(Data,index)"
+                          circle
+                          icon="el-icon-delete"
+                          type="danger"
+                        ></el-button>
+                      </el-card>
+                      <el-card
+                        v-if="Data.priority==0"
+                        class="emergency"
+                      >
+                        <div slot="header">
+                          <span
+                            :class="states[Data.state].icon"
+                            style="margin-right:15px"
+                          ></span>
+                          <el-button
+                            circle=""
+                            icon="el-icon-edit"
+                            style="float:right"
+                            @click.native="editTask(Data)"
+                          ></el-button>
+                          <span>{{Data.taskname}}</span>
+                        </div>
+                        <div>
+                          编号:{{Data.id}}
                         </div>
                         <div>
                           <span>
@@ -176,14 +448,19 @@
               class="panelContainer"
             >
               <span slot="label">
-                <div class="el-icon-check"></div> Finished
+                <div
+                  class="el-icon-circle-check"
+                  style="color:black"
+                ></div> Finished
               </span>
               <el-table
-                :data="mockData"
-                :default-sort="{prop: 'uid', order:'ascending'}"
+                :data="finishedTasks"
+                :default-sort="{prop: 'id', order:'ascending'}"
+                :row-class-name="tableRowClassName"
               >
+                >
                 <el-table-column
-                  prop="uid"
+                  prop="id"
                   label="编号"
                   sortable
                 ></el-table-column>
@@ -196,6 +473,7 @@
                 <el-table-column
                   prop="priority"
                   label="优先级"
+                  :formatter="formatPriority"
                   sortable
                 ></el-table-column>
                 <el-table-column
@@ -237,18 +515,23 @@
               class="panelContainer"
             >
               <span slot="label">
-                <div class="el-icon-s-release"></div> Failed
+                <div
+                  class="el-icon-circle-close"
+                  style="color:black"
+                ></div> Failed
               </span>
               <el-table
                 v-model="mockData"
-                :data="mockData"
-                :default-sort="{prop: 'uid', order:'ascending'}"
+                :data="failedTasks"
+                :default-sort="{prop: 'id', order:'ascending'}"
+                :row-class-name="tableRowClassName"
               >
                 <el-table-column
-                  prop="uid"
+                  prop="id"
                   label="编号"
                   sortable
-                ></el-table-column>
+                >
+                </el-table-column>
                 <el-table-column
                   prop="taskname"
                   label="任务名"
@@ -258,6 +541,7 @@
                 <el-table-column
                   prop="priority"
                   label="优先级"
+                  :formatter="formatPriority"
                   sortable
                 ></el-table-column>
                 <el-table-column
@@ -322,60 +606,59 @@ export default Vue.extend({
     return {
       createTaskVisible: false,
       taskDetailVisible: false,
-      tabCondition: "tabWorking",
+      tabCondition: "tabAll",
       searchContent: "",
       user: {
-        username: "Guest"
+        username: "JoeMob"
       },
       mockData: [
         {
-          uid: 1,
-          taskname: "JoJo",
-          startTime: "2019-11-11",
-          endTime: "2020-1-1",
-          describe: "OlaOlaOlaOla",
-          state: 0,
-          priority: 0
-        },
-        {
-          uid: 2,
-          taskname: "Dio",
-          startTime: "2019-11-11",
-          endTime: "2020-1-1",
-          describe: "MudaMudaMudaMuda",
-          state: 1,
-          priority: 1
-        },
-        {
-          uid: 3,
-          taskname: "Zepplin",
-          startTime: "2019-11-11",
-          endTime: "2020-1-1",
-          describe: "满门忠烈",
-          state: 2,
-          priority: 2
-        },
-        {
-          uid: 4,
+          id: 1,
           taskname: "Evangelion",
           startTime: "2019-11-11",
           endTime: "2020-1-1",
           describe: "The beast.",
-          state: 3,
+          state: 0,
           priority: 0
         },
         {
-          uid:5,
+          id:2,
           taskname:"JoeMob",
           startTime:"1998-6-26",
           endTime:"",
           describe:"Long may the sun shine.",
           state:1,
           priority:2
-        }
+        },
+        {
+          id:3,
+          taskname:"Life",
+          startTime:"",
+          endTime:"",
+          describe:"Enjoy.",
+          state:1,
+          priority:1
+        },
+{
+          id:4,
+          taskname:"A",
+          startTime:"",
+          endTime:"",
+          describe:"A",
+          state:2,
+          priority:2
+        },{
+          id:5,
+          taskname:"B",
+          startTime:"",
+          endTime:"",
+          describe:"B",
+          state:3,
+          priority:2
+        },
       ],
       task: {
-        uid:"",
+        id:"",
         taskname: "",
         priority: "",
         startTime: "",
@@ -406,7 +689,7 @@ export default Vue.extend({
         }
       ],
       originTask:{},
-      max:5
+      max:2
     };
   },
   methods: {
@@ -441,13 +724,52 @@ export default Vue.extend({
       return row.state === 2;
     },
     createTask(taskCreated){
-      taskCreated.uid=this.max+1;
+      taskCreated.id=this.max+1;
       this.max+=1;
       taskCreated.state=1;
       this.mockData.push(taskCreated);
     },
     confirmEdit(task){
       Object.keys(this.originTask).forEach(key => this.originTask[key] = task[key]);
+    },
+        formatPriority: function (row, column) {
+        return row.priority == 0 ? '加急' : row.priority == 1 ? '紧急': row.priority == 2?'普通':'';
+    },
+    tableRowClassName({row,rowIndex}) {
+        if (row.priority === 0) {
+          return 'emergency-row';
+        } else if (row.priority === 1) {
+          return 'highPriority-row';
+        } else if (row.priority === 2){
+          return 'normal-row';
+        }
+        return '';
+      }
+  },
+  computed:{
+        finishedTasks:function(){
+        var search=this.searchContent;
+        var tasks=this.mockData.filter(item=>{
+          return item.state==2
+        })
+        if(search){
+          return  tasks.filter(function(item){
+              return item.taskname.indexOf(search) > -1
+            })
+        }
+        return tasks
+      },
+      failedTasks:function(){
+      var search=this.searchContent;
+      var tasks=this.mockData.filter(item=>{
+        return item.state==3
+      })
+      if(search){
+        return  tasks.filter(function(item){
+          return item.taskname.indexOf(search) > -1
+        })
+      }
+      return tasks
     }
   }
 });
@@ -518,5 +840,14 @@ export default Vue.extend({
 }
 .el-card.emergency.is-always-shadow {
   border-left: 4px solid red;
+}
+.el-table__row.normal-row {
+  background: rgba(0, 255, 255, 0.2);
+}
+.el-table__row.highPriority-row {
+  background: rgba(255, 128, 0, 0.2);
+}
+.el-table__row.emergency-row {
+  background: rgba(255, 0, 0, 0.2);
 }
 </style>

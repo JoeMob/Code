@@ -15,6 +15,12 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
+		"getAllItems",
+		"GET",
+		"/allitems",
+		getAllItems,
+	},
+	Route{
 		"getWorkingItems",
 		"GET",
 		"/workingitems",
@@ -35,13 +41,13 @@ var routes = Routes{
 	Route{
 		"register",
 		"POST",
-		"/user",
+		"/user/register",
 		register,
 	},
 	Route{
 		"login",
-		"GET",
-		"/user",
+		"POST",
+		"/user/login",
 		login,
 	},
 }

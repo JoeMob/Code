@@ -13,20 +13,20 @@ var MysqlDB *gorm.DB
 
 //User is the structure of user.
 type User struct {
-	UID      int    `gorm:"size:11;primary_key;AUTO_INCREMENT;not null" json:"uid"`
-	Username string `gorm:"size:255;DEFAULT NULL;not null" json:"username"`
-	Password string `gorm:"size:255;DEFAULT NULL;not null" json:"password"`
+	ID       int    `gorm:"size:11;primary_key;AUTO_INCREMENT;not null" json:"id"`
+	Username string `gorm:"size:255;not null" json:"username"`
+	Password string `gorm:"size:255;not null" json:"password"`
 }
 
 //Task is the structure of task.
 type Task struct {
-	UID       int       `gorm:"size:11;primary_key;AUTO_INCREMENT;not null" json:"uid"`
-	Taskname  string    `gorm:"size:255;DEFAULT NULL;not null" json:"taskname"`
+	ID        int       `gorm:"size:11;primary_key;AUTO_INCREMENT;not null" json:"id"`
+	Taskname  string    `gorm:"size:255;not null" json:"taskname"`
 	StartTime time.Time `gorm:"size:10;DEFAULT NULL" json:"startTime"`
 	EndTime   time.Time `gorm:"size:10;DEFAULT NULL" json:"endTime"`
 	Describe  string    `gorm:"size:255;DEFAULT NULL" json:"describe"`
-	Priority  int       `gorm:"size:1;DEFAULT NULL;not null" json:"priority"`
-	State     int       `gorm:"size:1;DEFAULT NULL;not null" json:"state"`
+	Priority  int       `gorm:"size:1;not null" json:"priority"`
+	State     int       `gorm:"size:1;not null" json:"state"`
 	UseridRef int       `gorm:"size:11;not null" json:"useridRef"`
 }
 
@@ -56,4 +56,15 @@ func userLogin(user User) string {
 		return "Username or password uncorrect."
 	}
 	return "Login sucess."
+}
+
+func findUserID(user User) int {
+	return 0
+}
+
+func createTaskByUserID(userID int, task Task) string {
+	return "Create success."
+}
+
+func getAllTasksByUserID() {
 }
