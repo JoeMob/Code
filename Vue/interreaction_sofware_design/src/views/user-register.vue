@@ -89,7 +89,7 @@ export default Vue.extend({
         "username": this.registerform.username,
         "password": md5(this.registerform.password)
       };
-      axios.post("http://127.0.0.1:8081/userRegister", requestBody, config)
+      axios.post("http://127.0.0.1:8081/user/register", requestBody, config)
         .then((response) => {                                       //=>的this作用域为词法作用域，匿名函数function()为undifined。
           console.log(response);
           if(response.status == 201){

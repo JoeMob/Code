@@ -15,28 +15,16 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"getAllItems",
+		"getAllTasks",
 		"GET",
-		"/allitems",
-		getAllItems,
+		"/tasks",
+		getAllTasks,
 	},
 	Route{
-		"getWorkingItems",
-		"GET",
-		"/workingitems",
-		getWorkingItems,
-	},
-	Route{
-		"getFinishedItems",
-		"GET",
-		"/finisheditems",
-		getFinishedItems,
-	},
-	Route{
-		"getFailedItems",
-		"GET",
-		"/finisheditems",
-		getFailedItems,
+		"createTask",
+		"POST",
+		"/task",
+		createTask,
 	},
 	Route{
 		"register",
@@ -49,5 +37,23 @@ var routes = Routes{
 		"POST",
 		"/user/login",
 		login,
+	},
+	Route{
+		"deleteTask",
+		"DELETE",
+		"/task",
+		deleteTask,
+	},
+	Route{
+		"dealOptions",
+		"OPTIONS",
+		"/task",
+		dealOptions,
+	},
+	Route{
+		"updateTask",
+		"PUT",
+		"/task",
+		updateTask,
 	},
 }

@@ -86,7 +86,6 @@ export default Vue.extend({
   data() {
     return {
       task: {
-        uid:"",
         taskname: "",
         priority: 2,
         startTime:"",
@@ -118,9 +117,13 @@ export default Vue.extend({
       this.$emit("closeCreateTask");
     },
     createTask() {
-      let task = Object.assign({},this.task);
-      this.$emit('createTask',task);
-      this.closeCreateTask();
+      if(this.task.taskname == ""){
+          this.$message({showClose:true,message:"Taskname couldn't be empty.",type:'danger'})
+      } else {
+        let task = Object.assign({},this.task);
+        this.$emit('createTask',task);
+        this.closeCreateTask();
+      }
     }
   }
 });
