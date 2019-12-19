@@ -1,30 +1,33 @@
 <template>
   <el-container>
     <el-header>
-      <h1>Hi, {{user.username}}. Welcome to JoeMob's task arrangement system.</h1>
+      <h1>Hi, {{ user.username }}. Welcome to JoeMob's task arrangement system.</h1>
     </el-header>
     <el-main>
       <CreateTask
         :createTaskVisible="createTaskVisible"
         @closeCreateTask="closeCreateTask"
-        @createTask="(taskCreated)=>{createTask(taskCreated)}"
+        @createTask="
+          taskCreated => {
+            createTask(taskCreated);
+          }
+        "
       ></CreateTask>
       <TaskDetail
         :task="task"
         :taskDetailVisible="taskDetailVisible"
         @closeTaskDetail="closeTaskDetail"
-        @confirmEdit="(task)=>{confirmEdit(task)}"
-      >
-      </TaskDetail>
-      <el-button
-        @click="logOut"
-        type="text"
-        class="LogOutButton"
-      >Sign out <i class="el-icon-close" /></el-button>
-      <el-col
-        :span=16
-        :offset=4
-      >
+        @confirmEdit="
+          task => {
+            confirmEdit(task);
+          }
+        "
+      ></TaskDetail>
+      <el-button @click="logOut" type="text" class="LogOutButton">
+        Sign out
+        <i class="el-icon-close" />
+      </el-button>
+      <el-col :span="16" :offset="4">
         <el-row>
           <el-tabs
             v-model="tabCondition"
@@ -32,137 +35,66 @@
             class="wholeTab"
             @tab-click="clearSearch"
           >
-            <el-input
-              :span="8"
-              v-model="searchContent"
-              prefix-icon="el-icon-search"
-              clearable=""
-            ></el-input>
-            <el-tab-pane
-              name="tabAll"
-              class="panelContainer"
-            >
+            <el-input :span="8" v-model="searchContent" prefix-icon="el-icon-search" clearable></el-input>
+            <el-tab-pane name="tabAll" class="panelContainer">
               <span slot="label">
-                <div class="el-icon-date"></div> All tasks
+                <div class="el-icon-date"></div>All tasks
               </span>
-              <el-row :gutter=30>
-                <div
-                  v-for="(Data,index) in allTasks"
-                  :key="index"
-                >
-                  <el-col
-                    :span=8
-                    class="card"
-                  >
-                    <el-card
-                      v-if="Data.priority==2"
-                      class="normal"
-                    >
-                      <span
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle
-                          icon="el-icon-edit"
-                          @click="editTask(Data)"
-                        ></el-button>
+              <el-row :gutter="30">
+                <div v-for="(Data, index) in allTasks" :key="index">
+                  <el-col :span="8" class="card">
+                    <el-card v-if="Data.priority == 2" class="normal">
+                      <span slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click="editTask(Data)"></el-button>
                       </span>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.taskid}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
                       ></el-button>
                     </el-card>
-                    <el-card
-                      v-if="Data.priority==1"
-                      class="highPriority"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          @click.native="editTask(Data)"
-                        ></el-button>
+                    <el-card v-if="Data.priority == 1" class="highPriority">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click.native="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
                       ></el-button>
                     </el-card>
-                    <el-card
-                      v-if="Data.priority==0"
-                      class="emergency"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          @click.native="editTask(Data)"
-                        ></el-button>
+                    <el-card v-if="Data.priority == 0" class="emergency">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click.native="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
@@ -172,134 +104,65 @@
                 </div>
               </el-row>
             </el-tab-pane>
-            <el-tab-pane
-              name="tabUnstarted"
-              class="panelContainer"
-            >
+            <el-tab-pane name="tabUnstarted" class="panelContainer">
               <span slot="label">
-                <div
-                  class="el-icon-switch-button"
-                  style="color:black"
-                ></div> Unstarted
+                <div class="el-icon-switch-button" style="color:black"></div>Unstarted
               </span>
-              <el-row :gutter=30>
-                <div
-                  v-for="(Data,index) in unstartedTasks"
-                  :key="index"
-                >
-                  <el-col
-                    :span=8
-                    class="card"
-                  >
-                    <el-card
-                      v-if="Data.priority==2"
-                      class="normal"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle
-                          icon="el-icon-edit"
-                          @click="editTask(Data)"
-                        ></el-button>
+              <el-row :gutter="30">
+                <div v-for="(Data, index) in unstartedTasks" :key="index">
+                  <el-col :span="8" class="card">
+                    <el-card v-if="Data.priority == 2" class="normal">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
                       ></el-button>
                     </el-card>
-                    <el-card
-                      v-if="Data.priority==1"
-                      class="highPriority"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          @click.native="editTask(Data)"
-                        ></el-button>
+                    <el-card v-if="Data.priority == 1" class="highPriority">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click.native="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
                       ></el-button>
                     </el-card>
-                    <el-card
-                      v-if="Data.priority==0"
-                      class="emergency"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          @click.native="editTask(Data)"
-                        ></el-button>
+                    <el-card v-if="Data.priority == 0" class="emergency">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click.native="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
@@ -309,134 +172,65 @@
                 </div>
               </el-row>
             </el-tab-pane>
-            <el-tab-pane
-              name="tabWorking"
-              class="panelContainer"
-            >
+            <el-tab-pane name="tabWorking" class="panelContainer">
               <span slot="label">
-                <div
-                  class="el-icon-time"
-                  style="color:black"
-                ></div> Working
+                <div class="el-icon-time" style="color:black"></div>Working
               </span>
-              <el-row :gutter=30>
-                <div
-                  v-for="(Data,index) in workingTasks"
-                  :key="index"
-                >
-                  <el-col
-                    :span=8
-                    class="card"
-                  >
-                    <el-card
-                      v-if="Data.priority==2"
-                      class="normal"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle
-                          icon="el-icon-edit"
-                          @click="editTask(Data)"
-                        ></el-button>
+              <el-row :gutter="30">
+                <div v-for="(Data, index) in workingTasks" :key="index">
+                  <el-col :span="8" class="card">
+                    <el-card v-if="Data.priority == 2" class="normal">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
                       ></el-button>
                     </el-card>
-                    <el-card
-                      v-if="Data.priority==1"
-                      class="highPriority"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          @click.native="editTask(Data)"
-                        ></el-button>
+                    <el-card v-if="Data.priority == 1" class="highPriority">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click.native="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
                       ></el-button>
                     </el-card>
-                    <el-card
-                      v-if="Data.priority==0"
-                      class="emergency"
-                    >
-                      <div
-                        slot="header"
-                        class="title"
-                      >
-                        <span
-                          :class="states[Data.state].icon"
-                          style="margin-right:15px"
-                        ></span>
-                        <span class="text">{{Data.taskname}}</span>
-                        <el-button
-                          circle=""
-                          icon="el-icon-edit"
-                          @click.native="editTask(Data)"
-                        ></el-button>
+                    <el-card v-if="Data.priority == 0" class="emergency">
+                      <div slot="header" class="title">
+                        <span :class="states[Data.state].icon" style="margin-right:15px"></span>
+                        <span class="text">{{ Data.taskname }}</span>
+                        <el-button circle icon="el-icon-edit" @click.native="editTask(Data)"></el-button>
                       </div>
+                      <div>编号:{{ Data.taskid }}</div>
                       <div>
-                        编号:{{Data.id}}
-                      </div>
-                      <div>
-                        <span>
-                          开始时间:{{Data.startTime}}
-                        </span>
-                        <span>
-                          结束时间:{{Data.endTime}}
-                        </span>
+                        <span>开始时间:{{ Data.startTime }}</span>
+                        <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
                         style="float:right;margin-bottom:16px"
-                        @click="deleteTask(Data,index)"
+                        @click="deleteTask(Data, index)"
                         circle
                         icon="el-icon-delete"
                         type="danger"
@@ -446,51 +240,21 @@
                 </div>
               </el-row>
             </el-tab-pane>
-            <el-tab-pane
-              name="tabFinished"
-              class="panelContainer"
-            >
+            <el-tab-pane name="tabFinished" class="panelContainer">
               <span slot="label">
-                <div
-                  class="el-icon-circle-check"
-                  style="color:black"
-                ></div> Finished
+                <div class="el-icon-circle-check" style="color:black"></div>Finished
               </span>
               <el-table
                 :data="finishedTasks"
-                :default-sort="{prop: 'id', order:'ascending'}"
+                :default-sort="{ prop: 'taskid', order: 'ascending' }"
                 :row-class-name="tableRowClassName"
               >
                 >
-                <el-table-column
-                  prop="id"
-                  label="编号"
-                  sortable
-                ></el-table-column>
-                <el-table-column
-                  prop="taskname"
-                  label="任务名"
-                  sortable
-                >
-                </el-table-column>
-                <el-table-column
-                  prop="priority"
-                  label="优先级"
-                  :formatter="formatPriority"
-                  sortable
-                ></el-table-column>
-                <el-table-column
-                  prop="startTime"
-                  label="开始时间"
-                  sortable
-                >
-                </el-table-column>
-                <el-table-column
-                  prop="endTime"
-                  label="结束时间"
-                  sortable
-                >
-                </el-table-column>
+                <el-table-column prop="taskid" label="编号" sortable></el-table-column>
+                <el-table-column prop="taskname" label="任务名" sortable></el-table-column>
+                <el-table-column prop="priority" label="优先级" :formatter="formatPriority" sortable></el-table-column>
+                <el-table-column prop="startTime" label="开始时间" sortable></el-table-column>
+                <el-table-column prop="endTime" label="结束时间" sortable></el-table-column>
                 <el-table-column>
                   <template slot-scope="scope">
                     <el-button
@@ -507,58 +271,27 @@
                       icon="el-icon-delete"
                       circle
                       type="danger"
-                      @click="deleteTask(scope.row,scope.$index)"
+                      @click="deleteTask(scope.row, scope.$index)"
                     ></el-button>
                   </template>
                 </el-table-column>
               </el-table>
             </el-tab-pane>
-            <el-tab-pane
-              name="tabFailed"
-              class="panelContainer"
-            >
+            <el-tab-pane name="tabFailed" class="panelContainer">
               <span slot="label">
-                <div
-                  class="el-icon-circle-close"
-                  style="color:black"
-                ></div> Failed
+                <div class="el-icon-circle-close" style="color:black"></div>Failed
               </span>
               <el-table
                 v-model="tasks"
                 :data="failedTasks"
-                :default-sort="{prop: 'id', order:'ascending'}"
+                :default-sort="{ prop: 'taskid', order: 'ascending' }"
                 :row-class-name="tableRowClassName"
               >
-                <el-table-column
-                  prop="id"
-                  label="编号"
-                  sortable
-                >
-                </el-table-column>
-                <el-table-column
-                  prop="taskname"
-                  label="任务名"
-                  sortable
-                >
-                </el-table-column>
-                <el-table-column
-                  prop="priority"
-                  label="优先级"
-                  :formatter="formatPriority"
-                  sortable
-                ></el-table-column>
-                <el-table-column
-                  prop="startTime"
-                  label="开始时间"
-                  sortable
-                >
-                </el-table-column>
-                <el-table-column
-                  prop="endTime"
-                  label="结束时间"
-                  sortable
-                >
-                </el-table-column>
+                <el-table-column prop="taskid" label="编号" sortable></el-table-column>
+                <el-table-column prop="taskname" label="任务名" sortable></el-table-column>
+                <el-table-column prop="priority" label="优先级" :formatter="formatPriority" sortable></el-table-column>
+                <el-table-column prop="startTime" label="开始时间" sortable></el-table-column>
+                <el-table-column prop="endTime" label="结束时间" sortable></el-table-column>
                 <el-table-column>
                   <template slot-scope="scope">
                     <el-button
@@ -575,7 +308,7 @@
                       icon="el-icon-delete"
                       circle
                       type="danger"
-                      @click="deleteTask(scope.row,scope.$index)"
+                      @click="deleteTask(scope.row, scope.$index)"
                     ></el-button>
                   </template>
                 </el-table-column>
@@ -596,7 +329,7 @@
   </el-container>
 </template>
 
-<script lang="js">
+<script>
 import Vue from "vue";
 import CreateTask from "@/components/create-task.vue";
 import TaskDetail from "@/components/task-detail.vue";
@@ -604,15 +337,15 @@ import axios from "axios";
 export default Vue.extend({
   components: {
     CreateTask,
-    TaskDetail,
+    TaskDetail
   },
-  data() {
+  data () {
     return {
       createTaskVisible: false,
       taskDetailVisible: false,
       tabCondition: "tabAll",
       searchContent: "",
-      tasks:[{}],
+      tasks: [{}],
       task: {},
       states: [
         {
@@ -636,209 +369,223 @@ export default Vue.extend({
           icon: "el-icon-circle-close"
         }
       ],
-      originTask:{},
-      token:{
-        refreshToken:"",
-        token:""
+      originTask: {},
+      token: {
+        refreshToken: "",
+        token: ""
       },
-      config : {
+      config: {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+          "Content-Type": "application/x-www-form-urlencoded"
         }
       }
     };
   },
   methods: {
-    openCreateTask() {
+    openCreateTask () {
       this.createTaskVisible = true;
     },
-    closeCreateTask() {
+    closeCreateTask () {
       this.createTaskVisible = false;
     },
-    openTaskDetail() {
+    openTaskDetail () {
       this.taskDetailVisible = true;
     },
-    closeTaskDetail() {
+    closeTaskDetail () {
       this.taskDetailVisible = false;
     },
-    editTask(task) {
+    editTask (task) {
       this.originTask = task;
-      this.task = Object.assign({},task);
+      this.task = Object.assign({}, task);
       this.openTaskDetail();
     },
-    logOut() {
-      localStorage.removeItem('user')
-      this.$router.push('user-login')
+    logOut () {
+      localStorage.removeItem("user");
+      this.$router.push("user-login");
     },
-    deleteTask(task,index) {
-      axios.delete("http://127.0.0.1:8081/task?id=" + task.id, this.config)
-      .then((response)=>{
-        console.log(response)
-        if(response.data == "Delete success."){
-          this.$message({showClose:true,message:response.data,type:'success'})
-            axios.get("http://127.0.0.1:8081/tasks?id="+this.user.id,this.config)
-            .then((response)=>{
-        this.tasks = response.data
-      })
+    deleteTask (task, index) {
+      axios.delete("http://127.0.0.1:8081/task?id=" + task.id, this.config).then(response => {
+        console.log(response);
+        if (response.data == "Delete success.") {
+          this.$message({
+            showClose: true,
+            message: response.data,
+            type: "success"
+          });
+          axios.get("http://127.0.0.1:8081/tasks?id=" + this.user.id,
+            this.config
+          )
+            .then(response => {
+              this.tasks = response.data;
+            });
         } else {
-          this.$message({showClose:true,message:response.data,type:'error'})
+          this.$message({
+            showClose: true,
+            message: response.data,
+            type: "error"
+          });
         }
-      })
+      });
     },
-    clearSearch() {
+    clearSearch () {
       this.searchContent = "";
     },
-    completed(value,row,col){
+    completed (value, row, col) {
       console.log(row);
       return row.state === 2;
     },
-    createTask(taskCreated){
-      taskCreated.state=1;
-      var sender={
-        "user":this.user,
-        "task":taskCreated
-      }
-      axios.post("http://127.0.0.1:8081/task",sender,this.config)
-      .then((response)=>{
+    createTask (taskCreated) {
+      taskCreated.state = 1;
+      var sender = {
+        user: this.user,
+        task: taskCreated
+      };
+      axios.post("http://127.0.0.1:8081/task", sender, this.config).then(response => {
         console.log(response);
-        if(response.status == 201){
-          this.$message({showClose:true,message:response.data,type:'success'})
-            axios.get("http://127.0.0.1:8081/tasks?id="+this.user.id,this.config)
-            .then((response)=>{
-        this.tasks = response.data
-      })
-      .catch(function(error) {
-          console.log(error);
-      });
-        }else{
-          this.$message({showClose:true,message:response.data,type:'error'})
+        if (response.status == 201) {
+          this.$message({            showClose: true, message: response.data, type: "success"
+          });
+          axios.get("http://127.0.0.1:8081/tasks?id=" + this.user.id,
+            this.config
+          )
+            .then(response => {
+              this.tasks = response.data;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else {
+          this.$message({
+            showClose: true,
+            message: response.data,
+            type: "error"
+          });
         }
-      }
-      )
+      });
     },
-    confirmEdit(task){
-      axios.put("http://127.0.0.1:8081/task",task,this.config)
-      .then((response)=>{
-        console.log(response)
-          this.$message({showClose:true,message:response.data,type:'success'})
-            axios.get("http://127.0.0.1:8081/tasks?id="+this.user.id,this.config)
-            .then((response)=>{
-        this.tasks = response.data
-      })
-    })
+    confirmEdit (task) {
+      axios.put("http://127.0.0.1:8081/task", task, this.config).then(response => {
+        console.log(response);
+        this.$message({
+          showClose: true,
+          message: response.data,
+          type: "success"
+        });
+        axios.get("http://127.0.0.1:8081/tasks?id=" + this.user.id, this.config).then(response => {
+          this.tasks = response.data;
+        });
+      });
     },
     formatPriority: function (row, column) {
-        return row.priority == 0 ? '加急' : row.priority == 1 ? '紧急': row.priority == 2?'普通':'';
+      return row.priority == 0 ? "加急" : row.priority == 1 ? "紧急" : row.priority == 2 ? "普通" : "";
     },
-    tableRowClassName({row,rowIndex}) {
-        if (row.priority === 0) {
-          return 'emergency-row';
-        } else if (row.priority === 1) {
-          return 'highPriority-row';
-        } else if (row.priority === 2){
-          return 'normal-row';
-        }
-        return '';
+    tableRowClassName ({ row, rowIndex }) {
+      if (row.priority === 0) {
+        return "emergency-row";
+      } else if (row.priority === 1) {
+        return "highPriority-row";
+      } else if (row.priority === 2) {
+        return "normal-row";
       }
-  },
-  computed:{
-        allTasks:function(){
-          var search =  this.searchContent
-          var tasks = this.tasks
-          if(search){
-            return tasks.filter(item=>{
-              return item.taskname.indexOf(search) > -1
-            })
-          }
-          return tasks
-        },
-        unstartedTasks:function(){
-          var search = this.searchContent;
-          if(this.tasks!=[{}]){
-          var tasks = this.tasks.filter(item=>{
-            return item.state==0
-          })
-          if(search){
-            return tasks.filter(item=>{
-              return item.taskname.indexOf(search) > -1
-            })
-          }
-          return tasks}
-          else{
-            return this.tasks
-          }
-        },
-        workingTasks:function(){
-          var search = this.searchContent;
-          if(this.tasks != [{}]){
-          var tasks = this.tasks.filter(item=>{
-            return item.state==1
-          })
-          if(search){
-            return tasks.filter(item=>{
-              return item.taskname.indexOf(search) > -1
-            })
-          }
-          return tasks
-          } else {
-            return this.tasks
-          }
-        },
-        finishedTasks:function(){
-        var search=this.searchContent;
-        if(this.tasks!= [{}]){
-        var tasks=this.tasks.filter(item=>{
-          return item.state==2
-        })
-        if(search){
-          return  tasks.filter(item=>{
-              return item.taskname.indexOf(search) > -1
-            })
-        }
-        return tasks
-        } else {
-          return this.tasks
-        }
-      },
-      failedTasks:function(){
-      var search=this.searchContent;
-      if(this.tasks!=[{}]){
-      var tasks = this.tasks.filter(item=>{
-        return item.state==3
-      })
-      if(search){
-        return  tasks.filter(function(item){
-          return item.taskname.indexOf(search) > -1
-        })
-      }
-      return tasks
-      } else {
-        return this.task
-      }
-    },
-    user:function(){
-      return JSON.parse(localStorage.getItem('user'))
-      },
-  },
-  mounted:
-    function(){
-      if(!localStorage.getItem('user')){
-        this.$router.push("user-login")
-      }
-      axios.get("http://127.0.0.1:8081/tasks?id="+this.user.id,this.config)
-      .then((response)=>{
-        console.log(response)
-        this.tasks = response.data
-      })
-      .catch(function(error) {
-          console.log(error);
-      });
+      return "";
     }
+  },
+  computed: {
+    allTasks: function () {
+      var search = this.searchContent;
+      var tasks = this.tasks;
+      if (search) {
+        return tasks.filter(item => {
+          return item.taskname.indexOf(search) > -1;
+        });
+      }
+      return tasks;
+    },
+    unstartedTasks: function () {
+      var search = this.searchContent;
+      if (this.tasks != [{}]) {
+        var tasks = this.tasks.filter(item => {
+          return item.state == 0;
+        });
+        if (search) {
+          return tasks.filter(item => {
+            return item.taskname.indexOf(search) > -1;
+          });
+        }
+        return tasks;
+      } else {
+        return this.tasks;
+      }
+    },
+    workingTasks: function () {
+      var search = this.searchContent;
+      if (this.tasks != [{}]) {
+        var tasks = this.tasks.filter(item => {
+          return item.state == 1;
+        });
+        if (search) {
+          return tasks.filter(item => {
+            return item.taskname.indexOf(search) > -1;
+          });
+        }
+        return tasks;
+      } else {
+        return this.tasks;
+      }
+    },
+    finishedTasks: function () {
+      var search = this.searchContent;
+      if (this.tasks != [{}]) {
+        var tasks = this.tasks.filter(item => {
+          return item.state == 2;
+        });
+        if (search) {
+          return tasks.filter(item => {
+            return item.taskname.indexOf(search) > -1;
+          });
+        }
+        return tasks;
+      } else {
+        return this.tasks;
+      }
+    },
+    failedTasks: function () {
+      var search = this.searchContent;
+      if (this.tasks != [{}]) {
+        var tasks = this.tasks.filter(item => {
+          return item.state == 3;
+        });
+        if (search) {
+          return tasks.filter(function (item) {
+            return item.taskname.indexOf(search) > -1;
+          });
+        }
+        return tasks;
+      } else {
+        return this.task;
+      }
+    },
+    user: function () {
+      return JSON.parse(localStorage.getItem("user"));
+    }
+  },
+  mounted: function () {
+    if (!localStorage.getItem("user")) {
+      this.$router.push("user-login");
+    }
+    axios.get("http://127.0.0.1:8081/tasks?id=" + this.user.id, this.config)
+      .then(response => {
+        console.log(response);
+        this.tasks = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
 
 <style>
 .panelContainer {

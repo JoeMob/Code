@@ -11,8 +11,14 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
+//MysqlDB is the entity for db connect.
+var MysqlDB *gorm.DB
+
+var path = (MysqlDBConfig.Username + ":" + MysqlDBConfig.Password + "@tcp(" + MysqlDBConfig.IP + ":" + MysqlDBConfig.Port + ")/" + MysqlDBConfig.DBname + "?charset=utf8&parseTime=True&loc=Local")
+
 func connectMySQL() {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
+	var err error
+	MysqlDB, err = gorm.Open("mysql", path)
 	if err != nil {
 		fmt.Println("failed to connect database:", err)
 	} else {
@@ -130,7 +136,7 @@ func updateTask(w http.ResponseWriter, r *http.Request) {
 	var task Task
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &task)
-	fmt.Print(task)
+	fmt.Println(task)
 	var updateResult = updateTaskService(task)
 	w.Write([]byte(updateResult))
 }

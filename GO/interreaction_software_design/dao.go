@@ -1,14 +1,20 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-//MysqlDB 是链接数据库的实体。
-var MysqlDB *gorm.DB
+//MysqlDBConfig is the entity of config for connect to DB.
+var MysqlDBConfig = DBConfig{"root", "Wyx19980626", "127.0.0.1", "3306", "interreaction_software_design"}
+
+//DBConfig is the config for DB connect.
+type DBConfig struct {
+	Username string
+	Password string
+	IP       string
+	Port     string
+	DBname   string
+}
 
 //Reciver is the reciver of json when user create/update/delete a task.
 type Reciver struct {
@@ -50,12 +56,12 @@ type UserAndInfo struct {
 }
 
 func userRegister(user User) string {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return "Connet to DB failed."
-	}
-	MysqlDB.SingularTable(true)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return "Connet to DB failed."
+	// }
+	// MysqlDB.SingularTable(true)
 	if MysqlDB.Where("username = ?", user.Username).Find(&User{}).RecordNotFound() {
 		MysqlDB.Create(&user)
 		return "User created."
@@ -65,12 +71,12 @@ func userRegister(user User) string {
 }
 
 func userLogin(user *User) string {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return "Failed to connect database."
-	}
-	MysqlDB.SingularTable(true)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return "Failed to connect database."
+	// }
+	// MysqlDB.SingularTable(true)
 	if MysqlDB.Where("username = ? AND password = ?", user.Username, user.Password).First(user).RecordNotFound() {
 		return "Username or password uncorrect."
 	}
@@ -78,12 +84,12 @@ func userLogin(user *User) string {
 }
 
 func findUserIDByUsername(username string) int {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return -1
-	}
-	MysqlDB.SingularTable(true)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return -1
+	// }
+	// MysqlDB.SingularTable(true)
 	var user User
 	if MysqlDB.Where("username = ?", username).First(&user).RecordNotFound() {
 		return -2
@@ -92,12 +98,12 @@ func findUserIDByUsername(username string) int {
 }
 
 func createTaskDAO(user User, task Task) string {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return "Failed to connect database."
-	}
-	MysqlDB.SingularTable(true)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return "Failed to connect database."
+	// }
+	// MysqlDB.SingularTable(true)
 	user.TaskAmount++
 	task.TaskID = user.TaskAmount
 	MysqlDB.Create(&task)
@@ -109,26 +115,26 @@ func createTaskDAO(user User, task Task) string {
 }
 
 func getAllTasksByUserID(userid int) TaskAndInfo {
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	taskAndInfo.Info = "Failed to connect database."
+	// 	return taskAndInfo
+	// }
+	// MysqlDB.SingularTable(true)
 	var taskAndInfo TaskAndInfo
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		taskAndInfo.Info = "Failed to connect database."
-		return taskAndInfo
-	}
-	MysqlDB.SingularTable(true)
 	MysqlDB.Where("userid_ref = ?", userid).Find(&taskAndInfo.tasks)
 	taskAndInfo.Info = "Find success."
 	return taskAndInfo
 }
 
 func deleteTaskDAO(task Task) string {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return "Failed to connect database."
-	}
-	MysqlDB.SingularTable(true)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return "Failed to connect database."
+	// }
+	// MysqlDB.SingularTable(true)
 	if MysqlDB.NewRecord(task) {
 		return "No task exists."
 	}
@@ -137,23 +143,23 @@ func deleteTaskDAO(task Task) string {
 }
 
 func getTaskAmount(user User) int {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return -1
-	}
-	MysqlDB.SingularTable(true)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return -1
+	// }
+	// MysqlDB.SingularTable(true)
 	MysqlDB.First(&user, user.ID)
 	return user.TaskAmount
 }
 
 func updateTaskDAO(task Task) string {
-	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		fmt.Println("failed to connect database:", err)
-		return "Failed to connect databse."
-	}
-	MysqlDB.SingularTable(true)
-	MysqlDB.Save(task)
+	// MysqlDB, err := gorm.Open("mysql", path)
+	// if err != nil {
+	// 	fmt.Println("failed to connect database:", err)
+	// 	return "Failed to connect database."
+	// }
+	// MysqlDB.SingularTable(true)
+	MysqlDB.Save(&task)
 	return "Update success."
 }

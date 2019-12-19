@@ -4,33 +4,25 @@
       title="Task detail."
       :visible.sync="taskDetailVisible"
       :before-close="closeTaskDetail"
-      :close-on-click-modal=false
+      :close-on-click-modal="false"
       center
     >
       <el-form label-position="top">
         <el-row>
-          <el-col :span=8>
-            <el-select
-              v-model="task.state"
-              style="width:90px;margin-right:20px"
-            >
+          <el-col :span="8">
+            <el-select v-model="task.state" style="width:90px;margin-right:20px">
               <el-option
                 v-for="item in states"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
-              >
-              </el-option>
+              ></el-option>
             </el-select>
             <el-form-item label="任务名">
-              <el-input v-model="task.taskname">
-              </el-input>
+              <el-input v-model="task.taskname"></el-input>
             </el-form-item>
           </el-col>
-          <el-col
-            :span=3
-            :offset=2
-          >
+          <el-col :span="3" :offset="2">
             <el-form-item label="优先级">
               <el-select v-model="task.priority">
                 <el-option
@@ -42,11 +34,8 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col
-            :span=9
-            :offset=2
-          >
-            <el-col :span=12>
+          <el-col :span="9" :offset="2">
+            <el-col :span="12">
               <el-form-item label="开始日期">
                 <el-date-picker
                   value-format="yyyy-MM-dd"
@@ -55,34 +44,25 @@
                 ></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col :span=12>
+            <el-col :span="12">
               <el-form-item label="结束日期">
                 <el-date-picker
                   value-format="yyyy-MM-dd"
                   v-model="task.endTime"
                   style="width:140px"
-                >
-                </el-date-picker>
+                ></el-date-picker>
               </el-form-item>
             </el-col>
           </el-col>
         </el-row>
         <el-row>
           <el-form-item label="详细描述">
-            <el-input
-              type="textarea"
-              :rows=12
-              v-model="task.describe"
-            >
-            </el-input>
+            <el-input type="textarea" :rows="12" v-model="task.describe"></el-input>
           </el-form-item>
         </el-row>
       </el-form>
       <span slot="footer">
-        <el-button
-          @click="confirmEdit"
-          type="success"
-        >Confirm</el-button>
+        <el-button @click="confirmEdit" type="success">Confirm</el-button>
       </span>
     </el-dialog>
   </div>

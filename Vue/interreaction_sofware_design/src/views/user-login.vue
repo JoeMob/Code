@@ -4,18 +4,10 @@
     <h1>This is JoeMob's task manager</h1>
     <h2>Login</h2>
     <router-view></router-view>
-    <el-col
-      :span="6"
-      :offset="9"
-    >
+    <el-col :span="6" :offset="9">
       <el-form>
         <el-form-item label="Username">
-          <el-input
-            v-model="loginform.username"
-            prefix-icon="el-icon-user"
-            :clearable="true"
-          >
-          </el-input>
+          <el-input v-model="loginform.username" prefix-icon="el-icon-user" :clearable="true"></el-input>
         </el-form-item>
         <el-form-item label="Password">
           <el-input
@@ -24,79 +16,79 @@
             type="password"
             :clearable="true"
             :show-password="true"
-          >
-          </el-input>
+          ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button
-            type="primary"
-            @click="userLogin"
-          > Login </el-button>
+          <el-button type="primary" @click="userLogin">Login</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button
-            type="success"
-            @click="goToRegister"
-          >
-            Go to Register
-          </el-button>
+          <el-button type="success" @click="goToRegister">Go to Register</el-button>
         </el-form-item>
       </el-form>
     </el-col>
   </div>
 </template>
 
-<script lang="js">
-import Vue from "vue";
-import router from "vue-router";
-import Axios from "axios";
-import md5 from "md5";
+<script>
+import Vue from 'vue'
+import router from 'vue-router'
+import Axios from 'axios'
+import md5 from 'md5'
 export default Vue.extend({
-  data() {
+  data () {
     return {
       loginform: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       }
-    };
+    }
   },
   methods: {
-    userLogin() {
-      var requestBody = {
-        "username": this.loginform.username,
-        "password": md5(this.loginform.password)
-      };
-      var config = {
-            headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+    userLogin () {
+      if (this.loginform.username != "" && this.loginform.password != "") {
+        var requestBody = {
+          username: this.loginform.username,
+          password: md5(this.loginform.password)
         }
-      }
-      Axios.post("http://127.0.0.1:8081/user/login",requestBody,config)
-        .then((response)=>{
-          if(response.data.info == "Login success."){
-            localStorage.setItem('user', JSON.stringify(response.data.user))
-            this.$message({showClose:true,message:response.data.info,type:'success'})
-            this.$router.push('task-arrangement')
-          } else {
-            console.log(response)
-            this.$message({showClose:true,message:response.data.info,type:'error'})
+        var config = {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
+        }
+        Axios.post('http://127.0.0.1:8081/user/login', requestBody, config)
+          .then(response => {
+            if (response.data.info == 'Login success.') {
+              localStorage.setItem('user', JSON.stringify(response.data.user))
+              this.$message({ showClose: true, message: response.data.info, type: 'success' })
+              this.$router.push('task-arrangement')
+            } else {
+              console.log(response)
+              this.$message({
+                showClose: true,
+                message: response.data.info,
+                type: 'error'
+              })
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      } else if (this.loginform.username == "") {
+        this.$message({ showClose: true, message: "Username couldn't be empty.", type: 'error' })
+      } else if (this.loginform.password == "") {
+        this.$message({ showClose: true, message: "Password couldn't be empty.", type: 'error' })
+      }
     },
-    goToRegister() {
-      this.$router.push("user-register");
+    goToRegister () {
+      this.$router.push('user-register')
     }
   },
-  mounted: 
-    function(){
-      if(localStorage.getItem("user")){
-        this.$router.push("task-arrangement")
-      }
+  mounted: function () {
+    if (localStorage.getItem('user')) {
+      this.$router.push('task-arrangement')
     }
-});
+  }
+})
 </script>
 
 <style scoped>
