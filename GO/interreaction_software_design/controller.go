@@ -58,8 +58,7 @@ func getAllTasks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := r.URL.Query()
 	var ID int
-	var id = vars["id"][0]
-	ID, err := strconv.Atoi(id)
+	ID, err := strconv.Atoi(vars["id"][0])
 	if err == nil {
 		var taskAndInfo TaskAndInfo
 		taskAndInfo = getAllTasksService(ID)
@@ -75,8 +74,7 @@ func deleteTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := r.URL.Query()
 	var ID int
-	var id = vars["id"][0]
-	ID, err := strconv.Atoi(id)
+	ID, err := strconv.Atoi(vars["id"][0])
 	if err == nil {
 		var task Task
 		task.ID = ID
@@ -112,10 +110,13 @@ func login(w http.ResponseWriter, r *http.Request) {
 	var user User
 	body, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(body, &user)
-	fmt.Print(user)
-	var loginResult = loginService(user)
+	fmt.Println(user)
+	var loginResult = loginService(&user)
 	if loginResult == "Login success." {
 		createToken()
+		var userAndInfo = UserAndInfo{loginResult, user}
+		sender, _ := json.Marshal(userAndInfo)
+		w.Write(sender)
 	} else {
 		w.Write([]byte(loginResult))
 	}

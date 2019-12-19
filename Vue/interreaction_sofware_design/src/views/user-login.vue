@@ -71,9 +71,16 @@ export default Vue.extend({
             'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      Axios.post("http://127.0.0.1:8081/userLogin",requestBody,config)
+      Axios.post("http://127.0.0.1:8081/user/login",requestBody,config)
         .then((response)=>{
-          console.log(response)
+          if(response.data.info == "Login success."){
+            localStorage.setItem('user', JSON.stringify(response.data.user))
+            this.$message({showClose:true,message:response.data.info,type:'success'})
+            this.$router.push('task-arrangement')
+          } else {
+            console.log(response)
+            this.$message({showClose:true,message:response.data.info,type:'error'})
+          }
         })
         .catch(function(error) {
           console.log(error)
@@ -82,7 +89,13 @@ export default Vue.extend({
     goToRegister() {
       this.$router.push("user-register");
     }
-  }
+  },
+  mounted: 
+    function(){
+      if(localStorage.getItem("user")){
+        this.$router.push("task-arrangement")
+      }
+    }
 });
 </script>
 

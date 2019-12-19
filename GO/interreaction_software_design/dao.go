@@ -43,6 +43,12 @@ type TaskAndInfo struct {
 	tasks []Task
 }
 
+//UserAndInfo the json for login to front.
+type UserAndInfo struct {
+	Info string `json:"info"`
+	User User   `json:"user"`
+}
+
 func userRegister(user User) string {
 	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
@@ -58,17 +64,17 @@ func userRegister(user User) string {
 
 }
 
-func userLogin(user User) string {
+func userLogin(user *User) string {
 	MysqlDB, err := gorm.Open("mysql", "root:Wyx19980626@(127.0.0.1:3306)/interreaction_software_design?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		fmt.Println("failed to connect database:", err)
 		return "Failed to connect database."
 	}
 	MysqlDB.SingularTable(true)
-	if MysqlDB.Where("username = ? AND password = ?", user.Username, user.Password).Find(&User{}).RecordNotFound() {
+	if MysqlDB.Where("username = ? AND password = ?", user.Username, user.Password).First(user).RecordNotFound() {
 		return "Username or password uncorrect."
 	}
-	return "Login sucess."
+	return "Login success."
 }
 
 func findUserIDByUsername(username string) int {

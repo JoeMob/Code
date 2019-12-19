@@ -10,7 +10,7 @@ func registerService(user User) string {
 	return userRegister(user)
 }
 
-func loginService(user User) string {
+func loginService(user *User) string {
 	return userLogin(user)
 }
 

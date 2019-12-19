@@ -112,7 +112,13 @@ export default Vue.extend({
         this.$message({showClose:true,message:"Passwrod and confirmpassword are different.",type:'error'})
       } 
     }
-  }
+  },
+  mounted:
+    function(){
+      if(localStorage.getItem("user")){
+        this.$router.push("task-arrangement")
+      }
+    }
 });
 </script>
 

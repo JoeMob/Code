@@ -612,10 +612,6 @@ export default Vue.extend({
       taskDetailVisible: false,
       tabCondition: "tabAll",
       searchContent: "",
-      user: {
-        id:1,
-        username: "JoeMob"
-      },
       tasks:[{}],
       task: {},
       states: [
@@ -671,7 +667,8 @@ export default Vue.extend({
       this.openTaskDetail();
     },
     logOut() {
-      this.tasks=[]
+      localStorage.removeItem('user')
+      this.$router.push('user-login')
     },
     deleteTask(task,index) {
       axios.delete("http://127.0.0.1:8081/task?id=" + task.id, this.config)
@@ -684,7 +681,7 @@ export default Vue.extend({
         this.tasks = response.data
       })
         } else {
-          this.$message({showClose:true,message:response.data,type:'danger'})
+          this.$message({showClose:true,message:response.data,type:'error'})
         }
       })
     },
@@ -714,7 +711,7 @@ export default Vue.extend({
           console.log(error);
       });
         }else{
-          this.$message({showClose:true,message:response.data,type:'danger'})
+          this.$message({showClose:true,message:response.data,type:'error'})
         }
       }
       )
@@ -757,6 +754,7 @@ export default Vue.extend({
         },
         unstartedTasks:function(){
           var search = this.searchContent;
+          if(this.tasks!=[{}]){
           var tasks = this.tasks.filter(item=>{
             return item.state==0
           })
@@ -765,10 +763,14 @@ export default Vue.extend({
               return item.taskname.indexOf(search) > -1
             })
           }
-          return tasks
+          return tasks}
+          else{
+            return this.tasks
+          }
         },
         workingTasks:function(){
           var search = this.searchContent;
+          if(this.tasks != [{}]){
           var tasks = this.tasks.filter(item=>{
             return item.state==1
           })
@@ -778,9 +780,13 @@ export default Vue.extend({
             })
           }
           return tasks
+          } else {
+            return this.tasks
+          }
         },
         finishedTasks:function(){
         var search=this.searchContent;
+        if(this.tasks!= [{}]){
         var tasks=this.tasks.filter(item=>{
           return item.state==2
         })
@@ -790,10 +796,14 @@ export default Vue.extend({
             })
         }
         return tasks
+        } else {
+          return this.tasks
+        }
       },
       failedTasks:function(){
       var search=this.searchContent;
-      var tasks=this.tasks.filter(item=>{
+      if(this.tasks!=[{}]){
+      var tasks = this.tasks.filter(item=>{
         return item.state==3
       })
       if(search){
@@ -802,12 +812,22 @@ export default Vue.extend({
         })
       }
       return tasks
+      } else {
+        return this.task
+      }
     },
+    user:function(){
+      return JSON.parse(localStorage.getItem('user'))
+      },
   },
   mounted:
     function(){
+      if(!localStorage.getItem('user')){
+        this.$router.push("user-login")
+      }
       axios.get("http://127.0.0.1:8081/tasks?id="+this.user.id,this.config)
       .then((response)=>{
+        console.log(response)
         this.tasks = response.data
       })
       .catch(function(error) {
