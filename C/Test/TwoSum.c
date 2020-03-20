@@ -60,9 +60,9 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize)
 
 int main()
 {
-    int num[] = {3, 2, 4};
+    int num[] = {3, 2, 4, 2};
     int returnsize;
-    int *result = twoSum(num, 3, 6, &returnsize);
+    int *result = twoSum(num, 4, 4, &returnsize);
     printf("%d,%d", result[0], result[1]);
     return 0;
 }

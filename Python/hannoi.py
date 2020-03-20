@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
-def move(n, a, b, c):
+def move(n, stick1, stick2, stick3):
     if (n == 1):
-        print(a, '->', c)
+        print(stick1, '->', stick3)
     else:
-        move(n-1, a, c, b)
-        move(1, a, b, c)
-        move(n-1, b, a, c)
+        move(n-1, stick1, stick3, stick2)
+        move(1, stick1, stick2, stick3)
+        move(n-1, stick2, stick1, stick3)
 
 
 n = int(input())
