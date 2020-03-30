@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        JoeMob's canvas painter.
+    </title>
+    <meta charset="UTF-8">
+</head>
+
+
+<body>
+    <canvas id="canvas" width="1905" height="900"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        var color = ['black', 'blue', 'green', 'red', 'grey', 'yellow'];
+        var colorNum = 0;
+        ctx.fillStyle = color[colorNum];
+        ctx.fillRect(0, 0, 20, 20);
+        function Brush() {
+            var clickStatus;
+            canvas.onmousedown = function (e) {
+                e = window.event || e;
+                var sX = e.pageX - this.offsetLeft;
+                var sY = e.pageY - this.offsetTop;
+                ctx.moveTo(sX, sY);
+                clickStatus = 1;
+            }
+            canvas.onmousemove = function (e) {
+                e = window.event || e;
+                var eX = e.pageX - this.offsetLeft;
+                var eY = e.pageY - this.offsetTop;
+                if (clickStatus == 1) {
+                    ctx.lineTo(eX, eY);
+                    ctx.stroke();
+                } else {
+                    return false;
+                }
+            }
+            canvas.onmouseout = function () {
+                clickStatus = 0;
+            }
+            canvas.onmouseup = function () {
+                clickStatus = 0;
+            }
+        }
+        function ChangeColor() {
+            document.onkeydown = function (e) {
+                if (e.keyCode == 38) {
+                    colorNum++;
+                    colorNum = colorNum % 6;
+                    ctx.fillStyle = color[colorNum];
+                    ctx.fillRect(0, 0, 20, 20);
+                    ctx.strokeStyle = color[colorNum];
+                }
+                if (e.keyCode == 40) {
+                    colorNum--;
+                    if (colorNum < 0) {
+                        colorNum += 6;
+                    }
+                    ctx.fillStyle = color[colorNum];
+                    ctx.fillRect(0, 0, 20, 20);
+                    ctx.strokeStyle = color[colorNum];
+                }
+            }
+        }
+        Brush();
+        ChangeColor();
+    </script>
+</body>
+
+</html>
