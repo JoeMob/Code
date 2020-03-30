@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "clang.exe build and debug active file",
+            "name": "gcc.exe - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -14,8 +14,8 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
-            "miDebuggerPath": "C:\\Program Files\\LLVM\\bin\\lldb-mi.exe",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\ProgramData\\chocolatey\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -23,7 +23,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "clang.exe build active file"
+            "preLaunchTask": "gcc.exe build active file"
         }
     ]
 }
