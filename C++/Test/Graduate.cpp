@@ -2,6 +2,7 @@
 #include <string>
 #include <stdio.h>
 using namespace std;
+
 class Person
 {
 protected:
@@ -19,6 +20,7 @@ public:
         sex = s;
     }
 };
+
 class Teacher : virtual public Person
 {
 protected:
@@ -27,6 +29,7 @@ protected:
 public:
     Teacher(const string &n = string("NULL"), char s = 'U', const string &t = string("Title")) : Person(n, s), title(t){};
 };
+
 class Student : virtual public Person
 {
 protected:
@@ -35,6 +38,7 @@ protected:
 public:
     Student(const string &n = string("NULL"), char s = 'U', double sc = 0) : Person(n, s), score(sc){};
 };
+
 class Graduate : public Teacher, public Student
 {
 public:
@@ -47,6 +51,7 @@ public:
         cout << "score:" << score << "\n";
     }
 };
+
 int main()
 {
     Graduate grad1("Assistance", 89.5);

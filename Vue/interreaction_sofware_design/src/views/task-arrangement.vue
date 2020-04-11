@@ -52,6 +52,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -71,6 +72,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -90,6 +92,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -120,6 +123,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -139,6 +143,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -158,6 +163,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -188,6 +194,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -207,6 +214,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button
@@ -226,6 +234,7 @@
                       <div>编号:{{ Data.taskid }}</div>
                       <div>
                         <span>开始时间:{{ Data.startTime }}</span>
+                        <br />
                         <span>结束时间:{{ Data.endTime }}</span>
                       </div>
                       <el-button

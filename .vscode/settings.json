@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "cstdlib": "c"
-    },
-    "python.pythonPath": "C:\\Users\\JoeMob\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
-}

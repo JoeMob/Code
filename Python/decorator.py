@@ -5,6 +5,7 @@ import functools
 
 def metric(fn):
     functools.wraps(fn)
+
     def wrapper(*args, **kw):
         start = time.time()
         result = fn(*args)
