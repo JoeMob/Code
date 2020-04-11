@@ -12,26 +12,26 @@
 <body>
     <canvas id="canvas" width="1905" height="900"></canvas>
     <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+        const ctx = document.getElementById('canvas').getContext('2d');
         var color = ['black', 'blue', 'green', 'red', 'grey', 'yellow'];
         var colorNum = 0;
-        ctx.fillStyle = color[colorNum];
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "black";
         ctx.fillRect(0, 0, 20, 20);
         function Brush() {
             var clickStatus;
             canvas.onmousedown = function (e) {
-                e = window.event || e;
                 var sX = e.pageX - this.offsetLeft;
                 var sY = e.pageY - this.offsetTop;
                 ctx.moveTo(sX, sY);
                 clickStatus = 1;
+                ctx.beginPath();
             }
             canvas.onmousemove = function (e) {
-                e = window.event || e;
                 var eX = e.pageX - this.offsetLeft;
                 var eY = e.pageY - this.offsetTop;
                 if (clickStatus == 1) {
+                    ctx.strokeStyle = color[colorNum];
                     ctx.lineTo(eX, eY);
                     ctx.stroke();
                 } else {
@@ -40,9 +40,11 @@
             }
             canvas.onmouseout = function () {
                 clickStatus = 0;
+                ctx.closePath();
             }
             canvas.onmouseup = function () {
                 clickStatus = 0;
+                ctx.closePath();
             }
         }
         function ChangeColor() {
@@ -52,7 +54,6 @@
                     colorNum = colorNum % 6;
                     ctx.fillStyle = color[colorNum];
                     ctx.fillRect(0, 0, 20, 20);
-                    ctx.strokeStyle = color[colorNum];
                 }
                 if (e.keyCode == 40) {
                     colorNum--;
@@ -61,7 +62,6 @@
                     }
                     ctx.fillStyle = color[colorNum];
                     ctx.fillRect(0, 0, 20, 20);
-                    ctx.strokeStyle = color[colorNum];
                 }
             }
         }
