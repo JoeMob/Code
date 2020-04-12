@@ -51,7 +51,7 @@ std::ostream &operator<<(std::ostream &out, Complex c)
 
 int main()
 {
-    Complex c2(2., 3.), c3 = c2 + Complex(1., 2.), c1(c2);
+    Complex c2(2, 3), c3 = c2 + Complex(1, 2), c1(c2);
     Complex c4;
     c4 += c2 * c3 + c2;
     std::cout << c1 << c2 << c3 << c4;
