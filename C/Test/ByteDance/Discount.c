@@ -1,16 +1,12 @@
 #include "stdio.h"
 #include "stdlib.h"
 #define maxn 1000000
-
-int cmp(const void *a, const void *b)
-{
-    return *(int *)a - *(int *)b; //由小到大排序
-}
+int a[maxn], b[maxn];
 
 int main()
 {
-    int res = 0, m, n;
-    int a[maxn], b[maxn];
+    int m, n;
+    long long res = 0;
     scanf("%d%d", &m, &n);
     for (int i = 0; i < m; i++)
     {
@@ -45,4 +41,9 @@ int main()
     }
     printf("%d", res);
     return 0;
+}
+
+int cmp(const void *a, const void *b)
+{
+    return *(int *)a - *(int *)b; //由小到大排序
 }
