@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Edited by JoeMob-->
+<?xml-stylesheet type="text/xsl" href="./2016011235-王宇啸-9-homework.xsl"?>
+<XSLTElement>
+    <element>
+        <name>
+        xsl:apply-imports
+        </name>
+        <description>
+        The &lt;xsl:template&gt; element is used to build templates.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:apply-templates
+        </name>
+        <description>
+        The &lt;xsl:apply-templates&gt; element applies a template to the current element or to the current element's child nodes.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:attribute
+        </name>
+        <description>
+        The &lt;xsl:attribute&gt; element is used to add attributes to elements.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:attribute-set
+        </name>
+        <description>
+        The &lt;xsl:attribute-set&gt; element creates a named set of attributes. The attribute-set can be applied as whole to the output document.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:call-template
+        </name>
+        <description>
+        The &lt;xsl:call-template&gt; element calls a named template.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:comment
+        </name>
+        <description>
+        The &lt;xsl:comment&gt; element is used to create a comment node in the result tree.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:copy
+        </name>
+        <description>
+        The &lt;xsl:copy&gt; element creates a copy of the current node. 
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:copy-of
+        </name>
+        <description>
+        The &lt;xsl:copy-of&gt; element creates a copy of the current node.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:decimal-format
+        </name>
+        <description>
+        The &lt;xsl:decimal-format&gt; element defines the characters and symbols to be used when converting numbers into strings, with the format-number() function.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:import
+        </name>
+        <description>
+        The &lt;xsl:import&gt; element is a top-level element that is used to import the contents of one style sheet into another.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:include
+        </name>
+        <description>
+            The &lt;xsl:include&gt; element is a top-level element that includes the contents of one style sheet into another.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:key
+        </name>
+        <description>
+        The &lt;xsl:key&gt; element is a top-level element which declares a named key that can be used in the style sheet with the key() function.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:message
+        </name>
+        <description>
+        The &lt;xsl:message&gt; element writes a message to the output. This element is primarily used to report errors.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:text
+        </name>
+        <description>
+        The &lt;xsl:text&gt; element is used to write literal text to the output.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:number
+        </name>
+        <description>
+        The &lt;xsl:number&gt; element is used to determine the integer position of the current node in the source. It is also used to format a number.
+        </description>
+    </element>
+    <element>
+        <name>
+        xsl:when
+        </name>
+        <description>
+        The &lt;xsl:when&gt; element is used to specify an action for the &lt;xsl:choose&gt; element. The &lt;xsl:when&gt; element evaluates an expression, and if it returns true, an action is performed.
+        </description>
+    </element>
+</XSLTElement>
