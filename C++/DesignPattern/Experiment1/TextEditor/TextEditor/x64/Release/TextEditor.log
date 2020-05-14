@@ -1,0 +1,8 @@
+﻿  Command.cpp
+  Executer.cpp
+  TextEditor.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 23 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  TextEditor.vcxproj -> D:\Code\C++\DesignPattern\Experiment1\TextEditor\x64\Release\TextEditor.exe
