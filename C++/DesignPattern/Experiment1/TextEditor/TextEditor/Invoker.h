@@ -3,12 +3,12 @@
 
 class Invoker {
 public:
-	void setCommand(Command *NewCommand) {
+	void setCommand(Command* NewCommand) {
 		command = NewCommand;
 	}
 	void sendCommand() {
-		command->exectue();
+		command->execute();
 	}
 private:
-	Command *command;
+	Command* command;
 };

@@ -4,7 +4,7 @@
 
 class Command {
 public:
-	virtual void exectue() = 0;
+	virtual void execute() = 0;
 	virtual void undo() = 0;
 	static std::stack<Command> CommandStack;
 };
@@ -12,7 +12,7 @@ public:
 class FileMenuCommand :public Command {
 public:
 	FileMenuCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;
@@ -21,7 +21,7 @@ private:
 class EditMenuCommand :public Command {
 public:
 	EditMenuCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;
@@ -30,7 +30,7 @@ private:
 class OpenCommand :public Command {
 public:
 	OpenCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;
@@ -39,7 +39,7 @@ private:
 class CreateCommand :public Command {
 public:
 	CreateCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;
@@ -48,7 +48,7 @@ private:
 class CopyCommand :public Command {
 public:
 	CopyCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;
@@ -57,7 +57,7 @@ private:
 class PasteCommand :public Command {
 public:
 	PasteCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;
@@ -66,7 +66,7 @@ private:
 class UndoCommand :public Command {
 public:
 	UndoCommand(Executer* _executer) :executer(_executer) {}
-	void exectue();
+	void execute();
 	void undo();
 private:
 	Executer* executer;

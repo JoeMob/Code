@@ -12,6 +12,7 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
+
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -148,6 +149,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case EDITBUTTON:
 			command = new EditMenuCommand(executer);
+			invoker.setCommand(command);
+			invoker.sendCommand();
+			break;
+		case OPENBUTTON:
+			command = new OpenCommand(executer);
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;

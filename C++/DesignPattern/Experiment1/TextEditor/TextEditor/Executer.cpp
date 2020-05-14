@@ -1,4 +1,9 @@
 #include "Executer.h"
+
+HWND OpenHWND;
+HWND CreateHWND;
+HWND CopyHWND;
+HWND PasteHWND;
 HFONT hFont = CreateFont
 (32, 0,    //高度20, 宽取0表示由系统选择最佳值
 	0, 0,    //文本倾斜，与字体倾斜都为0
@@ -15,26 +20,36 @@ HFONT hFont = CreateFont
 
 void Executer::OpenFileMenu() {
 	CloseEditMenu();
-	HWND OpenHWND = CreateWindow(L"Button", L"Open", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 20, 220, 200, 100, hWnd, (HMENU)OPENBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
+	OpenHWND = CreateWindow(L"Button", L"Open", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 20, 220, 200, 100, hWnd, (HMENU)OPENBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
 	SendMessage(OpenHWND, WM_SETFONT, (WPARAM)hFont, true);
-	HWND CreateHWND = CreateWindow(L"Button", L"Create", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 20, 420, 200, 100, hWnd, (HMENU)CREATEBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
+	CreateHWND = CreateWindow(L"Button", L"Create", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 20, 420, 200, 100, hWnd, (HMENU)CREATEBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
 	SendMessage(CreateHWND, WM_SETFONT, (WPARAM)hFont, true);
 }
 
 void Executer::CloseEditMenu() {
-
+	ShowWindow(CopyHWND, SW_HIDE);
+	ShowWindow(PasteHWND, SW_HIDE);
 }
 
 void Executer::OpenEditMenu() {
 	CloseFileMenu();
-	HWND CopyHWND = CreateWindow(L"Button", L"Open", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 320, 220, 200, 100, this->hWnd, (HMENU)OPENBUTTON, (HINSTANCE)GetWindowLongPtr(this->hWnd, GWLP_HINSTANCE), NULL);
+	CopyHWND = CreateWindow(L"Button", L"Copy", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 320, 220, 200, 100, hWnd, (HMENU)COPYBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
 	SendMessage(CopyHWND, WM_SETFONT, (WPARAM)hFont, true);
-	HWND PasteHWND = CreateWindow(L"Button", L"Create", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 320, 420, 200, 100, hWnd, (HMENU)CREATEBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
+	PasteHWND = CreateWindow(L"Button", L"Paste", WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 320, 420, 200, 100, hWnd, (HMENU)PASTEBUTTON, (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), NULL);
 	SendMessage(PasteHWND, WM_SETFONT, (WPARAM)hFont, true);
 }
 
-void Executer::CloseFileMenu() {}
-void Executer::Open() {}
+void Executer::CloseFileMenu() {
+	ShowWindow(OpenHWND, SW_HIDE);
+	ShowWindow(CreateHWND, SW_HIDE);
+}
+
+void Executer::Open() {
+	MessageBox(hWnd, L"File opened.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
+
 void Executer::Create() {}
+
 void Executer::Copy() {}
+
 void Executer::Paste() {}

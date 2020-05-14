@@ -17,6 +17,8 @@
 #define UNDOBUTTON              112
 #define OPENBUTTON              113
 #define CREATEBUTTON            114
+#define COPYBUTTON				115
+#define PASTEBUTTON				116
 #define IDC_MYICON				2
 #ifndef IDC_STATIC
 #define IDC_STATIC				-1

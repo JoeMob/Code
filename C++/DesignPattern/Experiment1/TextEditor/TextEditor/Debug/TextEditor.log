@@ -1,2 +1,5 @@
-﻿  TextEditor.cpp
+﻿  Command.cpp
+  Executer.cpp
+  TextEditor.cpp
+  Generating Code...
   TextEditor.vcxproj -> D:\Code\C++\DesignPattern\Experiment1\TextEditor\Debug\TextEditor.exe

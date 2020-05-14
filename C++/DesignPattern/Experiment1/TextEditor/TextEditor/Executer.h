@@ -2,6 +2,8 @@
 #include "framework.h"
 #include "Resource.h"
 
+
+
 class Executer {
 public:
 	Executer(HWND _hWnd) :hWnd(_hWnd) {}
