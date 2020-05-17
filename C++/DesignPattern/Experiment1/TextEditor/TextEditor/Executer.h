@@ -32,5 +32,7 @@ public:
 
 	void UndoPaste();
 
+	void NoUndo();
+
 	HWND hWnd;
 };

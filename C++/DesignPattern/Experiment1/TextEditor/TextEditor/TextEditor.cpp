@@ -11,6 +11,7 @@
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+std::stack<Command*> CommandStack;
 
 
 // Forward declarations of functions included in this code module:
@@ -154,26 +155,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case OPENBUTTON:
 			command = new OpenCommand(executer);
+			CommandStack.push(command);
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;
 		case CREATEBUTTON:
 			command = new CreateCommand(executer);
+			CommandStack.push(command);
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;
 		case COPYBUTTON:
 			command = new CopyCommand(executer);
+			CommandStack.push(command);
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;
 		case PASTEBUTTON:
 			command = new PasteCommand(executer);
+			CommandStack.push(command);
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;
 		case UNDOBUTTON:
 			command = new UndoCommand(executer);
+			command->CommandStack = &CommandStack;
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;

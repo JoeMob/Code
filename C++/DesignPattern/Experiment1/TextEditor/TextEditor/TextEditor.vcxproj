@@ -151,7 +151,6 @@
     <ClInclude Include="Executer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Invoker.h" />
-    <ClInclude Include="Log.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextEditor.h" />

@@ -33,9 +33,6 @@
     <ClInclude Include="Executer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Invoker.h">
       <Filter>Header Files</Filter>
     </ClInclude>

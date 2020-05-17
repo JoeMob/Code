@@ -1,13 +1,15 @@
 #pragma once
 #include "Executer.h"
+#include <fstream>
 #include <stack>
 
 class Command {
 public:
 	virtual void execute() = 0;
 	virtual void undo() = 0;
-	static std::stack<Command> CommandStack;
+	std::stack<Command*>* CommandStack = nullptr;
 };
+
 
 class FileMenuCommand :public Command {
 public:
@@ -71,3 +73,5 @@ public:
 private:
 	Executer* executer;
 };
+
+void WriteLog(const char*);

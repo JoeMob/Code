@@ -48,22 +48,34 @@ void Executer::Open() {
 	MessageBox(hWnd, L"File opened.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
 }
 
-void Executer::UndoOpen() {}
+void Executer::UndoOpen() {
+	MessageBox(hWnd, L"Undo open.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
 
 void Executer::Create() {
 	MessageBox(hWnd, L"File created.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
 }
 
-void Executer::UndoCreate() {}
+void Executer::UndoCreate() {
+	MessageBox(hWnd, L"Undo create.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
 
 void Executer::Copy() {
 	MessageBox(hWnd, L"Text copyed.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
 }
 
-void Executer::UndoCopy() {}
+void Executer::UndoCopy() {
+	MessageBox(hWnd, L"Undo copy.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
 
 void Executer::Paste() {
 	MessageBox(hWnd, L"Text pasted.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
 }
 
-void Executer::UndoPaste() {}
+void Executer::UndoPaste() {
+	MessageBox(hWnd, L"Undo paste.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
+
+void Executer::NoUndo() {
+		MessageBox(hWnd, L"No command in stack.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
