@@ -18,13 +18,19 @@ public:
 
 	void Open();
 
+	void UndoOpen();
+
 	void Create();
+
+	void UndoCreate();
 
 	void Copy();
 
+	void UndoCopy();
+
 	void Paste();
 
-	void Undo();
+	void UndoPaste();
 
 	HWND hWnd;
 };

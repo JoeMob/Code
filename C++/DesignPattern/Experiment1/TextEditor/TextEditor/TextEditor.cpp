@@ -125,13 +125,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	Invoker invoker;
+	Command* command;
+	Executer* executer = new Executer(hWnd);
 	switch (message)
 	{
 	case WM_COMMAND:
 	{
-		Invoker invoker;
-		Command* command;
-		Executer* executer = new Executer(hWnd);
 		int wmId = LOWORD(wParam);
 		// Parse the menu selections:
 		switch (wmId)
@@ -154,6 +154,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case OPENBUTTON:
 			command = new OpenCommand(executer);
+			invoker.setCommand(command);
+			invoker.sendCommand();
+			break;
+		case CREATEBUTTON:
+			command = new CreateCommand(executer);
+			invoker.setCommand(command);
+			invoker.sendCommand();
+			break;
+		case COPYBUTTON:
+			command = new CopyCommand(executer);
+			invoker.setCommand(command);
+			invoker.sendCommand();
+			break;
+		case PASTEBUTTON:
+			command = new PasteCommand(executer);
+			invoker.setCommand(command);
+			invoker.sendCommand();
+			break;
+		case UNDOBUTTON:
+			command = new UndoCommand(executer);
 			invoker.setCommand(command);
 			invoker.sendCommand();
 			break;

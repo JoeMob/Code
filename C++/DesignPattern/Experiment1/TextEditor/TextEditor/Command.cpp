@@ -18,6 +18,35 @@ void OpenCommand::execute() {
 }
 
 void OpenCommand::undo() {
-	//executer->Undo();
+	executer->UndoOpen();
 	//CommandStack.pop();
 }
+
+void CreateCommand::execute() {
+	executer->Create();
+}
+
+void CreateCommand::undo() {
+	executer->UndoCreate();
+}
+
+void CopyCommand::execute() {
+	executer->Copy();
+}
+
+void CopyCommand::undo() {
+	executer->UndoCopy();
+}
+
+void PasteCommand::execute() {
+	executer->Paste();
+}
+
+void PasteCommand::undo() {
+	executer->UndoPaste();
+}
+
+void UndoCommand::execute() {
+}
+
+void UndoCommand::undo() {}

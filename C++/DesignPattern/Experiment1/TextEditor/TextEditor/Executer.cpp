@@ -48,8 +48,22 @@ void Executer::Open() {
 	MessageBox(hWnd, L"File opened.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
 }
 
-void Executer::Create() {}
+void Executer::UndoOpen() {}
 
-void Executer::Copy() {}
+void Executer::Create() {
+	MessageBox(hWnd, L"File created.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
 
-void Executer::Paste() {}
+void Executer::UndoCreate() {}
+
+void Executer::Copy() {
+	MessageBox(hWnd, L"Text copyed.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
+
+void Executer::UndoCopy() {}
+
+void Executer::Paste() {
+	MessageBox(hWnd, L"Text pasted.", L"Excuted!", MB_OK | MB_ICONINFORMATION);
+}
+
+void Executer::UndoPaste() {}
