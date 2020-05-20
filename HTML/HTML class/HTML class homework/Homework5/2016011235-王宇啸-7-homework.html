@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+    <script>
+
+        var bgVP = 650;
+        var bgHP = 300;
+        window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var img1 = new Image();
+            var img2 = new Image();
+            img1.src = "background.jpg";
+            img2.src = "cooker.png";
+            img1.onload = imgbg;
+            img2.onload = imgcooker;
+            function imgbg() {
+                ctx.drawImage(this, bgVP, bgHP);
+
+            }
+            function imgcooker() {
+                ctx.drawImage(this, bgVP + 250, bgHP + 50);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <canvas class="myCanvasCSS" id="myCanvas" width="1900" height="600"></canvas>
+</body>
+
+</html>
