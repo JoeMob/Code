@@ -1,3 +1,5 @@
+package com.joemob;
+
 public class Main {
     public static void main(String[] args) {
         China china = new China();

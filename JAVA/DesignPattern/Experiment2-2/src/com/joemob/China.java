@@ -1,3 +1,5 @@
+package com.joemob;
+
 public class China extends Country {
 
     @Override
@@ -12,6 +14,6 @@ public class China extends Country {
 
     @Override
     public void getMessage(String message) {
-        System.out.println("China has got message: " + message);
+        System.out.println("com.joemob.China has got message: " + message);
     }
 }

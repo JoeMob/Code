@@ -1,4 +1,5 @@
 package com.joemob;
 
-public class Log {
+public interface Log {
+    void writeLog();
 }

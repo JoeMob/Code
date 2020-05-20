@@ -1,5 +1,5 @@
 package com.joemob;
 
-public interface GetData {
-    GetData()
+public interface DataGetter {
+    String getData();
 }

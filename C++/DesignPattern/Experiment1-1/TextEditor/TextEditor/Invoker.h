@@ -3,8 +3,8 @@
 
 class Invoker {
 public:
-	void setCommand(Command* NewCommand) {
-		command = NewCommand;
+	void setCommand(Command* command) {
+		this->command = command;
 	}
 	void sendCommand() {
 		command->execute();

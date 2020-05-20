@@ -1,4 +1,8 @@
 package com.joemob;
 
-public class GetFromTXT {
+public class TXTGetter implements DataGetter {
+    @Override
+    public String getData() {
+        return "TXT data";
+    }
 }

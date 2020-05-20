@@ -1,0 +1,5 @@
+Info: 21:50:41:248 Open
+Info: 21:50:58:567 Create
+Info: 21:51:40:317 Copy
+Info: 21:51:41:260 Paste
+Info: 21:51:42:328 UndoPaste

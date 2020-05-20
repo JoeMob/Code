@@ -1,4 +1,8 @@
 package com.joemob;
 
-public class FileLogFactory {
+public class FileLogFactory implements LogFactory {
+    @Override
+    public Log createLog() {
+        return new FileLog();
+    }
 }

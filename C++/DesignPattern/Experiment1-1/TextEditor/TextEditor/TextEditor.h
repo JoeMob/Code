@@ -4,4 +4,3 @@
 #include "Invoker.h"
 #include "Command.h"
 #include "Executer.h"
-#include "Log.h"

@@ -1,3 +1,5 @@
+package com.joemob;
+
 abstract public class Country {
     UN UnitedNations;
 
