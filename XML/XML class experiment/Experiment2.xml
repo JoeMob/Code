@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Edited by JoeMob-->
+<?xml-stylesheet type="text/xsl" href="./Experiment2.xsl"?>
+<MemberList ListName="Joe Mob's list" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Experiment2.xsd">
+    <ListMaker>JoeMob</ListMaker>
+    <Member>
+        <Name>JoeMob</Name>
+        <Age>22</Age>
+        <Birthday>1998-6-26</Birthday>
+        <Gender>Male</Gender>
+    </Member>
+    <Member>
+        <Name>A</Name>
+        <Age>21</Age>
+        <Birthday>1999-1-1</Birthday>
+        <Gender>Male</Gender>
+    </Member>
+    <Member>
+        <Name>B</Name>
+        <Age>20</Age>
+        <Birthday>2000-1-1</Birthday>
+        <Gender>Female</Gender>
+    </Member>
+    <Member>
+        <Name>C</Name>
+        <Age>19</Age>
+        <Birthday>2001-1-1</Birthday>
+        <Gender>Female</Gender>
+    </Member>
+    <Member>
+        <Name>D</Name>
+        <Age>18</Age>
+        <Birthday>2002-1-1</Birthday>
+        <Gender>Female</Gender>
+    </Member>
+    <MemberCount>
+        <All>5</All>
+        <Male>2</Male>
+        <Female>3</Female>
+    </MemberCount>
+    <ListDate>2020-5-22</ListDate>
+</MemberList>

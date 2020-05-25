@@ -3,7 +3,9 @@ package cn.joemob.pps;
 import cn.joemob.data.CommentSummary;
 import cn.joemob.data.Phone;
 import cn.joemob.data.Price;
+
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -14,22 +16,34 @@ import lombok.Data;
 @Data
 public class JDPhones implements PageProcessor {
 
+    private int contextPage = 1;
+
     private static final Logger log = Logger.getLogger(JDPhones.class);
 
-    private Site site = Site.me().setRetryTimes(3).setSleepTime(10000).setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15");
+    private Site site = Site.me().setRetryTimes(3).setSleepTime(4096).setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15");
 
     @Override
     public void process(Page page) {
         String url = page.getRequest().getUrl();
         if (url.startsWith("https://list.jd.com")) {
-            log.info("Processing list page [" + url + "]");
-            List<String> items = page.getHtml().xpath("//div[@class='gl-i-wrap']//div[@class='p-img']/a/@href").all();
-            log.info("Get " + items.size() + " items.");
-//            for (String item : items) {
-//                page.addTargetRequest(item);
-//            }
-            page.addTargetRequest(items.get(0));
-            page.setSkip(true);
+            if (contextPage > 200) {
+                log.warn("Max page = 200.");
+            } else {
+                log.info("Processing list page [" + url + "]");
+                contextPage++;
+                StringBuilder nextUrl = new StringBuilder(url);
+                nextUrl.delete(url.length() - String.valueOf(contextPage - 1).length(), url.length());
+                nextUrl.append(contextPage);
+                url = nextUrl.toString();
+                List<String> items = page.getHtml().xpath("//div[@class='gl-i-wrap']//div[@class='p-img']/a/@href").all();
+                log.info("Get " + items.size() + " items.");
+//                for (String item : items) {
+//                    page.addTargetRequest(item);
+//                }
+                page.addTargetRequest(items.get(0));
+                page.addTargetRequest(url);
+                page.setSkip(true);
+            }
         } else if (url.startsWith("https://item.jd.com")) {
             log.info("Processing item information page [" + url + "]");
             Phone phone = new Phone();
@@ -56,11 +70,11 @@ public class JDPhones implements PageProcessor {
             log.info("Processing price json [" + url + "]...");
             Price price = new Price();
             String id = page.getJson().jsonPath("$[0].id").get();
-            id = id.substring(2, id.length());
+            id = id.substring(2);
             price.setId(id);
             String itemPrice = page.getJson().jsonPath("$[0].p").get();
             price.setPrice(itemPrice);
-            if (price == null) {
+            if (price.getPrice() == "") {
                 log.error("无法解析价格信息:URL=" + url + ", 消息内容=" + page.getJson());
                 page.setSkip(true);
             } else {

@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("Starting JD phone spider.");
-        String startPage = "https://list.jd.com/list.html?cat=9987,653,655";
+        String startPage = "https://list.jd.com/list.html?cat=9987,653,655&page=1";
         JDPhones crawler = new JDPhones();
         Spider spider = Spider.create(crawler);
         spider.addPipeline(new JsonFilePipeline("./Phones"));
