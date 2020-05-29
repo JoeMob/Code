@@ -1,0 +1,429 @@
+<html>
+
+<head>
+  <meta author="JoeMob/王宇啸" />
+  <title>北京信息科技大学介绍</title>
+  <link rel="icon" href="NERV.ico" />
+  <style>
+    body {
+      background: url("https://www.xtrafondos.com/wallpapers/asuka-de-neon-genesis-evangelion-5016.jpg") no-repeat center;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .WholeWrapper {
+      margin: auto;
+      /* min-height: 100%; */
+      width: 800px;
+      display: flex;
+      flex-flow: column nowrap;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 1px solid grey;
+      border-radius: 10px;
+    }
+
+    .Header {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      margin-top: 1%;
+    }
+
+    .Logo {
+      flex: 2;
+      background: url("https://www.bistu.edu.cn/images/caiselogo.png") no-repeat center;
+      background-size: contain;
+    }
+
+    .Navigation {
+      flex: 1;
+      margin-left: 1%;
+      margin-right: 1%;
+    }
+
+    .Navigation ul {
+      width: 99%;
+      display: flex;
+      border-radius: 16px;
+      border-color: black;
+      list-style-type: none;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .Navigation li {
+      flex: 1;
+    }
+
+    .Navigation a:link,
+    .Navigation a:visited {
+      background-color: #00aaff;
+      display: block;
+      font-weight: bold;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 4px;
+    }
+
+    .Navigation a:hover,
+    .Navigation a:active {
+      background-color: #00dddd;
+    }
+
+    .Advertisement {
+      flex: 1;
+      display: flex;
+      text-align: center;
+    }
+
+    .Advertisement p {
+      margin: auto;
+    }
+
+    .Main {
+      flex: 12;
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .Sider {
+      flex: 1;
+    }
+
+    .Article {
+      flex: 7;
+    }
+
+    .Sider {
+      border-right: solid 1px black;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .Sider ul {
+      list-style-type: none;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .Sider button {
+      white-space: nowrap;
+      float: left;
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .Sider button:hover {
+      background-color: #ddd;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px;
+    }
+
+    .Footer {
+      flex: 1;
+      margin-bottom: 1%;
+      text-align: center;
+    }
+  </style>
+  <script>
+    function openArticle(evt, article) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(article).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+</head>
+
+<body>
+  <div class="WholeWrapper">
+    <div class="Header">
+      <div class="Logo"></div>
+      <div class="Navigation">
+        <ul>
+          <li><a href="https://www.bistu.edu.cn/">主页</a></li>
+          <li><a href="https://www.bistu.edu.cn/xxgk/dxjj/">介绍</a></li>
+          <li><a href="https://info.bistu.edu.cn/">新闻</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="Advertisement">
+      <p>This is an example for advertise.</p>
+    </div>
+    <div class="Main">
+      <div class="Sider">
+        <ul>
+          <button class="tablinks" onclick="openArticle(event, 'Intro')" id="defaultTab">
+            大学简介
+          </button>
+          <button class="tablinks" onclick="openArticle(event, 'ZC')">
+            大学章程
+          </button>
+          <button class="tablinks" onclick="openArticle(event, 'Data')">
+            基本数据
+          </button>
+        </ul>
+      </div>
+      <div class="Article">
+        <div id="Intro" class="tabcontent">
+          <p class="fengcai-txt">
+            &emsp;&emsp;北京信息科技大学由原机械部所属北京机械工业学院和原电子部所属北京信息工程学院合并组建，是北京市重点支持建设的信息学科较为齐全的高校。学校现有5个校区，另有占地1200余亩的沙河新校区已经全面开工建设，2020年基本建成一期工程。
+          </p>
+          <p>
+            &emsp;&emsp;学校缘起于1937年，迄今已有82年历史。学校始终扎根中国大地，与国家共成长。从国立高工时期高举“实业救国”旗帜，到1958年隶属机械部的北京机械学院及其后的北京机械工业学院(1981年首批硕士点)都以服务国家建立完整的工业体系和工业化建设为己任，创立于1978年的北大二分校及其后隶属于电子工业部的北京信息工程学院“应国家计算机工业发展需要而生”，直接服务于国家的信息产业和信息化建设。82年来，学校培养出了大批的优秀人才，投身于国家发展建设的各条战线，为国家工业化、城市化、信息化建设和国防军工做出了应有的贡献。当前，学校顺应信息时代发展趋势，致力于建设信息特色鲜明的高水平大学，为建设信息强国贡献力量。
+          </p>
+          <p>
+            &emsp;&emsp;学校立足新时代新要求，坚持以政治建设为统领，形成“建最好的大学、做最好的自己”的发展共识，全面推进“五个环境建设”，进入到了发展的快车道，呈现出了生机勃勃的发展态势，发展前景广阔。
+          </p>
+          <img src="https://www.bistu.edu.cn/xxgk/dxjj/../../images/univ.1.png" style="margin-left: 23%;" />
+        </div>
+        <div id="ZC" class="tabcontent">
+          <p class="MsoNormal">
+            <span>&emsp;&emsp;北京信息科技大学</span><span>(</span><span>以下简称“学校”</span><span>)
+            </span><span>是在原北京机械工业学院和原北京信息工程学院的基础上合并组建，</span><span>2008</span><span>年</span><span>3</span><span>月</span><span>26</span><span>日经教育部批准设立的全日制普通高等学校，办学历史可追溯到二十世纪三十年代。学校立足北京、面向全国，建设以工管为主体、工管理经文法多学科协调发展，在电子信息、现代制造与光机电一体化、知识管理与技术经济等领域特色鲜明，培养高素质应用型人才为主的教学研究型大学。</span>
+          </p>
+        </div>
+        <div id="Data" class="tabcontent">
+          <table cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td nowrap="nowrap" valign="top">主要类别</td>
+                <td>目前数据</td>
+              </tr>
+              <tr>
+                <td>学院(部)(个)</td>
+                <td>13</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>本科专业(个)</td>
+                <td>40</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>硕士学位授权一级学科点(个)</td>
+                <td>13</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>硕士学位授权二级学科点(个) </td>
+                <td>43 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市级重点学科(个)</td>
+                <td>3</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市级重点(建设)学科（个）</td>
+                <td>9</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>省、部级设置的研究院(所、中心)、实验室（个）</td>
+                <td>16</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>在编教职工(人)</td>
+                <td>1492</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>其中：专任教师(人)</td>
+                <td>935</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>正高级职称(人)</td>
+                <td>146</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>副高级职称(人)</td>
+                <td>413</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>博士生导师(兼职)（人）</td>
+                <td>30</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>硕士生导师(人)</td>
+                <td>345</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>双聘院士(人)</td>
+                <td>11</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>国家百千万人才工程(人)</td>
+                <td>2</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京新世纪百千万人才工程(人)</td>
+                <td>4</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市属高校长城学者(人)</td>
+                <td>6</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>
+                  全国优秀教师(人)
+                </td>
+                <td>2</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市优秀教师(人)</td>
+                <td>11</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>全国优秀教学团队(个)</td>
+                <td>1</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>教育部创新团队(个)</td>
+                <td>1</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市优秀教学团队(个)</td>
+                <td>8</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市教学名师(人)</td>
+                <td>14</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市属市管高校创新团队(个)</td>
+                <td>27</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市属市管高校创新人才(人)</td>
+                <td>15</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市属市管高校青年拔尖人才(人)</td>
+                <td>45</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>北京市人才强教深化计划骨干教师(人)</td>
+                <td>107</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>在校生总数(人)</td>
+                <td>18139</td>
+              </tr>
+              <tr>
+                <td>其中：</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>本科生</td>
+                <td>10909</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>硕士生</td>
+                <td>1587</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>外国留学生数(人)</td>
+                <td>164</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>成人教育学生总数(人)</td>
+                <td>5479</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 国家级特色专业建设点(个) </td>
+                <td> 4 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 北京市级特色专业建设点(个) </td>
+                <td> 9 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 国家级实验教学示范中心(个) </td>
+                <td> 2 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 国家级大学生校外实践教育基地(个) </td>
+                <td> 1 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 国家级工程实践教育中心建设单位(个) </td>
+                <td> 1 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 北京市实验教学示范中心(个) </td>
+                <td> 5 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 北京市级校外人才培养基地(个) </td>
+                <td> 5 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>省部级以上科研项目 (项)</td>
+                <td> 136 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td> 国家自然基金(项) </td>
+                <td> 72 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>行业、省部级及以上科技奖励(项)</td>
+                <td> 35 </td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>各类专利及软件著作权(项)</td>
+                <td>565</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>发表学术论文(篇)</td>
+                <td>5163</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>进入三大检索论文(篇)</td>
+                <td>1325</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>校园占地面积(㎡)</td>
+                <td>333178</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>学校建筑面积(㎡)</td>
+                <td>324783</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>图书馆馆藏总量(万册)</td>
+                <td>128.8</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>电子图书 (万册)</td>
+                <td>189.8</td>
+              </tr>
+              <tr style="height: 17pt;">
+                <td>教学、科研仪器设备总值(亿元)</td>
+                <td>7.32</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Footer">
+      <p>Copyright @ JoeMob wangyuxiaojoemob@outlook.com</p>
+    </div>
+  </div>
+</body>
+<script>
+  document.getElementById("defaultTab").click();
+</script>
+
+</html>
