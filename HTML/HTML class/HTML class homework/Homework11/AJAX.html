@@ -6,11 +6,11 @@
     <script>
         function requestNumberByStudentID() {
             var xhr = new XMLHttpRequest();
-            // xhr.open("GET", "http://120.26.176.79:8020/GetNumber2016011235");
-            xhr.open("GET", "http://120.26.176.79:8020/GetNumber" + document.getElementById("studentID").value);
+            xhr.open("GET", "http://120.26.176.79:8020/GetNumber2016011235");
+            // xhr.open("GET", "http://120.26.176.79:8020/GetNumber" + document.getElementById("studentID").value);
             console.log(xhr)
             xhr.send();
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     document.getElementById("output").innerHTML = xhr.responseText;
                 }
