@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <meta author="JoeMob王宇啸/2016011235" />
+    <script type="text/javascript" src="./HTML exam.js"></script>
+    <link rel="stylesheet" type="text/css" href="./HTML exam.css" />
+</head>
+
+<body>
+    <div class="BodyWrapper">
+        <div class="InputArea">
+            IP:<input id="serverIP">
+        </div>
+        <div class="InputArea">
+            学号:<input type="number" id="studentID"><button onclick="drawQ()">抽题</button>
+        </div>
+        <div class="InputArea">
+            题号:<input type="number" id="qNumber"><button onclick="getQ()">获取题目</button>
+        </div>
+        <div class="InputArea">
+            答题:<input type="text" maxlength="1" id="answer"><button onclick="answerQ()">答题</button>
+        </div>
+        <div class="OutputArea">
+            <p>题号:</p><textarea readonly="1" cols="60" rows="10" id="drawQOutput" class="ShowCase"></textarea>
+            <p>题目:</p> <textarea readonly="1" cols="60" rows="10" id="getQOutput" class="ShowCase"></textarea>
+            <p>答题提交结果:</p> <textarea readonly="1" cols="60" rows="10" id="answerQOutput" class="ShowCase"></textarea>
+        </div>
+    </div>
+    <audio autoplay="autoplay" controls="controls" loop="loop" preload="auto" src="./Draper - Aspire.flac" style="margin-top:20px;">你的浏览器不支持audio标签</audio>
+</body>
+
+</html>
