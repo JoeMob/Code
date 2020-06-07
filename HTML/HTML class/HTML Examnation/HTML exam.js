@@ -24,7 +24,7 @@ function getQ() {
 
 function answerQ() {
     var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://" + document.getElementById("serverIP").value + "/submit/?studentId=" + document.getElementById("studentID").value + "&ordinal=" + document.getElementById("qNumber").value + "&answer=" + document.getElementById("answer").value);
+    xhr.open("GET", "http://" + document.getElementById("serverIP").value + "/submit/?studentId=" + document.getElementById("studentID").value + "&ordinal=" + document.getElementById("qNumber").value + "&answer=" + document.getElementById("answer").value);
     console.log(xhr);
     xhr.send();
     xhr.onreadystatechange = function() {
