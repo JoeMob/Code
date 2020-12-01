@@ -1,11 +1,10 @@
 #include <iostream>
 using namespace std;
 
-struct state
+int throw_egg(int eggs,int floars)
 {
-    int start;
-    int attempt;
-};
+
+}
 
 int main()
 {
@@ -15,6 +14,6 @@ int main()
     {
         for (int j = 1; j <= stairs - i; j++)
         {
-                }
+        }
     }
 }
