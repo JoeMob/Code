@@ -23,6 +23,10 @@ int deleteMin(int nums[], int length) {
 
 int main() {
   int nums[] = {100, 2, 3, 4, 5, 6, 11, -10000, 213, 0, -1, 1, -2, -3, -4};
-  printf("The minimum is %d.", deleteMin(nums, sizeof(nums) / sizeof(nums[0])));
+  int length = sizeof(nums) / sizeof(nums[0]);
+  printf("The minimum is %d.\n", deleteMin(nums, length));
+  for (int i = 0; i < length; i++) {
+    printf("[%d] is %d,\n", i, nums[i]);
+  }
   return 0;
 }
